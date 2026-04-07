@@ -4,96 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DDodang Wedding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-pink: #ff6b6b;
-            --bg-pink: #fff5f5;
-            --text-gray: #444444;
+            --bg-soft-pink: #FFF0F0; /* 전체 배경색 */
+            --point-yellow: #FFF59D; /* 포스트잇 노란색 */
+            --header-blue: #A9D1F7;  /* 로고 하늘색 */
+            --menu-green: #DCEDC8;   /* 상단 메뉴 연두색 */
+            --white: #FFFFFF;
+            --text-dark: #333333;
         }
+
         body {
-            background-color: var(--bg-pink);
-            color: var(--text-gray);
-            font-family: 'Gaegu', cursive; /* 말랑말랑한 느낌 */
+            background-color: var(--bg-soft-pink);
+            font-family: 'Gaegu', cursive;
             margin: 0; padding: 20px;
-            display: flex; flex-direction: column; align-items: center;
+            display: flex; justify-content: center;
         }
-        /* 헤더 영역 */
+
+        .phone-frame {
+            width: 100%; max-width: 800px;
+            background-color: var(--bg-soft-pink);
+            border: 2px solid #2196F3; /* 시안의 파란 테두리 느낌 */
+            padding: 20px; box-sizing: border-box;
+            display: flex; flex-direction: column;
+        }
+
+        /* 헤더 섹션 */
         header {
-            width: 100%; max-width: 900px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px solid var(--text-gray);
+            display: flex; align-items: flex-end;
+            border-bottom: 3px solid #5D4037;
             padding-bottom: 10px; margin-bottom: 20px;
         }
-        .logo { font-size: 2rem; font-weight: bold; }
-        .logo span { color: var(--main-pink); }
-        nav button {
-            background: white; border: 2px solid var(--text-gray);
-            padding: 5px 15px; margin-left: 5px; cursor: pointer;
-            font-family: 'Gaegu'; font-weight: bold;
+        .logo { 
+            font-size: 3rem; color: var(--header-blue); 
+            font-weight: bold; text-shadow: 2px 2px #555;
+            margin-right: 40px;
+        }
+        .nav-group { display: flex; gap: 10px; }
+        .nav-item {
+            width: 100px; height: 40px;
+            background-color: var(--menu-green);
+            border: 1px solid #999;
         }
 
-        /* 메인 컨텐츠 영역 */
-        .container {
-            display: flex; width: 100%; max-width: 900px; gap: 20px;
-        }
-        /* 왼쪽 사이드바 (방명록 느낌) */
-        .sidebar {
-            flex: 1; border: 2px dashed var(--text-gray);
-            padding: 20px; background: white;
-            font-family: 'Nanum Pen Script', cursive; font-size: 1.5rem;
-        }
-        /* 오른쪽 메인 (사진 영역) */
-        .main-content { flex: 2; }
-        .main-photo {
-            width: 100%; border: 3px solid var(--text-gray);
-            box-shadow: 10px 10px 0px var(--text-gray);
-            margin-bottom: 20px;
-        }
+        /* 메인 컨텐츠 섹션 */
+        .main-container { display: flex; gap: 20px; }
 
-        /* 하단 정보 (날짜, 시간, 장소) */
-        footer {
-            width: 100%; max-width: 900px;
-            margin-top: 30px; padding: 20px;
-            background: white; border: 2px solid var(--text-gray);
-            text-align: center;
+        /* 왼쪽 사이드바 (인물 정보) */
+        .sidebar { width: 180px; display: flex; flex-direction: column; gap: 20px; }
+        .sidebar-title { text-align: center; font-size: 1.5rem; margin-bottom: 5px; }
+        .info-card {
+            background-color: var(--point-yellow);
+            padding: 15px; border: 1px solid #ccc;
+            position: relative; box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
         }
-        .info-title { color: var(--main-pink); font-size: 1.8rem; margin-bottom: 10px; }
-        .info-text { font-size: 1.4rem; line-height: 1.6; }
+        /* 포스트잇 점 모양 */
+        .info-card::before, .info-card::after {
+            content: ''; position: absolute; width: 10px; height: 10px;
+            background: #555; border-radius: 50%; top: 10px;
+        }
+        .info-card::before { left: 10px; } .info-card::after { right: 10px; }
+        .info-card p { margin: 5px 0; font-size: 1.2rem; text-align: center; }
+
+        /* 중앙 메인 (사진 및 날짜) */
+        .content-body {
+            flex: 1; display: flex; flex-direction: column; align-items: center;
+        }
+        .photo-box {
+            width: 350px; height: 400px;
+            background-color: #D9D9D9;
+            border: 1px solid #999;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; margin-bottom: 20px;
+        }
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .details-box {
+            background-color: var(--white);
+            width: 100%; padding: 20px; text-align: center;
+            font-size: 1.5rem; line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
+<div class="phone-frame">
     <header>
-        <div class="logo">DDodang <span>❤️</span></div>
-        <nav>
-            <button>결혼식 안내</button>
-            <button>예약 및 안내</button>
-            <button>기타</button>
-        </nav>
+        <div class="logo">DDodang</div>
+        <div class="nav-group">
+            <div class="nav-item"></div>
+            <div class="nav-item"></div>
+            <div class="nav-item"></div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="sidebar">
-            <p>여기에 우리 공주가</p>
-            <p>왕자님에게 하고 싶은 말들을</p>
-            <p>하나씩 채워나갈 거야!</p>
-            <hr>
-            <p style="color: var(--main-pink);">✨ 하객 방명록 예정지 ✨</p>
-        </div>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-title">결혼</div>
+            <div class="info-card">
+                <p>신랑 : 이진현</p>
+                <p style="font-size: 1rem; margin-top: 10px;">아버님, 어머님</p>
+            </div>
+            <div class="info-card">
+                <p>신부 : 조윤담</p>
+                <p style="font-size: 1rem; margin-top: 10px;">엄마, 아빠 장녀</p>
+            </div>
+        </aside>
 
-        <div class="main-content">
-            <img src="images/danag.jpg" alt="메인 사진" class="main-photo">
-        </div>
+        <main class="content-body">
+            <div class="photo-box">
+                <img src="images/danag.jpg" alt="메인 사진">
+            </div>
+            <div class="details-box">
+                날짜 : 2027 . 10 . 09 (토요일)<br>
+                시간 : 12시 (정오)<br>
+                장소 : 롯데월드민속박물관
+            </div>
+        </main>
     </div>
-
-    <footer>
-        <div class="info-title">우리 결혼합니다 💍</div>
-        <div class="info-text">
-            <b>일시:</b> 2027년 10월 9일 토요일 (한글날) 낮 12시<br>
-            <b>장소:</b> 롯데민속박물관
-        </div>
-    </footer>
+</div>
 
 </body>
 </html>
