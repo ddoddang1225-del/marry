@@ -22,102 +22,134 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* [수정] 헤더: 1440px 규격 & 로고 오른쪽 배치 */
+        /* 헤더 설정 */
         header {
             width: 100%;
-            max-width: 1440px; /* 공주가 정한 규격 */
-            height: 120px;
+            max-width: 1440px;
+            min-height: 80px; /* 폰에서는 높이를 유동적으로 */
             display: flex;
-            justify-content: flex-end; /* 오른쪽 끝으로 밀기 */
+            justify-content: flex-end;
             align-items: center;
-            padding: 0 40px;
+            padding: 20px 40px;
             box-sizing: border-box;
             border-bottom: 4px solid var(--line-brown);
-            gap: 30px;
+            gap: 20px;
+            flex-wrap: wrap; /* 폰에서 로고랑 메뉴가 겹치면 줄바꿈 되게 */
         }
 
-        /* [수정] DDodang 이름 크기 48px */
         .logo {
             font-size: 48px; 
             color: var(--header-blue);
             font-weight: bold;
             text-shadow: 2px 2px #555;
+            order: 2;
         }
 
-        /* 중간에 들어가는 네모 상자 3개 */
-        .nav-group { display: flex; gap: 20px; }
+        .nav-group { display: flex; gap: 10px; order: 1; }
         .nav-item {
-            width: 110px; height: 50px;
+            width: 80px; height: 40px;
             background-color: var(--menu-green);
             border: 1px solid #999;
             box-shadow: 3px 3px 0px var(--line-brown);
         }
 
-        /* 메인 컨텐츠 영역 */
+        /* 메인 래퍼 */
         .main-wrapper {
             display: flex;
             width: 100%;
-            max-width: 1440px; /* 규격 통일 */
+            max-width: 1440px;
             min-height: calc(100vh - 120px);
         }
 
-        /* [수정] 왼쪽 사이드바: 300px~400px 메모장 크기 */
+        /* 왼쪽 사이드바 (메모장) */
         .left-sidebar {
-            width: 350px; /* 300~400 사이 적정값 */
+            width: 350px;
             display: flex; flex-direction: column; align-items: center;
             padding: 40px 20px;
-            border-right: 4px solid var(--line-brown); /* 세로 구분선 */
+            border-right: 4px solid var(--line-brown);
             box-sizing: border-box;
         }
 
-        .sidebar-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 30px; }
+        .sidebar-title { font-size: 2.2rem; font-weight: bold; margin-bottom: 30px; }
 
-        /* 메모장 스타일 포스트잇 */
         .memo-pad {
-            width: 280px; 
+            width: 90%; max-width: 280px;
             background-color: var(--point-yellow);
-            padding: 30px 20px;
+            padding: 25px 15px;
             border: 1px solid #ccc;
             box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             position: relative;
         }
         .memo-pad::before, .memo-pad::after {
-            content: ''; position: absolute; width: 12px; height: 12px;
-            background: #555; border-radius: 50%; top: 15px;
+            content: ''; position: absolute; width: 10px; height: 10px;
+            background: #555; border-radius: 50%; top: 12px;
         }
-        .memo-pad::before { left: 15px; } .memo-pad::after { right: 15px; }
+        .memo-pad::before { left: 12px; } .memo-pad::after { right: 12px; }
+        .memo-pad p { margin: 8px 0; font-size: 1.5rem; text-align: center; }
 
-        .memo-pad p { margin: 10px 0; font-size: 1.8rem; text-align: center; line-height: 1.4; }
-
-        /* [수정] 메인 컨텐츠 영역 */
+        /* 오른쪽 메인 컨텐츠 */
         .main-content {
-            flex: 1; /* 남은 공간 모두 사용 */
+            flex: 1;
             display: flex; flex-direction: column; align-items: center;
-            padding: 50px;
+            padding: 40px 20px;
             box-sizing: border-box;
         }
 
-        /* 사진 영역 */
         .photo-frame {
-            width: 100%; max-width: 600px; height: 500px;
+            width: 100%; max-width: 500px;
+            aspect-ratio: 1 / 1.1; /* 비율 유지 */
             background-color: #D9D9D9;
             border: 2px solid var(--line-brown);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             overflow: hidden;
         }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 흰색 박스 글씨 */
         .white-text-box {
             background-color: var(--white);
-            width: 100%; max-width: 700px;
-            padding: 40px;
+            width: 100%; max-width: 600px;
+            padding: 25px;
             border: 1px solid #ddd;
             text-align: center;
-            font-size: 2.2rem;
-            line-height: 1.8;
-            box-shadow: 10px 10px 0px var(--menu-green); /* 포인트 디자인 */
+            font-size: 1.8rem;
+            line-height: 1.6;
+            box-shadow: 8px 8px 0px var(--menu-green);
+        }
+
+        /* ✨ [반응형 마법] 화면 폭이 768px 이하(폰/태블릿)일 때 적용되는 규칙 */
+        @media (max-width: 768px) {
+            header {
+                justify-content: center; /* 폰에서는 가운데 정렬 */
+                padding: 15px;
+                height: auto;
+            }
+            .logo { font-size: 36px; order: 1; width: 100%; text-align: center; margin-bottom: 10px; }
+            .nav-group { order: 2; }
+
+            .main-wrapper {
+                flex-direction: column; /* 세로로 쌓기! */
+            }
+
+            .left-sidebar {
+                width: 100%; /* 가로 꽉 차게 */
+                border-right: none;
+                border-bottom: 4px solid var(--line-brown); /* 세로선 대신 가로선으로 구분 */
+                padding: 20px;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .photo-frame {
+                max-width: 100%; /* 폰 화면에 꽉 차게 */
+            }
+
+            .white-text-box {
+                font-size: 1.4rem; /* 폰에서는 글씨를 조금 줄여줘 */
+            }
         }
     </style>
 </head>
@@ -135,23 +167,14 @@
     <div class="main-wrapper">
         <aside class="left-sidebar">
             <div class="sidebar-title">결혼</div>
-            
-            <div class="memo-pad">
-                <p>신랑 : 이진현</p>
-                <p style="font-size: 1.3rem; margin-top: 20px;">아버님, 어머님</p>
-            </div>
-
-            <div class="memo-pad">
-                <p>신부 : 조윤담</p>
-                <p style="font-size: 1.3rem; margin-top: 20px;">엄마, 아빠 장녀</p>
-            </div>
+            <div class="memo-pad"><p>신랑 : 이진현</p><p style="font-size: 1.1rem;">아버님, 어머님</p></div>
+            <div class="memo-pad"><p>신부 : 조윤담</p><p style="font-size: 1.1rem;">엄마, 아빠 장녀</p></div>
         </aside>
 
         <main class="main-content">
             <div class="photo-frame">
                 <img src="images/danag.jpg" alt="메인 사진">
             </div>
-            
             <div class="white-text-box">
                 날짜 : 2027 . 10 . 09 (토요일)<br>
                 시간 : 12시 (정오)<br>
