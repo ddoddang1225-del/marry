@@ -2,161 +2,131 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>DDodang Header Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDodang GNB Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* [공주의 시스템 변수] */
+        /* [수정] 공주의 시안 컬러 테마 적용 */
         :root {
-            --n-green: #03c75a;
-            --n-border: #e9eaeb;
-            --n-bg: #ffffff;
-            --n-text: #1c1c1c;
-            --max-width: 1280px;
+            --bg-soft-pink: #FFF0F0;  /* 시안의 핑크 배경 */
+            --point-blue: #A9D1F7;   /* 하늘색 로고 */
+            --menu-green: #DCEDC8;   /* 연두색 메뉴 상자 */
+            --line-brown: #5D4037;   /* 구분선 진한 갈색 */
+            --max-width: 1440px;      /* 와이드 규격 */
         }
 
-        body { margin: 0; padding: 0; background-color: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", dotum, sans-serif; }
+        body {
+            background-color: var(--bg-soft-pink);
+            font-family: 'Gaegu', cursive; /* 귀여운 폰트 */
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
 
-        /* [Header Main Container] */
-        #header {
+        /* [수정] 헤더 Main Container */
+        header#header {
             width: 100%;
-            background-color: var(--n-bg);
-            border-bottom: 1px solid var(--n-border);
-            min-width: var(--max-width);
+            height: 120px; /* 시안 높이 */
+            display: flex;
+            justify-content: center;
+            background-color: var(--bg-soft-pink);
         }
 
-        .header_inner {
+        /* [수정] 시안처럼 양 끝으로 배치하는 규격 */
+        .header_inner#topSearchWrap {
+            width: 100%;
             max-width: var(--max-width);
-            margin: 0 auto;
-            height: 160px; /* 네이버 상단 검색 영역 높이 규격 */
-            position: relative;
             display: flex;
+            justify-content: space-between; /* 양 끝으로 벌리기 */
             align-items: center;
-            justify-content: space-between; /* 양쪽 끝 배치 */
+            padding: 0 50px;
+            box-sizing: border-box;
+            /* [중요] 시안의 하단 구분선 */
+            border-bottom: 4px solid var(--line-brown); 
         }
 
-        /* [왼쪽: 로고 영역] */
-        .search_logo {
-            margin-right: 30px;
-            display: flex;
-            align-items: center;
+        /* [수정] 왼쪽 로고 영역 */
+        .search_logo#special-input-logo {
+            display: flex; align-items: center; margin: 0;
         }
+
+        /* [수정] 하늘색 48px 로고 DDodang */
+        .search_logo a { text-decoration: none; }
+        .search_logo span.rico_logo { display: none; } /* 네이버 로고 안보이게 */
         
-        .link_ddodang {
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--n-green);
-            text-decoration: none;
-            letter-spacing: -1.5px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* [중앙: 3등분 검색창 영역] */
-        .search_area {
-            flex: 1;
-            max-width: 710px; /* 네이버 실제 검색창 박스 최대 폭 */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .search_group {
-            width: 100%;
-            height: 60px;
-            border: 2px solid var(--n-green);
-            border-radius: 4px;
-            display: flex;
-            background: #fff;
-            overflow: hidden;
-        }
-
-        /* 검색창 3등분 섹션 */
-        .search_section {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 1px solid #eee; /* 영역 구분선 */
-            padding: 0 15px;
-            font-size: 15px;
+        /* [추가] 시안의 'DDodang' 문구 */
+        .search_logo a:after {
+            content: 'DDodang';
+            font-size: 48px; /* 48px 크기 */
             font-weight: bold;
-            color: #666;
-            cursor: pointer;
-            transition: background 0.2s;
+            color: var(--point-blue);
+            text-shadow: 2px 2px #555; /* 로고 그림자 효과 */
+            letter-spacing: -1.5px;
         }
 
-        .search_section:last-child {
-            border-right: none;
-            background-color: var(--n-green); /* 마지막은 검색 버튼 느낌 */
-            color: white;
-            flex: 0.5; /* 버튼은 조금 작게 */
-        }
+        /* [수정] 중앙 검색창 영역 - 안 보이게 처리 */
+        .search_area#search_area { display: none; }
 
-        .search_section:hover {
-            background-color: #f9f9f9;
-        }
-        .search_section:last-child:hover {
-            filter: brightness(0.9);
-        }
-
-        /* [오른쪽: 서비스 메뉴/광고 영역] */
-        #search-right {
-            width: 244px; /* 공주가 가져온 광고 이미지 규격 244px */
-            height: 108px;
+        /* [수정] 오른쪽 서비스 영역 - 연두색 버튼 3개로 구성 */
+        .shortcut_area#shortcutArea {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #f0f2f5;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-left: 30px;
+            justify-content: flex-end; /* 오른쪽 정렬 */
+            gap: 15px; /* 버튼 사이 간격 */
         }
         
-        #search-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* 보이지 않게 처리할 네이버 요소들 */
+        #top शॉपिंगA리이아, #top asideArea, #top talkArea, #top no티Area, #top payArea { display: none; }
+
+        /* [수정] 연두색 메뉴 상자 3개 디자인 */
+        .shortcut_list {
+            display: flex; gap: 15px; margin: 0; padding: 0; list-style: none;
+        }
+        
+        .shortcut_item a.link_service {
+            display: block;
+            width: 100px; height: 45px; /* 시안 규격 */
+            background-color: var(--menu-green);
+            border: 1px solid #999;
+            box-sizing: border-box;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        /* 호버 시 살짝 떠오르는 효과 */
+        .shortcut_item a.link_service:hover {
+            transform: translateY(-3px);
+            border-color: var(--point-blue);
         }
 
-        /* 보이지 않는 텍스트 (접근성) */
+        /* 네이버 서비스 아이콘 안 보이게 */
+        .service_icon { display: none; }
         .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden; }
 
     </style>
 </head>
 <body>
 
-<div id="header" role="banner">
-    <div class="header_inner">
+<header id="header" role="banner">
+    <div id="topSearchWrap" class="header_inner">
         
-        <h1 class="search_logo">
-            <a href="/" class="link_ddodang">
-                <span>DDodang</span>
+        <h1 id="special-input-logo" class="search_logo">
+            <a href="/" class="link_naver">
+                <span class="ico_n_logo_svg"></span> <span class="blind">NAVER</span>
             </a>
         </h1>
 
-        <div id="search_area" class="search_area">
-            <div class="search_group">
-                <div class="search_section">
-                    <span>웨딩 정보</span>
-                </div>
-                <div class="search_section">
-                    <span>이진현 ❤️ 조윤담</span>
-                </div>
-                <div class="search_section">
-                    <svg viewBox="0 0 50 50" width="25" height="25" style="fill: #fff">
-                        <path d="M22.13.5c11.378 0 20.632 9.256 20.632 20.63 0 4.699-1.566 9.155-4.439 12.782l10.164 10.165a2.41 2.41 0 0 1-1.706 4.115 2.412 2.412 0 0 1-1.706-.705L33.31 35.719a2.41 2.41 0 0 1 0-3.41 15.71 15.71 0 0 0 4.628-11.178c0-8.718-7.09-15.808-15.807-15.808-8.718 0-15.808 7.09-15.808 15.808 0 7.15 4.817 13.43 11.714 15.273a2.41 2.41 0 0 1 1.705 2.954 2.41 2.41 0 0 1-2.95 1.705C7.788 38.658 1.5 30.46 1.5 21.131 1.5 9.756 10.756.5 22.13.5zm4.716 34.746a3.483 3.483 0 1 1 0 6.966 3.483 3.483 0 0 1 0-6.966z"></path>
-                    </svg>
-                </div>
-            </div>
-        </div>
+        <div id="search_area" class="search_area"></div>
 
-        <div id="search-right">
-            <a href="#" class="link_headline">
-                <img src="https://ssl.pstatic.net/melona/libs/1564/1564335/f5207eb6b707f423bce2_20260402145907641.png" alt="웨딩 배너">
-            </a>
+        <div id="shortcutArea" class="shortcut_area" role="navigation">
+            <ul class="shortcut_list">
+                <li class="shortcut_item"><a href="#" class="link_service"></a></li>
+                <li class="shortcut_item"><a href="#" class="link_service"></a></li>
+                <li class="shortcut_item"><a href="#" class="link_service"></a></li>
+            </ul>
         </div>
-
     </div>
-</div>
+</header>
 
 </body>
 </html>
