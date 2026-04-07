@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DDodang Wedding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <title>DDodang Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-pink: #FFF0F0;
@@ -19,121 +19,140 @@
             background-color: var(--bg-pink);
             font-family: 'Gaegu', cursive;
             margin: 0; padding: 0;
-            display: flex; flex-direction: column;
-            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
         }
 
+        /* [수정] 헤더: 1440px 규격 & 로고 오른쪽 배치 */
         header {
             width: 100%;
+            max-width: 1440px; /* 공주가 정한 규격 */
             height: 120px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* 오른쪽 끝으로 밀기 */
             align-items: center;
-            padding: 0 50px;
+            padding: 0 40px;
             box-sizing: border-box;
             border-bottom: 4px solid var(--line-brown);
-            background-color: var(--bg-pink);
+            gap: 30px;
         }
 
+        /* [수정] DDodang 이름 크기 48px */
         .logo {
-            font-size: 3.5rem; color: var(--header-blue);
-            font-weight: bold; text-shadow: 2px 2px #555;
+            font-size: 48px; 
+            color: var(--header-blue);
+            font-weight: bold;
+            text-shadow: 2px 2px #555;
         }
 
-        .nav-group { display: flex; gap: 15px; }
+        /* 중간에 들어가는 네모 상자 3개 */
+        .nav-group { display: flex; gap: 20px; }
         .nav-item {
-            width: 100px; height: 45px;
+            width: 110px; height: 50px;
             background-color: var(--menu-green);
             border: 1px solid #999;
+            box-shadow: 3px 3px 0px var(--line-brown);
         }
 
+        /* 메인 컨텐츠 영역 */
         .main-wrapper {
             display: flex;
-            flex: 1;
             width: 100%;
+            max-width: 1440px; /* 규격 통일 */
+            min-height: calc(100vh - 120px);
         }
 
-        /* [수정] 왼쪽 섹션: 내부 정렬을 오른쪽 끝(세로선 쪽)으로 밀었어! */
-        .left-section {
-            flex: 1; 
-            display: flex; flex-direction: column; 
-            align-items: flex-end; /* 모든 요소를 오른쪽(세로선 쪽)으로 밀기 */
-            padding-top: 40px;
-            padding-right: 30px; /* 세로선에서 살짝만 띄우기 */
-            border-right: 4px solid var(--line-brown);
+        /* [수정] 왼쪽 사이드바: 300px~400px 메모장 크기 */
+        .left-sidebar {
+            width: 350px; /* 300~400 사이 적정값 */
+            display: flex; flex-direction: column; align-items: center;
+            padding: 40px 20px;
+            border-right: 4px solid var(--line-brown); /* 세로 구분선 */
             box-sizing: border-box;
         }
 
-        /* [수정] '결혼' 타이틀 크기 조금 작게 */
-        .sidebar-title { font-size: 2.2rem; font-weight: bold; margin-bottom: 25px; }
+        .sidebar-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 30px; }
 
-        /* [수정] 포스트잇 크기 축소 (220px -> 180px) */
-        .post-it {
-            width: 180px; 
+        /* 메모장 스타일 포스트잇 */
+        .memo-pad {
+            width: 280px; 
             background-color: var(--point-yellow);
-            padding: 20px 10px; border: 1px solid #ccc;
-            margin-bottom: 25px; position: relative;
-            box-shadow: 4px 4px 6px rgba(0,0,0,0.1);
+            padding: 30px 20px;
+            border: 1px solid #ccc;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
         }
-        .post-it::before, .post-it::after {
-            content: ''; position: absolute; width: 10px; height: 10px;
-            background: #555; border-radius: 50%; top: 10px;
+        .memo-pad::before, .memo-pad::after {
+            content: ''; position: absolute; width: 12px; height: 12px;
+            background: #555; border-radius: 50%; top: 15px;
         }
-        .post-it::before { left: 10px; } .post-it::after { right: 10px; }
-        .post-it p { margin: 8px 0; font-size: 1.4rem; text-align: center; }
+        .memo-pad::before { left: 15px; } .memo-pad::after { right: 15px; }
 
-        .right-section {
-            flex: 2;
+        .memo-pad p { margin: 10px 0; font-size: 1.8rem; text-align: center; line-height: 1.4; }
+
+        /* [수정] 메인 컨텐츠 영역 */
+        .main-content {
+            flex: 1; /* 남은 공간 모두 사용 */
             display: flex; flex-direction: column; align-items: center;
-            padding: 40px;
+            padding: 50px;
+            box-sizing: border-box;
         }
 
-        .photo-box {
-            width: 100%; max-width: 450px; height: 500px;
-            background-color: #D9D9D9; border: 1px solid #999;
-            margin-bottom: 30px; overflow: hidden;
+        /* 사진 영역 */
+        .photo-frame {
+            width: 100%; max-width: 600px; height: 500px;
+            background-color: #D9D9D9;
+            border: 2px solid var(--line-brown);
+            margin-bottom: 40px;
+            overflow: hidden;
         }
-        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        .details-box {
+        /* 흰색 박스 글씨 */
+        .white-text-box {
             background-color: var(--white);
-            width: 100%; max-width: 550px;
-            padding: 25px; border: 1px solid #ddd;
-            text-align: center; font-size: 1.8rem; line-height: 1.8;
+            width: 100%; max-width: 700px;
+            padding: 40px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 2.2rem;
+            line-height: 1.8;
+            box-shadow: 10px 10px 0px var(--menu-green); /* 포인트 디자인 */
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">DDodang</div>
         <div class="nav-group">
             <div class="nav-item"></div>
             <div class="nav-item"></div>
             <div class="nav-item"></div>
         </div>
+        <div class="logo">DDodang</div>
     </header>
 
     <div class="main-wrapper">
-        <aside class="left-section">
+        <aside class="left-sidebar">
             <div class="sidebar-title">결혼</div>
             
-            <div class="post-it">
+            <div class="memo-pad">
                 <p>신랑 : 이진현</p>
-                <p style="font-size: 1rem; margin-top: 12px;">아버님, 어머님</p>
+                <p style="font-size: 1.3rem; margin-top: 20px;">아버님, 어머님</p>
             </div>
 
-            <div class="post-it">
+            <div class="memo-pad">
                 <p>신부 : 조윤담</p>
-                <p style="font-size: 1rem; margin-top: 12px;">엄마, 아빠 장녀</p>
+                <p style="font-size: 1.3rem; margin-top: 20px;">엄마, 아빠 장녀</p>
             </div>
         </aside>
 
-        <main class="right-section">
-            <div class="photo-box">
+        <main class="main-content">
+            <div class="photo-frame">
                 <img src="images/danag.jpg" alt="메인 사진">
             </div>
-            <div class="details-box">
+            
+            <div class="white-text-box">
                 날짜 : 2027 . 10 . 09 (토요일)<br>
                 시간 : 12시 (정오)<br>
                 장소 : 롯데월드민속박물관
