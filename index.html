@@ -2,23 +2,98 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>또댕 커플의 결혼식</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDodang Wedding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            text-align: center; 
-            padding: 100px; 
-            font-family: 'Pretendard', sans-serif;
-            background-color: #fff5f5;
+        :root {
+            --main-pink: #ff6b6b;
+            --bg-pink: #fff5f5;
+            --text-gray: #444444;
         }
-        h1 { color: #ff6b6b; font-size: 3rem; }
-        p { color: #444; font-size: 1.2rem; }
-        .heart { font-size: 50px; color: #ff6b6b; }
+        body {
+            background-color: var(--bg-pink);
+            color: var(--text-gray);
+            font-family: 'Gaegu', cursive; /* 말랑말랑한 느낌 */
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        /* 헤더 영역 */
+        header {
+            width: 100%; max-width: 900px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--text-gray);
+            padding-bottom: 10px; margin-bottom: 20px;
+        }
+        .logo { font-size: 2rem; font-weight: bold; }
+        .logo span { color: var(--main-pink); }
+        nav button {
+            background: white; border: 2px solid var(--text-gray);
+            padding: 5px 15px; margin-left: 5px; cursor: pointer;
+            font-family: 'Gaegu'; font-weight: bold;
+        }
+
+        /* 메인 컨텐츠 영역 */
+        .container {
+            display: flex; width: 100%; max-width: 900px; gap: 20px;
+        }
+        /* 왼쪽 사이드바 (방명록 느낌) */
+        .sidebar {
+            flex: 1; border: 2px dashed var(--text-gray);
+            padding: 20px; background: white;
+            font-family: 'Nanum Pen Script', cursive; font-size: 1.5rem;
+        }
+        /* 오른쪽 메인 (사진 영역) */
+        .main-content { flex: 2; }
+        .main-photo {
+            width: 100%; border: 3px solid var(--text-gray);
+            box-shadow: 10px 10px 0px var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        /* 하단 정보 (날짜, 시간, 장소) */
+        footer {
+            width: 100%; max-width: 900px;
+            margin-top: 30px; padding: 20px;
+            background: white; border: 2px solid var(--text-gray);
+            text-align: center;
+        }
+        .info-title { color: var(--main-pink); font-size: 1.8rem; margin-bottom: 10px; }
+        .info-text { font-size: 1.4rem; line-height: 1.6; }
     </style>
 </head>
 <body>
-    <div class="heart">❤️</div>
-    <h1>또댕 커플의 결혼식 홈페이지</h1>
-    <p>공주가 한 땀 한 땀 코딩으로 짓고 있는 중입니다!</p>
-    <p><b>곧 만나요! 커밍순! 💍</b></p>
+
+    <header>
+        <div class="logo">DDodang <span>❤️</span></div>
+        <nav>
+            <button>결혼식 안내</button>
+            <button>예약 및 안내</button>
+            <button>기타</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <p>여기에 우리 공주가</p>
+            <p>왕자님에게 하고 싶은 말들을</p>
+            <p>하나씩 채워나갈 거야!</p>
+            <hr>
+            <p style="color: var(--main-pink);">✨ 하객 방명록 예정지 ✨</p>
+        </div>
+
+        <div class="main-content">
+            <img src="images/danag.jpg" alt="메인 사진" class="main-photo">
+        </div>
+    </div>
+
+    <footer>
+        <div class="info-title">우리 결혼합니다 💍</div>
+        <div class="info-text">
+            <b>일시:</b> 2027년 10월 9일 토요일 (한글날) 낮 12시<br>
+            <b>장소:</b> 롯데민속박물관
+        </div>
+    </footer>
+
 </body>
 </html>
