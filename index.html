@@ -11,47 +11,50 @@
             --point-yellow: #FFF59D; /* 포스트잇 노란색 */
             --header-blue: #A9D1F7;  /* 로고 하늘색 */
             --menu-green: #DCEDC8;   /* 상단 메뉴 연두색 */
-            --frame-blue: #2196F3;   /* 테두리 파란색 */
             --white: #FFFFFF;
             --text-dark: #333333;
         }
 
-        /* 공주야, 화면 전체에 핑크 배경이랑 테두리를 깔아줄게! */
+        /* 파란 선 삭제하고 깔끔한 배경만 남겼어! */
         body {
             background-color: var(--bg-soft-pink);
             font-family: 'Gaegu', cursive;
             margin: 0; padding: 20px;
-            display: flex; justify-content: center; align-items: flex-start; /* 상단부터 채우기 */
-            height: 100vh; /* 화면 전체 높이 사용 */
-            box-sizing: border-box; /* 패딩 포함 */
-            border: 5px solid var(--frame-blue); /* 공주의 파란 테두리 액자! */
+            display: flex; justify-content: center;
+            box-sizing: border-box;
         }
 
         .phone-frame {
-            width: 100%; max-width: 900px; /* PC에서도 너무 퍼지지 않게 */
+            width: 100%; max-width: 900px;
             display: flex; flex-direction: column;
             padding: 20px;
         }
 
-        /* 헤더 섹션 (로고, 메뉴) */
+        /* 헤더 섹션: 로고를 오른쪽(flex-end)으로! */
         header {
-            display: flex; align-items: flex-end;
+            display: flex; 
+            flex-direction: row-reverse; /* 요소 순서를 반대로 해서 로고를 우측으로! */
+            align-items: center;
             border-bottom: 3px solid #5D4037;
             padding-bottom: 15px; margin-bottom: 30px;
+            gap: 20px;
         }
+        
         .logo { 
             font-size: 3.5rem; color: var(--header-blue); 
             font-weight: bold; text-shadow: 2px 2px #555;
-            margin-right: auto; /* 로고 왼쪽 끝, 메뉴 오른쪽 끝 */
+            margin-left: 20px; /* 메뉴와 간격 조절 */
         }
+
         .nav-group { display: flex; gap: 10px; }
         .nav-item {
             width: 110px; height: 45px;
             background-color: var(--menu-green);
             border: 1px solid #999;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* 메인 컨텐츠 섹션 (공주 그림의 레이아웃 그대로) */
+        /* 메인 컨텐츠 섹션 */
         .main-container { display: flex; gap: 30px; }
 
         /* 왼쪽 사이드바 (인물 정보) */
@@ -62,7 +65,6 @@
             padding: 20px; border: 1px solid #ccc;
             position: relative; box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
         }
-        /* 포스트잇 점 모양 */
         .info-card::before, .info-card::after {
             content: ''; position: absolute; width: 12px; height: 12px;
             background: #555; border-radius: 50%; top: 12px;
@@ -74,21 +76,20 @@
         .content-body {
             flex: 1; display: flex; flex-direction: column; align-items: center;
         }
-        /* 공주의 대형 사진 박스 */
         .photo-box {
             width: 400px; height: 450px;
-            background-color: #D9D9D9; /* 회색 기본 박스 */
+            background-color: #D9D9D9;
             border: 1px solid #999;
             display: flex; justify-content: center; align-items: center;
             overflow: hidden; margin-bottom: 30px;
         }
-        .photo-box img { width: 100%; height: 100%; object-fit: cover; } /* 사진 꽉 차게 */
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 하단 흰색 정보 박스 */
+        /* 하단 정보 박스 */
         .details-box {
             background-color: var(--white);
             width: 100%; padding: 25px; text-align: center;
-            font-size: 1.8rem; line-height: 1.7; /* 공주가 좋아한 크기 & 줄간격 */
+            font-size: 1.8rem; line-height: 1.7;
             border: 1px solid #ddd;
         }
     </style>
