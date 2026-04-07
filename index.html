@@ -2,123 +2,114 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DDodang GNB Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DDodang GNB - Mobile Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* [수정] 공주의 시안 컬러 테마 적용 */
         :root {
-            --bg-soft-pink: #FFF0F0;  /* 시안의 핑크 배경 */
-            --point-blue: #A9D1F7;   /* 하늘색 로고 */
-            --menu-green: #DCEDC8;   /* 연두색 메뉴 상자 */
-            --line-brown: #5D4037;   /* 구분선 진한 갈색 */
-            --max-width: 1440px;      /* 와이드 규격 */
+            --bg-soft-pink: #FFF0F0;
+            --point-blue: #A9D1F7;
+            --menu-green: #DCEDC8;
+            --line-brown: #5D4037;
         }
 
         body {
             background-color: var(--bg-soft-pink);
-            font-family: 'Gaegu', cursive; /* 귀여운 폰트 */
+            font-family: 'Gaegu', cursive;
             margin: 0; padding: 0;
-            display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden; /* 가로 스크롤 완전 방지 */
         }
 
-        /* [수정] 헤더 Main Container */
         header#header {
             width: 100%;
-            height: 120px; /* 시안 높이 */
             display: flex;
             justify-content: center;
             background-color: var(--bg-soft-pink);
         }
 
-        /* [수정] 시안처럼 양 끝으로 배치하는 규격 */
+        /* [핵심] 가로 정렬을 절대 포기하지 않는 컨테이너 */
         .header_inner#topSearchWrap {
             width: 100%;
-            max-width: var(--max-width);
+            max-width: 1280px;
             display: flex;
-            justify-content: space-between; /* 양 끝으로 벌리기 */
+            justify-content: space-between; /* 무조건 양 끝 배치 */
             align-items: center;
-            padding: 0 50px;
+            padding: 15px 20px; /* 모바일에선 여백이 너무 크면 안 되니까 살짝 조절 */
             box-sizing: border-box;
-            /* [중요] 시안의 하단 구분선 */
-            border-bottom: 4px solid var(--line-brown); 
+            border-bottom: 4px solid var(--line-brown);
         }
 
-        /* [수정] 왼쪽 로고 영역 */
-        .search_logo#special-input-logo {
-            display: flex; align-items: center; margin: 0;
-        }
-
-        /* [수정] 하늘색 48px 로고 DDodang */
-        .search_logo a { text-decoration: none; }
-        .search_logo span.rico_logo { display: none; } /* 네이버 로고 안보이게 */
-        
-        /* [추가] 시안의 'DDodang' 문구 */
+        /* 로고 영역 */
+        .search_logo#special-input-logo { margin: 0; flex-shrink: 0; }
+        .search_logo a { text-decoration: none; display: block; }
         .search_logo a:after {
             content: 'DDodang';
-            font-size: 48px; /* 48px 크기 */
+            font-size: 40px; /* PC 기본 크기 살짝 조정 */
             font-weight: bold;
             color: var(--point-blue);
-            text-shadow: 2px 2px #555; /* 로고 그림자 효과 */
-            letter-spacing: -1.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            transition: font-size 0.2s; /* 크기 변화 부드럽게 */
         }
 
-        /* [수정] 중앙 검색창 영역 - 안 보이게 처리 */
-        .search_area#search_area { display: none; }
-
-        /* [수정] 오른쪽 서비스 영역 - 연두색 버튼 3개로 구성 */
-        .shortcut_area#shortcutArea {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end; /* 오른쪽 정렬 */
-            gap: 15px; /* 버튼 사이 간격 */
-        }
-        
-        /* 보이지 않게 처리할 네이버 요소들 */
-        #top शॉपिंगA리이아, #top asideArea, #top talkArea, #top no티Area, #top payArea { display: none; }
-
-        /* [수정] 연두색 메뉴 상자 3개 디자인 */
+        /* 메뉴 버튼 영역 */
+        .shortcut_area { display: flex; align-items: center; flex-shrink: 0; }
         .shortcut_list {
-            display: flex; gap: 15px; margin: 0; padding: 0; list-style: none;
+            display: flex; 
+            gap: 8px; /* 버튼 사이 간격 */
+            margin: 0; padding: 0; 
+            list-style: none;
         }
         
         .shortcut_item a.link_service {
             display: block;
-            width: 100px; height: 45px; /* 시안 규격 */
+            width: 80px; height: 40px;
             background-color: var(--menu-green);
             border: 1px solid #999;
-            box-sizing: border-box;
-            text-decoration: none;
-            cursor: pointer;
+            border-radius: 4px;
             transition: all 0.2s;
         }
+
+        /* -------------------------------------------------- */
+        /* [반응형] 사이즈만 슥슥 줄어드는 마법의 구간 */
+        /* -------------------------------------------------- */
         
-        /* 호버 시 살짝 떠오르는 효과 */
-        .shortcut_item a.link_service:hover {
-            transform: translateY(-3px);
-            border-color: var(--point-blue);
+        /* 태블릿 이하 (830px) */
+        @media (max-width: 830px) {
+            .search_logo a:after {
+                font-size: 32px; /* 로고 작게 */
+            }
+            .shortcut_item a.link_service {
+                width: 60px; height: 32px; /* 버튼 작게 */
+            }
+            .shortcut_list { gap: 5px; }
         }
 
-        /* 네이버 서비스 아이콘 안 보이게 */
-        .service_icon { display: none; }
-        .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden; }
+        /* 핸드폰 (480px 이하) */
+        @media (max-width: 480px) {
+            .header_inner#topSearchWrap {
+                padding: 10px 15px; /* 여백 더 줄임 */
+            }
+            .search_logo a:after {
+                font-size: 26px; /* 더 작게 해서 안 잘리게! */
+            }
+            .shortcut_item a.link_service {
+                width: 45px; height: 28px; /* 아주 작은 버튼 */
+            }
+            .shortcut_list { gap: 4px; }
+        }
 
+        .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden; }
     </style>
 </head>
 <body>
 
-<header id="header" role="banner">
+<header id="header">
     <div id="topSearchWrap" class="header_inner">
-        
         <h1 id="special-input-logo" class="search_logo">
-            <a href="/" class="link_naver">
-                <span class="ico_n_logo_svg"></span> <span class="blind">NAVER</span>
-            </a>
+            <a href="/" class="link_naver"><span class="blind">DDodang</span></a>
         </h1>
 
-        <div id="search_area" class="search_area"></div>
-
-        <div id="shortcutArea" class="shortcut_area" role="navigation">
+        <div id="shortcutArea" class="shortcut_area">
             <ul class="shortcut_list">
                 <li class="shortcut_item"><a href="#" class="link_service"></a></li>
                 <li class="shortcut_item"><a href="#" class="link_service"></a></li>
