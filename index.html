@@ -23,14 +23,21 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* [분홍 박스 - 슬림 규격 유지] */
+        /* [분홍 박스 - 상단 고정 설정 추가] */
         header.site-header {
             width: 100%;
-            padding: 10px 5% 8px 5%; /* 좌우 여백을 %로 줘서 화면 조절에 대응 */
+            padding: 10px 5% 8px 5%; 
             background-color: var(--bg-pink);
-            position: relative;
+            
+            /* ★ 고정 핵심 코드 */
+            position: fixed; 
+            top: 0;
+            left: 0;
             z-index: 1000;
+            /* 여기까지 */
+
             display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 스크롤 시 살짝 입체감 */
         }
 
         .header-top {
@@ -39,14 +46,14 @@
             position: relative; min-height: 45px; margin-bottom: 8px;
         }
 
-        /* [PC 전용 스타일] */
+        /* ---------------------------------------------------------
+           [PC 전용 스타일] - 769px 이상
+        ---------------------------------------------------------- */
         @media (min-width: 769px) {
-            /* 로고 위치 고정 및 크기 반응형 */
             .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); }
             .header-left-logo img { width: 12vw; max-width: 160px; min-width: 100px; height: auto; }
 
-            /* 글씨 크기를 clamp로 주어 화면 따라 조절 */
-            .header-title { margin-left: 10%; transition: all 0.3s; }
+            .header-title { margin-left: -60px; transition: all 0.3s; }
             .header-title a { 
                 font-family: 'Cafe24Decoline', serif; 
                 font-size: clamp(24px, 2.5vw, 38px); 
@@ -66,35 +73,35 @@
                 height: 34px; background-color: rgba(255, 255, 255, 0.6); 
                 border: 1px solid var(--box-border); border-radius: 6px; 
                 display: flex; justify-content: center; align-items: center;
-                color: var(--menu-gray); cursor: pointer; white-space: nowrap;
+                color: var(--menu-gray); cursor: pointer;
             }
             .main-content {
                 width: 100%; min-height: 100vh;
+                padding-top: 110px; /* ★ 헤더 높이만큼 여백 (PC) */
                 background-image: url('images/danag.jpg');
                 background-size: contain; background-position: center top; background-repeat: no-repeat;
             }
         }
 
-        /* [모바일 전용 스타일] */
+        /* ---------------------------------------------------------
+           [모바일 전용 스타일] - 768px 이하
+        ---------------------------------------------------------- */
         @media (max-width: 768px) {
             .header-top { display: flex; flex-direction: row; gap: 8px; justify-content: center; }
             .header-left-logo { position: static; transform: none; flex-shrink: 0; }
             .header-left-logo img { width: 45px; height: auto; }
-
-            .header-title a { font-size: 14px; text-decoration: none; color: var(--text-black); white-space: nowrap; }
-
+            .header-title a { font-size: 14px; text-decoration: none; color: var(--text-black); }
             .nav-container { width: 100%; display: flex; flex-direction: row; gap: 4px; }
-            .nav-group { position: relative; flex: 1; min-width: 0; }
+            .nav-group { position: relative; flex: 1; }
             .nav-item { 
                 font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px;
                 height: 32px; background-color: rgba(255, 255, 255, 0.7);
                 border: 1px solid var(--box-border); border-radius: 4px;
                 display: flex; justify-content: center; align-items: center;
-                white-space: nowrap; overflow: hidden;
             }
-
             .main-content {
                 width: 100%; height: auto; aspect-ratio: 3 / 4;
+                padding-top: 105px; /* ★ 헤더 높이만큼 여백 (모바일) */
                 background-image: url('images/danag.jpg');
                 background-size: cover; background-position: center; filter: none;
             }
@@ -111,7 +118,6 @@
             display: block; padding: 8px; color: #ffffff; text-decoration: none;
             font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 12px; text-align: center;
         }
-
         .main-content {
             display: flex; flex-direction: column; align-items: center;
             background-color: var(--bg-blue-point);
