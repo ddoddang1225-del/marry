@@ -1,165 +1,435 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>또당 - DDodang</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Gaegu&display=swap" rel="stylesheet">
-    <style>
-        /* 클릭엔 기반 디자인 시스템 */
-        :root {
-            --main-pink: #FFF0F0;
-            --logo-blue: #A9D1F7;
-            --btn-green: #DCEDC8;
-            --border-brown: #5D4037;
-            --text-dark: #333333;
-        }
+    	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0, minimum-scale=0, maximum-scale=10">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+		
+		<meta name="csrf-token" content="VXP3bs9nd09AU9YrDLYEVZ1QVppTbLlFLs1kheGZ">
 
-        body {
-            background-color: var(--main-pink);
-            font-family: 'Noto Sans KR', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+        
+		
+				<meta name="title" content="ddodang"/>
+						<meta name="author" content="(주)회사명">
+						
+		
+				<meta property="og:title" content="ddodang">
+						<meta property="og:url" content="https://ddodang.clickn.co.kr/"/>
+						<meta property="og:site_name" content="ddodang">
+												
+		
+										<meta name="twitter:title" content="ddodang">
+						<meta name="twitter:card" content="summary">
 
-        /* [상단 GNB] */
-        .gnb_wrapper {
-            width: 100%;
-            background-color: var(--main-pink);
-            border-bottom: 4px solid var(--border-brown); /* 시안의 그 두꺼운 선 */
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 9999;
-        }
+		
+				<link rel="shortcut icon" href="/file/822781866">
+		
+				<link rel="canonical" href="https://ddodang.clickn.co.kr/">
+		
+		
+												
+		<title>ddodang</title>
 
-        .gnb_container {
-            max-width: 1200px;
-            margin: 0 auto;
-            height: 100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+		
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&family=Yeon+Sung&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu:wght@400;700&family=Gamja+Flower&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@400;700&family=Nanum+Pen+Script&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300;700&family=Yeon+Sung&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Archivo:wght@400;700&family=Exo:wght@200;400;700&family=Fauna+One&family=Fjalla+One&family=Graduate&family=Iceland&family=Inconsolata:wght@300;500;700&family=Italianno&family=Josefin+Sans:wght@200;400;700&family=Lato:wght@100;300;400;700&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@200;300;400;500;600;700&family=Nixie+One&family=Nunito:wght@200;400;700&family=Oswald:wght@200;400;500;700&family=Playfair+Display:wght@400;500;700&family=Poppins:wght@200;400;700&family=Raleway:wght@200;400;700&family=Roboto:wght@100;300;400;500;700&family=Simonetta:wght@400;900&family=Space+Mono:wght@400;700&family=Special+Elite&family=Stardos+Stencil:wght@400;700&family=Titan+One&family=Titillium+Web:wght@200;400;700&family=Trocchi&family=Ultra&family=Wellfleet&family=Abril+Fatface&family=Bodoni+Moda:wght@400;600;800&family=DM+Serif+Display&family=DM+Serif+Text&family=EB+Garamond:wght@400;500&family=Open+Sans:wght@300;400;700&family=Petit+Formal+Script&family=Quicksand:wght@300;700&family=Cinzel&family=Lobster&family=MonteCarlo&family=Shrikhand&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/css/common_font.css?v=20260402103341" />
 
-        /* 로고: DDodang */
-        .logo_area a {
-            font-family: 'Gaegu', cursive;
-            font-size: 48px;
-            font-weight: bold;
-            color: var(--logo-blue);
-            text-decoration: none;
-            /* 클릭엔 특유의 텍스트 쉐도우 */
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-        }
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/css/lib.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/Slick/slick.css" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/Swiper/swiper.min.css" /><!-- Swiper js-->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/Datepicker/css/datepicker.css" /><!-- datapicker -->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/Dropzone/css/dropzone.min.css" /><!-- Dropzone -->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/css/animation.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/css/common.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/css/skin_common.css?v=20260402103341" />	
 
-        /* 오른쪽 버튼 그룹 */
-        .menu_area {
-            display: flex;
-            gap: 12px;
-        }
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/Fonts/FontAwesome/4.7.0/css/font-awesome.min.css"  />
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/Fonts/FontAwesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0"/>	
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/Fonts/MaterialDesign/2.2.0/css/material-design-iconic-font.min.css"  />	
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/Fonts/MaterialDesign/2.2.0/fonts/Material-Design-Iconic-Font.woff2?v=2.2.0"/>	
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/vendors/froala_editor_4.0.8/css/froala_editor.pkgd.css" /><!-- Froala -->
+		<!--
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-00.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-01.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-02.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-03.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-04.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-05.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-06.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-07.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-08.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-09.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-10.woff2"/>
+		<link rel="preload" as="font" type="font/woff2" crossorigin href="https://ddodang.clickn.co.kr/vendors/TossFace/Fonts/TossFaceFontMac-11.woff2"/>
+		-->
 
-        .menu_btn {
-            width: 90px;
-            height: 42px;
-            background-color: var(--btn-green);
-            border: 1px solid #777;
-            border-radius: 2px; /* 클릭엔은 약간 각진 느낌 */
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/css/skin.css?v=20260402103341" />
 
-        .menu_btn:hover {
-            opacity: 0.8;
-        }
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_common.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_header.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_board.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_boardRecent.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_contents.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_form.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_image.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_layout.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_line.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_map.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_slide.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_text.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_video.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_gallery.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_table.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_footer.css?v=20260402103341" />
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_builderProductA.css?v=20260402103341" /><!-- 상품 디스플레이 -->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_builderProductB.css?v=20260402103341" /><!-- 상품 문의 -->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_builderProductC.css?v=20260402103341" /><!-- 상품 후기 -->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_widget.css?v=20260402103341" /><!-- 위젯 -->
+		<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/module_visualVideo.css?v=20260402103341" />
 
-        /* [메인 컨텐츠 영역] - 상단 바 높이만큼 띄워줌 */
-        .main_body {
-            margin-top: 100px;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+		    
+	<link rel="stylesheet" type="text/css" href="https://ddodang.clickn.co.kr/assets/css/modules/skin_main.css?v=20260402103341" /><!-- 메인에서만 실행되어야하는 CSS -->
 
-        /* 이미지 박스 */
-        .visual_img {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
+		<script>
+		var LOGIN_TYPE = 'non-members';
+					LOGIN_TYPE = 'manager';
+				
+		var PAGE_CODE = 'main';
+		var PAGE_MODE = 'preview';
+		var PAGE_SAVE_DATE = '2026-04-08 11:13:55';
 
-        .visual_img img {
-            width: 100%;
-            display: block;
-        }
+					var HEADER_CONFIG = {"layout_type":"type1","header_module_name":"header_A011","header_module_parents":"header_A001","header_submenu_design":"design6","header_submenu_direction":"right","mypage_menu":"5","header_logo":"\/file\/532828235","login_menu":"no","login_menu_name":"로그인","logout_menu_name":"로그아웃","join_menu_name":"회원가입","login_before_greeting":"WELCOME!","login_after_greeting":"님 환영합니다!","gnb_menu":"3","navigation_fontsize":"22","util_menu":"no","header_brightness":"light","header_bgcolor":"#fff0f0","navigation_color":"#1c1c1c","navigation_font":"EBSHMJESaeron","shopping_menuorder":null,"shopping_my":"no","shopping_cart":"no","shopping_search":"no","page_code":"main","util_link":"[{\"name\":\"MYPAGE\",\"address\":\"\/members\/mypage\/info\",\"target\":\"_self\"},{\"name\":\"CS CENTER\",\"address\":\"#\",\"target\":\"_self\"},{\"name\":\"SITEMAP\",\"address\":\"#\",\"target\":\"_self\"}]","update_date":"2026-04-08 11:13:55","addDate":null,"header_flying":"yes","header_floating":"no","header_utilcolor":null};
+		        			var THEMA_CONFIG = {"update_date":null,"save_mode":"real","page_code":"main","layout":{"layout_type":null,"layout_gnb_name":null,"layout_lnb_name":null},"animation":{"anim-effect":null,"anim-delay":"0","anim-order-delay":"0.1","anim-is-order-delay":"no","anim-duration":"0.5","anim-direction":"bottom"}};
+							var FOOTER_CONFIG = {"footer_module_name":"footer_A017","footer_module_parents":"footer_A001","footer_textfield1":"no","footer_textfield1_source":"<p><br><\/p>","footer_textfield2":"no","footer_textfield2_source":"<p><br><\/p>","footer_menu":"no","fnb_menu":"4","footer_logo_src":"\/file\/2021054892","footer_copyright":"no","footer_copyright_source":"<p>COPYRIGHT (c) (주)회사명 ALL RIGHTS RESERVED.<\/p>","footer_escro":"no","footer_brightness":null,"footer_bgcolor2":null,"footer_fontcolor":null,"footer_fontcolor_default":"on","save_seq":"286","save_mode":"real","escro":"[{\"img_src\":\"\/file\/954188882\",\"link_address\":\"#bnr1\",\"link_target\":\"_blank\"}]","update_date":"2026-04-08 11:13:55","options":"{\"footer_copyright\":\"no\"}","footer_sns":"no","footer_info":"no","footer_logo":"no","footer_hosting":"no","footer_fontfamily":null};
+							var BLOCK_LAYOUTS = {"module-20":{"seq":1800,"save_seq":286,"block_id":"module-20","parent_block":null,"child_num":null,"block_template":"image_A001","sort_num":0,"regist_date":"2026-04-08 11:13:56","childs":[],"module":{"module_name":"image_A001","content_type1":"image","content_type2":"image-type-A","module_possible":"all","module_preview_src":"https:\/\/resource.clickn.co.kr\/storage\/174850272","module_parents":"image_A001","module_distribute":"yes","module_content_datas":null,"module_badge":[],"module_layout":"<div class='normal_module' data-content-type1='image' data-content-type2='image-type-A' data-module-name='image_A001' data-module-parents='image_A001' data-background-color='' data-background-image='' data-background-image-options='' data-background-attachment='' data-background-filter='' data-image-cutting='20'><div class='module_wrap fullsize_max' data-layout-fullsize='no'><div class='module_container' data-padding-top='20' data-padding-bottom='20'><\/div><\/div><\/div>","module_contents":"<a href='#none' data-link-type='' target='' data-cutting-apply='yes'><b><img src='https:\/\/resource.clickn.co.kr\/storage\/710999218' alt='' \/><\/b><\/a>","module_category1":"image","module_category2":""}},"module-24":{"seq":1801,"save_seq":286,"block_id":"module-24","parent_block":null,"child_num":null,"block_template":"text_A001_1","sort_num":0,"regist_date":"2026-04-08 11:13:56","childs":[],"module":{"module_name":"text_A001_1","content_type1":"text","content_type2":"text-type-A","module_possible":"all","module_preview_src":"https:\/\/resource.clickn.co.kr\/storage\/1247625853","module_parents":"text_A001","module_distribute":"yes","module_content_datas":null,"module_badge":[],"module_layout":"<div class='normal_module' data-content-type1='text' data-content-type2='text-type-A' data-module-name='text_A001_1' data-module-parents='text_A001' data-background-color='' data-background-image='' data-background-image-options='' data-background-attachment='' data-background-filter=''><div class='module_wrap' data-layout-fullsize='no'><div class='module_container' data-padding-top='40' data-padding-bottom='40'><\/div><\/div><\/div>","module_contents":"<div data-text-editable='true' style='font-size: 26px; font-family: Roboto; font-weight: 400; color: rgb(65, 143, 250); text-align: center;'><p>ABOUT<\/p><p style='font-size:10px;'>&nbsp;<\/p><\/div><div data-text-editable='true' style='font-size: 42px; font-weight: 700; color: rgb(34, 34, 34); text-align: center;'><p style='line-height: 1.2;'>비즈니스 성공의 가치를 탐구하며 전략을 수립합니다<\/p><\/div><div data-text-editable='true' style='font-size: 16px; color: #666; text-align: center;'><p>&nbsp;<\/p><p>트렌디한 디자인 시스템의 UX 통합가이드라인의<\/p><p>비즈니스 성공의 가치를 탐구하며 추구에 관하여 전략을 수립하여<\/p><p>커뮤니케이션 활동 추구 및 마케팅과 방향에 디자인의 본질의 스마트한 공간의 활동을 진행합니다.<\/p><\/div>","module_category1":"text","module_category2":""}}};
+							var BLOCK_CONTENTS = [{"block_id":"module-20","parent_block":null,"detail_seq":1800,"html":"<a href=\"#none\" data-link-type=\"\" target=\"\" data-cutting-apply=\"yes\"><b><img src=\"https:\/\/ddodang.clickn.co.kr\/storage\/upload_images\/oF6HGvVggPK4G1MnoEj9X8XTtZBVXCvPR8dnzKgz.jpg\" alt=\"\"><\/b><\/a>","options":"{\"layout-fullsize\":\"no\",\"padding-top\":\"0\",\"padding-bottom\":\"20\",\"background-attachment\":null,\"background-color\":\"#fff0f0\",\"background-filter\":null,\"background-image\":null,\"background-image-options\":null,\"anim-effect\":null,\"anim-delay\":\"0\",\"anim-order-delay\":\"0.1\",\"anim-is-order-delay\":\"no\",\"anim-duration\":\"0.5\",\"anim-direction\":\"bottom\",\"addDate\":null,\"image-cutting\":\"20\"}","content_datas":null},{"block_id":"module-24","parent_block":null,"detail_seq":1801,"html":"<div data-text-editable=\"true\" style=\"font-size: 26px; font-family: Roboto; font-weight: 400; color: rgb(65, 143, 250); text-align: center;\" class=\"fr-ltr\"><p><br><\/p><p style=\"font-size:10px;\">&nbsp;<\/p><\/div><div data-text-editable=\"true\" style=\"font-size: 42px; font-weight: 700; color: rgb(34, 34, 34); text-align: center;\" class=\"fr-ltr\"><p>날짜 : 2027년 10월 9일 토요일<\/p><p>시간 : 12시 (정오)<\/p><p>장소 : 롯데월드 민속박물관<\/p><\/div>","options":"{\"layout-fullsize\":\"no\",\"padding-top\":\"40\",\"padding-bottom\":\"40\",\"background-attachment\":null,\"background-color\":\"#fff0f0\",\"background-filter\":null,\"background-image\":null,\"background-image-options\":null,\"anim-effect\":null,\"anim-delay\":\"0\",\"anim-order-delay\":\"0.1\",\"anim-is-order-delay\":\"no\",\"anim-duration\":\"0.5\",\"anim-direction\":\"bottom\",\"addDate\":\"2026-04-08 10:38:56\"}","content_datas":null}];
+							var BASIC_CONFIG = {"site_name":"ddodang","co_name":"(주)회사명","ceo_name":"홍길동","co_phone":"0000-0000","co_email":"","co_zipcode":"00000","co_address":"서울특별시","co_address_detail":"","co_regist_num":"000-00-00000","co_it_num":"0000-0000","site_desc":null,"co_nation":"kr","co_fax":null,"timezone":"Asia\/Seoul","date_format":"Y.m.d","currency":"krw","sns_img":null,"fav_img":"\/file\/822781866","map_type":"direct","co_category":"","co_category_item":"","og_site_name":"ddodang"};
+		
+					var MAP_CONFIG = {"map_type":"direct","map_service_type":"kakao","map_api":{"naver":{"client_id":null,"client_secret":null},"kakao":{"api_key":null},"google":{"api_key":null}},"map_feature":{"map_marker_icon":null,"map_zoom":null,"map_zoom_control":null},"map_script":{"KAKAO":"https:\/\/dapi.kakao.com\/v2\/maps\/sdk.js?libraries=services,clusterer,drawing&appkey=","NAVER":"https:\/\/oapi.map.naver.com\/openapi\/v3\/maps.js?submodules=geocoder&ncpKeyId=","GOOGLE":"https:\/\/maps.googleapis.com\/maps\/api\/js?key="}};
+		
+		var PAGE_CONFIG = '';
 
-        /* 초대 문구 */
-        .intro_text {
-            text-align: center;
-            font-family: 'Gaegu', cursive;
-        }
+					var _PATH = "\/" ;
+		
+		var MODULES_STORAGE_BASE_URI = "https:\/\/resource.clickn.co.kr\/" ;
+		const ENABLE_COMMERCE = "N";
+        
+		var jcv = '20260402103341';
+		</script>
+	
+		<script src="https://ddodang.clickn.co.kr/lang/skin_js.js"></script>
+		<script src="https://ddodang.clickn.co.kr/lang/common.js?m=front&amp;g=common"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Jquery/jquery.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Twbs-pagination/jquery.twbsPagination.js"></script>
+		<script src="https://ddodang.clickn.co.kr/js/common.js?v=20260402103341"></script>
+        <script src="https://ddodang.clickn.co.kr/js/commonAnalytics.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/js/skin_ui_functions.js?v=20260402103341"></script> <!--우선 순위 높아야하는 UI Functions -->
 
-        .intro_text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #555;
-        }
+		<script>		
+		var USER = ""
+		const SITE_CONFIG_OPTION = {"rightClick":"N","mouseDrag":"N","mobileZoom":"Y"}	
+		</script>
+		
+				                                    <script type="text/javascript">
+                const GLOBAL_NAVER_KEYWORD_AUTO_TRACKING = {"enable":"N"};
+            </script>
+            
+                
+                                    		
+	</head>
 
-        .intro_text p {
-            font-size: 1.5rem;
-            color: #777;
-        }
+	<body style="background:#FFF">	
+		<div id="skinLayoutWrap" class="skin_layout_wrap" data-layout-type="type1" data-header-hidden="no" data-footer-hidden="no" data-header-flying="yes" data-header-floating="no" data-header-util="no" data-header-selectmenu="no" data-header-login="no" data-header-bgcolor="#fff0f0" data-header-brightness="light" data-header-utilcolor="" data-navigation-color="#1c1c1c" data-navigation-font="EBSHMJESaeron" data-navigation-fontsize="22" data-gnb-seq="3" data-wow-use="no" data-wow-ani="fadeInRight" data-shopping-my="no" data-shopping-cart="no" data-shopping-search="no" data-shopping-menuorder="my-cart-search" data-mypage-menu="5">
+			<div id="pageConfigHeader" class="skin_layout_container skin_layout_container1">
+				<!-- ===================== Skin Header ===================== -->
+				<div id="skinHeaderSection" class="front_header_section">
 
-        /* [모바일 대응] - 네이버처럼 가로 유지하며 축소 */
-        @media (max-width: 768px) {
-            .gnb_container {
-                height: 70px;
-            }
-            .logo_area a {
-                font-size: 32px;
-            }
-            .menu_btn {
-                width: 60px;
-                height: 30px;
-            }
-            .main_body {
-                margin-top: 70px;
-            }
-        }
-    </style>
-</head>
-<body>
+					<div class='header_module __headerModule' data-module-name="header_A011" data-module-parents="header_A001" data-submenu-design="design6" data-submenu-direction="right"><!-- 헤더 모듈 -->
+						<div class='module_wrap'>
+							<div class='module_container'>
+								<div class="logo_area"><p><a href="/"><b><img id="headerLogo" src="/file/532828235" alt="" onerror="this.src='https://ddodang.clickn.co.kr/assets/images/module_contents/logo_clickn.png';" /></b></a></p></div>
+								<div id="gnbUtilArea" class="gnb_area">
+									<!-- 쇼핑몰 UTIL 영역 -->
+									<div class="util_area">
+										<div class='module_wrap'>
+											<div class='module_container'>
+												<!-- 상단 셀렉트 메뉴( 다국어 사이트나 패밀리 사이트로 활용 가능 ) -->
+												<!--
+												<div class="select_link_area">
+													<div class="selectLinkMenu select_link_menu">
+														<a class="defaule_text" href="#none"></a>
+														<ul class="link_menu_list">
+														</ul>
+													</div>
+												</div>
+												-->
+												<!-- 로그인 -->
+												<ul class="login_section">
+													<li class="greeting" style="font-family:EBSHMJESaeron">
+														<span class="before" style=""></span>
+														<span class="after" style="display:none;"></span>
+													</li>
+													<li class="logout" style="display:none; "><a href="javascript:logout()" style="font-family:EBSHMJESaeron; color:;">로그아웃</a></li>
+													<li class="login" style=" "><a href="/members/login" style="font-family:EBSHMJESaeron; color:;">로그인</a></li>
+													<li class="join" style=""><a href="/members/join" style="font-family:EBSHMJESaeron; color:;">회원가입</a></li>
+												</ul>
+												<!-- 쇼핑몰 유틸메뉴( 다른 링크로도 활용 가능 ) -->
+												<ul class="util_menu_list" style="font-family:EBSHMJESaeron">
+												</ul>
 
-    <nav class="gnb_wrapper">
-        <div class="gnb_container">
-            <div class="logo_area">
-                <a href="/">DDodang</a>
-            </div>
-            <div class="menu_area">
-                <div class="menu_btn"></div>
-                <div class="menu_btn"></div>
-                <div class="menu_btn"></div>
-            </div>
-        </div>
-    </nav>
+												<!-- [커머스] 장바구니, 검색 -->
+												<ul class="shopping_menu" style="font-family:EBSHMJESaeron; display:none;}}">
+													<li class="shopping_my" data-menu-order="my">
+														<a class="my_icon" href="/mypages" title="마이페이지"></a>
+													</li>
+													<li class="shopping_cart" data-menu-order="cart">
+														<a class="cart_icon" href="/cart" title="장바구니"></a>
+														<span id="cartNum" class="cart_num" style="display:none;">0</span>
+													</li>
+													<li class="shopping_search" data-menu-order="search">
+														<a href="javascript:void(0)" class="btn_search_open" title="상품 검색">검색창 열기</a>
+														<div class="search_layer">
+															<label class="search_box"><input type="text" name="search_input_text" class="search_input_text" autocomplete="off" placeholder="상품 검색" /></label>
+															<button type="button" class="btn_search_header">검색</button>
+															<button type="button" class="btn_search_close">닫기</button>
+														</div>
+													</li>
+												</ul>
 
-    <main class="main_body">
-        <div class="visual_img">
-            <img src="https://via.placeholder.com/600x800/FFE0E0/ffffff?text=Our+Wedding" alt="Main Photo">
-        </div>
-        <div class="intro_text">
-            <h2>또당 & 진현</h2>
-            <p>2027. 10. 09. SAT PM 12:00</p>
-            <p>롯데월드 민속박물관 전통혼례장</p>
-        </div>
-    </main>
+											</div>
+										</div>
+									</div>
+								</div>
 
-</body>
+								<!-- Aside open button( 햄거버 ) -->
+								<div class="hambuger_area">
+									<a id="asideOpenrBtn" href="#none"><strong>Aside open</strong></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<script>//headerFlyingStand(); // 요 스크립트 위치 변경 금지!</script>
+				<!-- ===================== // Skin Header ===================== -->
+			</div>
+			<div class="skin_layout_container skin_layout_container2" style="display: none;">
+				<div class="front_main_area">
+					<div id="skinMainWrap" class="skin_main_wrap">
+						<div class="skin_main_container skin_main_container1">
+							<!-- ===================== Skin Main ===================== -->
+							<div id="skinMainSection" class="skin_main_section">
+								    							</div>
+							<!-- ===================== // Skin Main ===================== -->
+						</div>
+						<div id="pageConfigFooter" class="skin_main_container skin_main_container2">
+							<!-- ===================== Skin Footer ===================== -->
+							<div id="skinFooterSection" class="skin_footer_section" data-footer-logo="no" data-footer-menu="no" data-footer-sns="no" data-footer-info="no" data-footer-hosting="no" data-footer-coregistlink="no" data-footer-escro="no" data-footer-copyright="no" data-footer-textfield1="no" data-footer-textfield2="no" data-fnb-seq="2" data-footer-bgcolor2="" data-footer-brightness="" data-footer-fontcolor="" data-footer-fontfamily="">
+								<div class='footer_module' data-module-name="footer_A017" data-module-parents="footer_A001" style="display:none;">
+									<div class='module_wrap'>
+										<div class='module_container'>
+											<div class="footer_section logo_area">
+												<a href="/"><b><img id="footerLogo" src="https://ddodang.clickn.co.kr/assets/images/module_contents/logo_clickn.png" alt="" onerror="this.src='https://ddodang.clickn.co.kr/assets/images/module_contents/logo_blank.png';" /></b></a>
+											</div>
+											<div class="footer_section fnb_area">
+												<!-- FNB 햄버거
+												<div class="fnb_open_area" id="fnbOpenrBtn">
+													<span class="fnb_open_btn"><strong>Footer Menu Open</strong></span>
+												</div> -->
+
+												<div class="fnb_container">
+												</div>
+											</div>
+											<ul id="footerCompanyInfo" class="footer_section mall_info">
+												<!-- 데이터 연동으로 변경 - 210128 -->
+											</ul>
+											<div class="footer_section text_field text_field1"><div data-text-editable="true"></div></div>
+											<div class="footer_section text_field text_field2"><div data-text-editable="true"></div></div>
+											<div class="footer_section sns_list">
+												<ul class="snsLinks">
+												</ul>
+											</div>
+											<div class="footer_section escro_area">
+												<ul>
+													<li><a href="#escro1"><img src="https://ddodang.clickn.co.kr/assets/images/module_contents/hf_escro_01.png" alt="" /></a></li>
+													<li><a href="#escro2"><img src="https://ddodang.clickn.co.kr/assets/images/module_contents/hf_escro_02.png" alt="" /></a></li>
+												</ul>
+											</div>
+											<div class="footer_section copyright" data-text-editable='true'><p>COPYRIGHT (c) (주)회사명 ALL RIGHTS RESERVED.</p></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="level1_bnr_wrap">
+																		
+									<div style="display: flex; gap: 10px;">
+																				<!-- +++++++++ free 배너 +++++++++ -->
+										<a href="https://www.clickn.co.kr" target="_blank" class="level1_bnr">
+											<img src="/images/logo_small.png" alt="CLICKN" class="logo">
+											<span class="txt">사이트 제작엔 누구나 클릭엔</span>
+										</a>
+										<!-- +++++++++ //free 배너 +++++++++ -->
+										
+										<!-- 상/하단 바로가기 버튼 -->
+										<div id="btnBott" class="btn_bott_group">
+											<a href="#skinLayoutWrap" class="btn_top"><span class="screenout">TOP</span></a>
+											<a href="#skinFooterSection" class="btn_bott"><span class="screenout">BOTTOM</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- ===================== // Skin Main ===================== -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 어사이드 닫기 버튼 -->
+		<a href="#none" id="asideCloseBtn" class="aside_close">Aside close</a>
+
+		<!-- 비밀글 보기 Layer -->
+		<div id="secretContentsPopup" class="resp_layer_pop small" style="display:none;">
+			<h4 class="title"><b>비밀번호 확인</b></h4>
+			<form onsubmit="return false"><!-- form 위치 -->
+				<div class="y_scroll_auto">
+					<div class="layer_pop_contents" style="text-align:center;">
+						<p>
+							비밀번호를 입력해야 게시글을 확인할 수 있습니다.<br />
+							게시글 등록 시 입력했던 비밀번호를 입력해주세요.<br />
+						</p>
+						<p class="Mt30">
+							<input type="password" autocomplete="false" name="secret_pw_input" placeholder="비밀번호 입력" class="input_style1" style="width:200px;" />
+						</p>
+					</div>
+				</div>
+				<div class="layer_bottom_btn_area">
+					<ul class="basic_btn_area">
+						<li><button type="button" class="btn_resp layer_btm_style style1" onclick="hideCenterLayer();">취소</button></li>
+						<li><button type="button" id="btnSecretPwConfirm" class="btn_resp layer_btm_style style2">확인</button></li>
+					</ul>
+				</div>
+			</form>
+			<a href="javascript:void(0)" class="btn_pop_close" onclick="hideCenterLayer();"></a>
+		</div>
+
+		<!-- 모달 -->
+		<div id="skinModal" class="modal_bg"></div>
+
+		<!-- 캡차 -- skin_render_forms.js -- 489라인 .load('url') 방식으로 변경 - 210514 -->
+
+
+		<!-- 팝업모듈 -->
+		<div id="popup_module_modal" class="modal_bg"></div>
+		<div id="popupArea">
+					<div id="popupArea_staff"></div>
+							<div id="popupArea_any"></div>
+		</div>
+
+		<!-- 갤러리 보기 Layer -->
+		<div id="galleryViewPopup" class="gallery_view_popup" data-gallery-id="" data-gallery-seq="" style="display:none;">
+			<h4 class="title">
+				<b><span class="gallery_name">테스트</span></b>
+			</h4>
+			<div class="gallery_view_wrap">
+				<div class="gallery_view_container">
+					<div class="gallery_image_area">
+					</div>						
+				</div>
+				<a href="#none" class="arrow_btn" data-direction="prev" title="Prev"></a>
+				<a href="#none" class="arrow_btn" data-direction="next" title="Next"></a>				
+			</div>
+			
+			<div class="seq_area"><p class="num" style="font-size:22px;"><span class="current" style="font-size:24px;"></span> / <span class="last"></span></p></div>
+			<a href="#none" class="btn_pop_close"></a>
+		</div>
+
+		<div class="resp_layer_pop small agree-pop-layer" id="daumPostWrapElement" data-key="daum_post" style="display:none;">
+			<h4 class="title"><b>주소검색</b></h4>
+			<form onsubmit="return false"><!-- form 위치 -->
+				<div class="y_scroll_auto">
+					<div class="layer_pop_contents" id="daum_post_element">
+						<p>
+							<pre class="match_typing detailContents"></pre>
+						</p>
+					</div>
+				</div>
+				<div class="layer_bottom_btn_area">
+					<ul class="basic_btn_area">
+						<li><button type="button" class="btn_resp layer_btm_style style2"  onclick="hideCenterLayer();">닫기</button></li>
+					</ul>
+				</div>
+			</form>
+			<a href="javascript:void(0)" class="btn_pop_close" onclick="hideCenterLayer();"></a>
+		</div>
+
+		<!-- 할인금액 상세 모달 창 -->
+		<div class="discount_detail_popup" style="display: none;">
+			<div class="discount_detail_popup_header">
+				<h3>할인금액 상세</h3>
+        		<img src="/images/icon_close_white2.png" alt="close" class="discount_detail_popup_close"></img>
+			</div>
+			
+			<div class="discount_detail_popup_body">
+				<table>
+					<tr class="discount_detail_default" style="height: 40px;">
+						<td colspan="2">할인 내역이 없습니다.</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="discount_detail_popup_footer">
+				<button class="discount_detail_popup_close">닫기</button>
+			</div>
+		</div>
+
+		<!-- ===================== 하단 스크립트 ===================== -->
+		<script src="https://ddodang.clickn.co.kr/vendors/Es-module-shims/es-module-shims.min.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/js/importmap.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Slick/slick.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Swiper/swiper.min.js"></script><!-- Swiper js-->
+		<!-- Froala Editor -->
+		<script src="https://ddodang.clickn.co.kr/vendors/froala_editor_4.0.8/js/froala_editor.pkgd.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/froala_editor_4.0.8/js/languages/kr.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/froala_editor_4.0.8/js/third_party/font_awesome.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/TossFace/froala_editor_4.0.8/emoticons.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Wow/wow.min.js"></script><!-- Wow.js -->
+		<script src="https://ddodang.clickn.co.kr/vendors/Datepicker/js/datepicker.min.js"></script><!-- datapicker -->
+		<script src="https://ddodang.clickn.co.kr/vendors/Datepicker/lang/datepicker.lang.js"></script><!-- datapicker language -->
+		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 카카오 우편번호 API -->
+		
+		<!-- Talk Talk Banner Script start -->
+		<script src="https://ddodang.clickn.co.kr/vendors/NaverTalkTalk/navertalktalk.js"></script>
+		<!-- Talk Talk Banner Script end -->
+
+		<!-- Dynamic Certified Manager -->
+        <script src="https://ddodang.clickn.co.kr/js/Libraries/TimeLimitor.class.js?v=20260402103341"></script>
+        
+<!-- 지도 API -->
+		<!-- 주소 변환 -->
+		<script src="https://ddodang.clickn.co.kr/js/postcode.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Dropzone/js/dropzone.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/vendors/Masonry/js/masonry.pkgd.min.js"></script>
+		<script src="https://ddodang.clickn.co.kr/js/Common/spectrum.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/js/DesignEditors/buttonStyleListData.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/js/DesignEditors/defaultData.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/js/Common/formComponent.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/js/DesignEditors/designSettingData.js?v=20260402103341"></script>		
+		<script src="https://ddodang.clickn.co.kr/js/design_loader.js?v=20260402103341"></script>
+		<script src="https://ddodang.clickn.co.kr/assets/js/modules/modules_ui.js?v=20260402103341"></script>
+		<script src="/modules/js?m=members&js=login&v=20260402103341"></script>
+		
+
+		    
+	<!--<script src="https://ddodang.clickn.co.kr/js/skin_main.js?v=20260402103341"></script> 메인에서만 실행되어야하는 JS -->
+		
+		
+		<footer>
+		
+						</footer>
+                    		
+	</body>	
 </html>
