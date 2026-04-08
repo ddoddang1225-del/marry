@@ -22,7 +22,9 @@
 
     <style>
         :root {
-            --bg-pink: #FFF0F1; /* 공주가 정한 메인 핑크 */
+            --bg-pink: #FFF0F1; 
+            /* [NEW] 공주가 찜한 예쁜 하늘색 저장! */
+            --bg-blue-point: #C3D7F4; 
             --text-black: #1A1A1A;
             --menu-gray: #4A4A4A;
             --dropdown-bg: #2C2C2C;
@@ -36,7 +38,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* [상단 헤더 - 슬림 & 단정] */
+        /* [상단 헤더] */
         header.site-header {
             width: 100%;
             padding: 40px 20px 20px 20px; 
@@ -57,13 +59,13 @@
             letter-spacing: 1px;
         }
 
-        /* [메뉴 컨테이너 - 요청하신 대로 간격을 80px로 아주 넓게!] */
+        /* [메뉴 컨테이너 - 시원한 80px 간격] */
         .nav-container {
             width: 100%;
             max-width: 1100px; 
             display: flex;
             justify-content: center;
-            gap: 80px; /* 메뉴 사이 공간을 시원~하게 */
+            gap: 80px; 
         }
 
         .nav-group { position: relative; }
@@ -75,11 +77,9 @@
             cursor: pointer;
             padding-bottom: 5px;
             white-space: nowrap;
-            transition: color 0.3s;
         }
-        .nav-item:hover { color: var(--text-black); }
 
-        /* [드롭다운 디자인] */
+        /* [드롭다운] */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -102,15 +102,14 @@
             text-align: center;
         }
 
-        /* [메인 사진 영역 - 원본 유지 & 글씨 상단 배치] */
+        /* [핵심: 사진 영역 - 배경색 #C3D7F4 적용] */
         .main-content {
             position: relative;
             width: 100%;
-            height: 700px; /* 높이를 조금 더 키워서 시원하게 */
+            height: 700px; 
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* justify-content: center를 빼서 글씨를 위로 올렸어! */
             color: white;
             text-align: center;
             font-family: 'Ownglyph_Uiyeon', sans-serif;
@@ -120,32 +119,28 @@
             background-position: center;  
             background-repeat: no-repeat;
             
-            /* 양옆 여백 색상을 헤더와 동일하게 통일 */
-            background-color: var(--bg-pink); 
+            /* [중요] 사진 양옆 여백을 요청하신 하늘색(#C3D7F4)으로 설정! */
+            background-color: var(--bg-blue-point); 
         }
 
-        /* [글씨 박스 - 위치를 위로 올림] */
+        /* [글씨 박스 - 상단 배치] */
         .info-wrap {
             position: relative;
             z-index: 2;
-            margin-top: 60px; /* 숫자를 줄이면 더 위로, 늘리면 아래로 내려가! */
+            margin-top: 60px; /* 글씨를 사진 위쪽으로 올림 */
         }
 
-        /* 사진이 밝으니 글씨 가독성을 위해 그림자를 더 선명하게 줬어 */
+        /* 가독성을 위한 진한 그림자 유지 */
         .info-date { font-size: 30px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
         .info-time { font-size: 26px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
         .info-location { font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
 
-        /* [모바일 대응] */
         @media (max-width: 768px) {
             .logo a { font-size: 38px; }
             .nav-container { gap: 15px; flex-wrap: wrap; } 
             .nav-item { font-size: 16px; }
             .main-content { height: 550px; }
             .info-wrap { margin-top: 40px; }
-            .info-date { font-size: 22px; }
-            .info-time { font-size: 18px; }
-            .info-location { font-size: 20px; }
         }
     </style>
 </head>
