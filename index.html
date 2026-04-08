@@ -23,7 +23,6 @@
     <style>
         :root {
             --bg-pink: #FFF0F1; 
-            /* [NEW] 공주가 찜한 예쁜 하늘색 저장! */
             --bg-blue-point: #C3D7F4; 
             --text-black: #1A1A1A;
             --menu-gray: #4A4A4A;
@@ -38,28 +37,43 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* [상단 헤더] */
+        /* [상단 헤더 - 로고와 메뉴 배치 조정] */
         header.site-header {
             width: 100%;
-            padding: 40px 20px 20px 20px; 
+            /* 여백을 조금 더 줘서 로고가 돋보이게 */
+            padding: 50px 20px 25px 20px; 
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* 로고와 메뉴를 가로 중앙에 정렬 */
             background-color: var(--bg-pink);
             position: relative;
             z-index: 10;
         }
 
-        .logo { margin-bottom: 25px; } 
+        /* [NEW: 이미지 로고 컨테이너] */
+        .logo { 
+            margin-bottom: 30px; /* 로고와 메뉴 사이 공간 */
+            display: flex;
+            justify-content: center; /* 로고를 가로 중앙에 정렬 */
+            align-items: center;
+        } 
+        
         .logo a {
-            font-family: 'BinggraeSamanco-Bold', sans-serif;
-            font-size: 52px;
-            color: var(--text-black);
+            display: block;
             text-decoration: none;
-            letter-spacing: 1px;
         }
 
-        /* [메뉴 컨테이너 - 시원한 80px 간격] */
+        /* [NEW: 로고 이미지 스타일] */
+        .logo img {
+            /* 로고 크기 조정 - 공주가 원하는 대로 숫자를 바꿔봐! */
+            max-width: 180px; /* 로고의 가로 최대 크기 */
+            height: auto; /* 비율 유지 */
+            display: block;
+            /* 혹시 로고가 한쪽으로 쏠리면 margins를 auto로 주면 돼 */
+            margin: 0 auto;
+        }
+
+        /* [메뉴 컨테이너 - 시원한 80px 간격 유지] */
         .nav-container {
             width: 100%;
             max-width: 1100px; 
@@ -102,7 +116,7 @@
             text-align: center;
         }
 
-        /* [핵심: 사진 영역 - 배경색 #C3D7F4 적용] */
+        /* [핵심: 사진 영역 - 하늘색(#C3D7F4) 여백 유지] */
         .main-content {
             position: relative;
             width: 100%;
@@ -114,16 +128,17 @@
             text-align: center;
             font-family: 'Ownglyph_Uiyeon', sans-serif;
             
+            /* [중요: 사진 경로 주의! images 폴더 안에 있는지 확인해줘] */
             background-image: url('images/danag.jpg'); 
             background-size: contain; 
             background-position: center;  
             background-repeat: no-repeat;
             
-            /* [중요] 사진 양옆 여백을 요청하신 하늘색(#C3D7F4)으로 설정! */
+            /* 사진 양옆 여백을 우리가 고른 하늘색(#C3D7F4)으로 설정! */
             background-color: var(--bg-blue-point); 
         }
 
-        /* [글씨 박스 - 상단 배치] */
+        /* [글씨 박스 - 상단 배치 유지] */
         .info-wrap {
             position: relative;
             z-index: 2;
@@ -135,8 +150,10 @@
         .info-time { font-size: 26px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
         .info-location { font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
 
+        /* [모바일 대응 - 로고 크기 조정] */
         @media (max-width: 768px) {
-            .logo a { font-size: 38px; }
+            header.site-header { padding: 30px 15px 15px 15px; }
+            .logo img { max-width: 130px; } /* 모바일에서는 로고를 더 작게 */
             .nav-container { gap: 15px; flex-wrap: wrap; } 
             .nav-item { font-size: 16px; }
             .main-content { height: 550px; }
@@ -148,8 +165,11 @@
 
     <header class="site-header">
         <div class="logo">
-            <a href="/">이진현 & 조윤담</a>
+            <a href="/">
+                <img src="로고 배경만 지운 버전.webp" alt="이진현 조윤담 공식 로고">
+            </a>
         </div>
+        
         <nav class="nav-container">
             <div class="nav-group">
                 <div class="nav-item" onclick="toggleDropdown(event, 'info-drop')">결혼식 안내</div>
