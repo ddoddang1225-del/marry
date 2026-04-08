@@ -6,21 +6,21 @@
     <title>이진현 & 조윤담</title>
     
     <style>
-        /* 빙그레 싸만코체 */
+        /* 빙그레 싸만코체 (로고용) */
         @font-face {
             font-family: 'BinggraeSamanco-Bold';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
-        /* 카페24 쑥쑥체 */
+        /* 카페24 쑥쑥체 (메뉴용) */
         @font-face {
             font-family: 'Cafe24Ssukssuk';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
-        /* 온글잎 의연체 */
+        /* 온글잎 의연체 (본문용) */
         @font-face {
             font-family: 'Ownglyph_Uiyeon';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff');
@@ -42,23 +42,23 @@
         body {
             background-color: var(--bg-pink);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* [상단 헤더 - 슬림 버전] */
+        /* [상단 헤더 - 슬림 & 가벼운 버전] */
         header.wedding-header {
             width: 100%;
-            padding: 30px 20px 15px 20px; /* 더 슬림하게 조정 */
+            padding: 35px 20px 15px 20px; /* 위쪽 여백 대폭 축소 */
             display: flex;
             flex-direction: column;
             align-items: center;
             background-color: var(--bg-pink);
-            border-bottom: 1px dashed #555; 
+            border-bottom: 1px dashed #555; /* 구분 점선 */
         }
 
         .logo { margin-bottom: 15px; } 
         
         .logo a {
-            /* 빙그레 싸만코체 적용 */
             font-family: 'BinggraeSamanco-Bold', sans-serif;
             font-size: 52px;
             color: var(--text-black);
@@ -69,6 +69,7 @@
             line-height: 1.1;
         }
 
+        /* [메뉴 영역] */
         .nav-container {
             width: 100%;
             max-width: 800px;
@@ -80,18 +81,18 @@
         .nav-group { position: relative; }
 
         .nav-item {
-            /* 카페24 쑥쑥체 적용 */
             font-family: 'Cafe24Ssukssuk', sans-serif;
             text-decoration: none;
-            font-size: 19px; /* 폰트 특성에 맞춰 크기 살짝 조정 */
+            font-size: 19px;
             color: var(--menu-gray);
             cursor: pointer;
             padding-bottom: 5px;
             transition: all 0.3s ease;
         }
 
-        .nav-item.active { color: var(--text-black); }
+        .nav-item.active { color: var(--text-black); font-weight: bold; }
 
+        /* [드롭다운 디자인] */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -103,12 +104,12 @@
             z-index: 1000;
             padding: 8px 0;
             border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .dropdown-menu.show { display: block; }
 
         .dropdown-item {
-            /* 서브 메뉴도 쑥쑥체 */
             font-family: 'Cafe24Ssukssuk', sans-serif;
             padding: 10px 15px;
             color: #ddd;
@@ -118,32 +119,37 @@
             text-align: center;
         }
 
-        /* [본문 영역 - 온글잎 의연체] */
+        .dropdown-item:hover { background-color: #444; color: #fff; }
+
+        /* [본문 영역 - 폰트 사이즈 다이어트 완료] */
         .main-content {
             width: 100%;
             min-height: 500px;
-            background-color: #89A9D6; 
+            background-color: #89A9D6; /* 배경 파란색 */
             padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             color: white;
             text-align: center;
-            /* 온글잎 의연체 적용 */
             font-family: 'Ownglyph_Uiyeon', sans-serif;
         }
 
-        .wedding-date { font-size: 32px; margin-bottom: 5px; }
-        .wedding-time { font-size: 26px; margin-bottom: 25px; }
-        .wedding-location { font-size: 28px; line-height: 1.4; }
+        .wedding-date { font-size: 26px; margin-bottom: 8px; }
+        .wedding-time { font-size: 22px; margin-bottom: 25px; }
+        .wedding-location { font-size: 24px; line-height: 1.5; }
 
+        /* [모바일 대응] */
         @media (max-width: 768px) {
             header.wedding-header { padding: 25px 15px 10px 15px; }
-            .logo a { font-size: 36px; }
+            .logo a { font-size: 38px; }
             .nav-container { gap: 15px; }
             .nav-item { font-size: 16px; }
-            .wedding-date { font-size: 26px; }
-            .wedding-location { font-size: 22px; }
+            
+            /* 모바일 본문 사이즈 추가 조정 */
+            .wedding-date { font-size: 22px; }
+            .wedding-time { font-size: 18px; }
+            .wedding-location { font-size: 20px; }
         }
     </style>
 </head>
@@ -169,20 +175,31 @@
     </header>
 
     <main class="main-content">
-        <div class="wedding-date">2027. 10. 09. SAT</div>
-        <div class="wedding-time">PM 12:00</div>
-        <div class="wedding-location">롯데월드 민속박물관<br>전통혼례장</div>
+        <div class="wedding-date">날짜 : 2027. 10. 09. 토요일</div>
+        <div class="wedding-time">시간 : PM 12:00</div>
+        <div class="wedding-location">
+            장소 : 롯데월드 민속박물관<br>
+            전통혼례장
+        </div>
     </main>
 
     <script>
+        // 드롭다운 열고 닫기 함수
         function toggleDropdown(event, dropId) {
-            event.stopPropagation();
+            event.stopPropagation(); // 부모 요소로 이벤트가 퍼지는 것 방지
             const dropdown = document.getElementById(dropId);
+            
+            // 다른 열려있는 드롭다운이 있다면 모두 닫기
             const allDrops = document.getElementsByClassName("dropdown-menu");
-            for(let d of allDrops) { if(d.id !== dropId) d.classList.remove('show'); }
+            for(let d of allDrops) {
+                if(d.id !== dropId) d.classList.remove('show');
+            }
+
+            // 클릭한 것만 토글
             dropdown.classList.toggle('show');
         }
 
+        // 메뉴 외에 빈 화면을 클릭하면 드롭다운 닫기
         window.onclick = function(event) {
             const dropdowns = document.getElementsByClassName("dropdown-menu");
             for (let i = 0; i < dropdowns.length; i++) {
