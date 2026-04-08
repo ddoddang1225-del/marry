@@ -4,7 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이진현 & 조윤담</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 빙그레 싸만코체 */
+        @font-face {
+            font-family: 'BinggraeSamanco-Bold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /* 카페24 쑥쑥체 */
+        @font-face {
+            font-family: 'Cafe24Ssukssuk';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /* 온글잎 의연체 */
+        @font-face {
+            font-family: 'Ownglyph_Uiyeon';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
     <style>
         :root {
             --bg-pink: #FFF0F1;
@@ -17,30 +41,32 @@
 
         body {
             background-color: var(--bg-pink);
-            font-family: 'Noto Sans KR', sans-serif;
             overflow-x: hidden;
         }
 
-        /* [상단 헤더 영역 - 건드리지 않음] */
+        /* [상단 헤더 - 슬림 버전] */
         header.wedding-header {
             width: 100%;
-            padding: 80px 20px 40px 20px;
+            padding: 30px 20px 15px 20px; /* 더 슬림하게 조정 */
             display: flex;
             flex-direction: column;
             align-items: center;
             background-color: var(--bg-pink);
-            border-bottom: 1.5px dashed #333; 
+            border-bottom: 1px dashed #555; 
         }
 
-        .logo { margin-bottom: 50px; }
+        .logo { margin-bottom: 15px; } 
+        
         .logo a {
-            font-size: 56px;
-            font-weight: 700;
+            /* 빙그레 싸만코체 적용 */
+            font-family: 'BinggraeSamanco-Bold', sans-serif;
+            font-size: 52px;
             color: var(--text-black);
             text-decoration: none;
-            letter-spacing: 4px;
+            letter-spacing: 1px;
             display: block;
             text-align: center;
+            line-height: 1.1;
         }
 
         .nav-container {
@@ -48,89 +74,76 @@
             max-width: 800px;
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
         }
 
         .nav-group { position: relative; }
 
         .nav-item {
+            /* 카페24 쑥쑥체 적용 */
+            font-family: 'Cafe24Ssukssuk', sans-serif;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 400;
+            font-size: 19px; /* 폰트 특성에 맞춰 크기 살짝 조정 */
             color: var(--menu-gray);
             cursor: pointer;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
             transition: all 0.3s ease;
         }
 
-        .nav-item.active { color: var(--text-black); font-weight: 700; }
+        .nav-item.active { color: var(--text-black); }
 
         .dropdown-menu {
             display: none;
             position: absolute;
-            top: 100%;
-            left: 0;
-            width: 200px;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 170px;
             background-color: var(--dropdown-bg);
             z-index: 1000;
-            padding: 10px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 8px 0;
+            border-radius: 4px;
         }
 
         .dropdown-menu.show { display: block; }
 
         .dropdown-item {
-            padding: 12px 20px;
-            color: #ccc;
-            font-size: 15px;
+            /* 서브 메뉴도 쑥쑥체 */
+            font-family: 'Cafe24Ssukssuk', sans-serif;
+            padding: 10px 15px;
+            color: #ddd;
+            font-size: 16px;
             text-decoration: none;
             display: block;
-        }
-
-        .dropdown-item:hover { background-color: #444; color: #fff; }
-
-        /* -------------------------------------------------- */
-        /* [본문 영역 - 공주가 말한 아래쪽 추가 부분] */
-        /* -------------------------------------------------- */
-        .main-content {
-            width: 100%;
-            min-height: 600px;
-            /* 배경을 파란색 대신 은은한 핑크나 화이트로 하고 싶으면 여기서 조절해! */
-            background-color: #89A9D6; 
-            padding: 100px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white; /* 파란 배경이라 글씨는 하얗게! */
             text-align: center;
         }
 
-        .wedding-date {
-            font-size: 24px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+        /* [본문 영역 - 온글잎 의연체] */
+        .main-content {
+            width: 100%;
+            min-height: 500px;
+            background-color: #89A9D6; 
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-align: center;
+            /* 온글잎 의연체 적용 */
+            font-family: 'Ownglyph_Uiyeon', sans-serif;
         }
 
-        .wedding-time {
-            font-size: 20px;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
+        .wedding-date { font-size: 32px; margin-bottom: 5px; }
+        .wedding-time { font-size: 26px; margin-bottom: 25px; }
+        .wedding-location { font-size: 28px; line-height: 1.4; }
 
-        .wedding-location {
-            font-size: 22px;
-            font-weight: 500;
-            line-height: 1.6;
-        }
-
-        /* 모바일 대응 */
         @media (max-width: 768px) {
-            .logo a { font-size: 32px; }
+            header.wedding-header { padding: 25px 15px 10px 15px; }
+            .logo a { font-size: 36px; }
             .nav-container { gap: 15px; }
-            .nav-item { font-size: 14px; }
-            .wedding-date { font-size: 20px; }
-            .wedding-location { font-size: 18px; }
+            .nav-item { font-size: 16px; }
+            .wedding-date { font-size: 26px; }
+            .wedding-location { font-size: 22px; }
         }
     </style>
 </head>
@@ -158,29 +171,18 @@
     <main class="main-content">
         <div class="wedding-date">2027. 10. 09. SAT</div>
         <div class="wedding-time">PM 12:00</div>
-        
-        <div class="wedding-location">
-            롯데월드 민속박물관<br>
-            전통혼례장
-        </div>
+        <div class="wedding-location">롯데월드 민속박물관<br>전통혼례장</div>
     </main>
 
     <script>
-        // 드롭다운 토글 함수
         function toggleDropdown(event, dropId) {
             event.stopPropagation();
             const dropdown = document.getElementById(dropId);
-            
-            // 모든 드롭다운을 일단 닫고 시작 (다른게 열려있을 수 있으니)
             const allDrops = document.getElementsByClassName("dropdown-menu");
-            for(let d of allDrops) {
-                if(d.id !== dropId) d.classList.remove('show');
-            }
-
+            for(let d of allDrops) { if(d.id !== dropId) d.classList.remove('show'); }
             dropdown.classList.toggle('show');
         }
 
-        // 바깥 클릭 시 드롭다운 닫기
         window.onclick = function(event) {
             const dropdowns = document.getElementsByClassName("dropdown-menu");
             for (let i = 0; i < dropdowns.length; i++) {
