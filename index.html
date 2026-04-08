@@ -25,7 +25,6 @@
             --bg-blue-point: #C3D7F4; 
             --text-black: #1A1A1A;
             --menu-gray: #4A4A4A;
-            --dropdown-bg: #2C2C2C; 
             --box-border: #E8E8E8; 
         }
 
@@ -35,122 +34,143 @@
         /* [상단 헤더] */
         header.site-header {
             width: 100%;
-            padding: 15px 40px 10px 40px; 
+            padding: 10px 15px 12px 15px; 
             background-color: var(--bg-pink);
             position: relative;
-            z-index: 100; 
+            z-index: 100;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* [PC 버전 상단 레이아웃] */
+        /* [PC 레이아웃] */
         .header-top {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             display: flex;
-            justify-content: center; /* 기본은 중앙 */
+            justify-content: center; 
             align-items: center; 
             position: relative; 
-            margin-bottom: 15px; 
-            min-height: 60px;   
+            margin-bottom: 15px;
+            min-height: 50px;
         }
 
-        /* 로고 (90% 유지) */
         .header-left-logo {
             position: absolute;
-            left: 0;      
+            left: 0;
             top: 90%; 
-            transform: translateY(-50%); 
+            transform: translateY(-50%);
         }
         .header-left-logo img {
-            max-width: 120px; 
+            max-width: 100px;
             height: auto;
             display: block;
         }
 
-        /* PC용 큰 글씨 문구 */
         .header-title a {
             font-family: 'Cafe24Decoline', serif;
-            font-size: 36px; /* PC에서 시원하게 크게! */
+            font-size: 32px;
             color: var(--text-black);
             text-decoration: none;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        /* [PC용 오른쪽 정렬 네비게이션] */
         .nav-container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             display: flex;
-            justify-content: flex-end; /* 오른쪽으로 밀기 */
-            gap: 12px; 
+            justify-content: flex-end; 
+            gap: 10px;
         }
-        .nav-group { position: relative; flex: 0 1 150px; } /* 너비 적절히 고정 */
+        .nav-group { flex: 0 1 140px; }
 
         .nav-item {
             font-family: 'Cafe24Ssukssuk', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--menu-gray);
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 38px;
-            background-color: rgba(255, 255, 255, 0.6); 
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.6);
             border: 1px solid var(--box-border);
             border-radius: 6px;
-            transition: all 0.2s ease;
         }
 
-        .nav-item:hover { background-color: #ffffff; border-color: #ccc; }
-
-        /* [모바일 버전 유지] */
-        @media (max-width: 768px) {
-            header.site-header { padding: 15px 15px 10px 15px; }
-            .header-top { min-height: auto; flex-direction: column; margin-bottom: 12px; }
-            .header-left-logo { position: absolute; left: 10px; }
-            .header-left-logo img { max-width: 70px; }
-            
-            /* 문구 조절 */
-            .header-title a { font-size: 19px; letter-spacing: 0.5px; }
-            
-            /* 한 줄 배치 복구 */
-            .nav-container { 
-                justify-content: center;
-                gap: 5px; 
-            }
-            .nav-group { flex: 1; max-width: none; }
-            .nav-item { font-size: 11px; height: 28px; }
-            
-            .main-content { height: 550px; background-size: cover; }
-        }
-
-        /* 공통 스타일 */
-        .dropdown-menu {
-            display: none; position: absolute; top: 110%; left: 50%;
-            transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg);
-            padding: 5px 0; border-radius: 5px; z-index: 1000;
-        }
-        .dropdown-menu.show { display: block; }
-        .dropdown-item {
-            display: block; padding: 8px; color: #ffffff; text-decoration: none;
-            font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 12px; text-align: center;
-        }
+        /* [메인 콘텐츠 - PC 사진 비율] */
         .main-content {
-            position: relative; width: 100%; height: 750px; 
-            display: flex; flex-direction: column; align-items: center;
-            color: white; text-align: center; font-family: 'Ownglyph_Uiyeon', sans-serif;
-            background-image: url('images/danag.jpg'); background-size: contain; 
-            background-position: center; background-repeat: no-repeat;
-            background-color: var(--bg-blue-point); 
+            width: 100%;
+            min-height: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('images/danag.jpg');
+            background-size: contain;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-color: var(--bg-blue-point);
+            font-family: 'Ownglyph_Uiyeon', sans-serif;
+            color: white;
+            text-align: center;
         }
-        .info-wrap { margin-top: 60px; }
+
+        .info-wrap { margin-top: 40px; }
         .info-date { font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
         .info-time { font-size: 28px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
         .info-location { font-size: 30px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+
+        /* [📱 모바일 버전 - 로고/글씨/사진 모두 수정] */
+        @media (max-width: 768px) {
+            header.site-header { padding: 10px 10px; }
+            
+            /* 1. 로고랑 글씨 한 줄에 나란히 배치 */
+            .header-top {
+                display: flex;
+                flex-direction: row; /* 가로 나열 */
+                justify-content: center;
+                gap: 8px; /* 로고와 글씨 사이 간격 */
+                min-height: 40px;
+                margin-bottom: 12px;
+            }
+            
+            .header-left-logo {
+                position: static; /* absolute 풀고 나란히 배치 */
+                transform: none;
+            }
+            
+            .header-left-logo img {
+                max-width: 45px; /* 로고를 앙증맞게 줄임 */
+            }
+
+            .header-title a {
+                font-size: 14px; /* 글씨도 한 줄에 들어가게 조절 */
+                letter-spacing: 0px;
+            }
+
+            /* 2. 네모 박스 한 줄 유지 */
+            .nav-container {
+                justify-content: center;
+                gap: 4px;
+            }
+            .nav-group { flex: 1; }
+            .nav-item { font-size: 10px; height: 30px; }
+
+            /* 3. 사진 크기 원래대로 (비율 유지) */
+            .main-content {
+                min-height: auto;
+                height: auto;
+                aspect-ratio: 3 / 4; /* 세로형 사진 비율에 맞춰 자동 조절 (사진에 따라 9/16 등으로 조절 가능) */
+                background-size: cover; /* 모바일은 꽉 차게 */
+            }
+            
+            .info-wrap { margin-top: 30px; }
+            .info-date { font-size: 22px; }
+            .info-time { font-size: 18px; }
+            .info-location { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -166,13 +186,7 @@
         </div>
         
         <nav class="nav-container">
-            <div class="nav-group">
-                <div class="nav-item" onclick="toggleDropdown(event, 'info-drop')">결혼식 안내</div>
-                <div id="info-drop" class="dropdown-menu">
-                    <a href="#" class="dropdown-item">결혼식 안내</a>
-                    <a href="#" class="dropdown-item">또댕이들이 걸어온 길</a>
-                </div>
-            </div>
+            <div class="nav-group"><div class="nav-item">결혼식 안내</div></div>
             <div class="nav-group"><div class="nav-item">예약 및 문의</div></div>
             <div class="nav-group"><div class="nav-item">지도</div></div>
             <div class="nav-group"><div class="nav-item">GALLERY</div></div>
@@ -187,20 +201,5 @@
         </div>
     </main>
 
-    <script>
-        function toggleDropdown(event, dropId) {
-            event.stopPropagation();
-            const dropdown = document.getElementById(dropId);
-            const allDrops = document.getElementsByClassName("dropdown-menu");
-            for(let d of allDrops) { if(d.id !== dropId) d.classList.remove('show'); }
-            dropdown.classList.toggle('show');
-        }
-        window.onclick = function(event) {
-            if (!event.target.closest('.nav-group')) {
-                const dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (let i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); }
-            }
-        }
-    </script>
 </body>
 </html>
