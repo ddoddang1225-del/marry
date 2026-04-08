@@ -7,18 +7,9 @@
     
     <style>
         /* [폰트 설정] */
-        @font-face {
-            font-family: 'Cafe24Ssukssuk';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff');
-        }
-        @font-face {
-            font-family: 'Ownglyph_Uiyeon';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff');
-        }
-        @font-face {
-            font-family: 'Cafe24Decoline';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe24Decoline.woff2') format('woff2');
-        }
+        @font-face { font-family: 'Cafe24Ssukssuk'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff'); }
+        @font-face { font-family: 'Ownglyph_Uiyeon'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff'); }
+        @font-face { font-family: 'Cafe24Decoline'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe24Decoline.woff2') format('woff2'); }
 
         :root {
             --bg-pink: #FFF0F1; 
@@ -31,10 +22,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* [상단 헤더] */
+        /* [분홍 박스 - 크기 절대 고정] */
         header.site-header {
             width: 100%;
-            padding: 10px 15px 12px 15px; 
+            padding: 10px 20px 8px 20px; 
             background-color: var(--bg-pink);
             position: relative;
             z-index: 100;
@@ -43,134 +34,86 @@
             align-items: center;
         }
 
-        /* [PC 레이아웃] */
         .header-top {
             width: 100%;
-            max-width: 1200px;
-            display: flex;
-            justify-content: center; 
-            align-items: center; 
-            position: relative; 
-            margin-bottom: 15px;
-            min-height: 50px;
-        }
-
-        .header-left-logo {
-            position: absolute;
-            left: 0;
-            top: 90%; 
-            transform: translateY(-50%);
-        }
-        .header-left-logo img {
-            max-width: 100px;
-            height: auto;
-            display: block;
-        }
-
-        .header-title a {
-            font-family: 'Cafe24Decoline', serif;
-            font-size: 32px;
-            color: var(--text-black);
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            justify-content: flex-end; 
-            gap: 10px;
-        }
-        .nav-group { flex: 0 1 140px; }
-
-        .nav-item {
-            font-family: 'Cafe24Ssukssuk', sans-serif;
-            font-size: 14px;
-            color: var(--menu-gray);
-            cursor: pointer;
+            max-width: 1400px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--box-border);
-            border-radius: 6px;
+            position: relative;
+            min-height: 45px; 
+            margin-bottom: 8px;
         }
 
-        /* [메인 콘텐츠 - PC 사진 비율] */
-        .main-content {
-            width: 100%;
-            min-height: 800px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-image: url('images/danag.jpg');
-            background-size: contain;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-color: var(--bg-blue-point);
-            font-family: 'Ownglyph_Uiyeon', sans-serif;
-            color: white;
-            text-align: center;
-        }
+        /* ---------------------------------------------------------
+           [PC 전용] 769px 이상
+        ---------------------------------------------------------- */
+        @media (min-width: 769px) {
+            .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); }
+            .header-left-logo img { max-width: 160px; height: auto; } /* PC 로고 키움 */
 
-        .info-wrap { margin-top: 40px; }
-        .info-date { font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-        .info-time { font-size: 28px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-        .info-location { font-size: 30px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-
-        /* [📱 모바일 버전 - 로고/글씨/사진 모두 수정] */
-        @media (max-width: 768px) {
-            header.site-header { padding: 10px 10px; }
-            
-            /* 1. 로고랑 글씨 한 줄에 나란히 배치 */
-            .header-top {
-                display: flex;
-                flex-direction: row; /* 가로 나열 */
-                justify-content: center;
-                gap: 8px; /* 로고와 글씨 사이 간격 */
-                min-height: 40px;
-                margin-bottom: 12px;
-            }
-            
-            .header-left-logo {
-                position: static; /* absolute 풀고 나란히 배치 */
-                transform: none;
-            }
-            
-            .header-left-logo img {
-                max-width: 45px; /* 로고를 앙증맞게 줄임 */
-            }
-
+            .header-title { margin-left: 180px; } /* 글씨 오른쪽 이동 */
             .header-title a {
-                font-size: 14px; /* 글씨도 한 줄에 들어가게 조절 */
-                letter-spacing: 0px;
+                font-family: 'Cafe24Decoline', serif; font-size: 38px;
+                color: var(--text-black); text-decoration: none; text-transform: uppercase;
             }
 
-            /* 2. 네모 박스 한 줄 유지 */
             .nav-container {
-                justify-content: center;
-                gap: 4px;
+                width: 100%; max-width: 1400px; display: flex;
+                justify-content: flex-end; padding-right: 100px; gap: 12px;
             }
-            .nav-group { flex: 1; }
-            .nav-item { font-size: 10px; height: 30px; }
+            .nav-group { flex: 0 1 150px; }
+            .nav-item {
+                font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 15px; height: 34px;
+                background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--box-border);
+                border-radius: 6px; display: flex; justify-content: center; align-items: center;
+                color: var(--menu-gray); cursor: pointer;
+            }
 
-            /* 3. 사진 크기 원래대로 (비율 유지) */
             .main-content {
-                min-height: auto;
-                height: auto;
-                aspect-ratio: 3 / 4; /* 세로형 사진 비율에 맞춰 자동 조절 (사진에 따라 9/16 등으로 조절 가능) */
-                background-size: cover; /* 모바일은 꽉 차게 */
+                width: 100%; min-height: 850px;
+                background-image: url('images/danag.jpg'); /* 사진 경로 확인! */
+                background-size: contain; background-position: center top; background-repeat: no-repeat;
             }
-            
-            .info-wrap { margin-top: 30px; }
-            .info-date { font-size: 22px; }
-            .info-time { font-size: 18px; }
-            .info-location { font-size: 20px; }
         }
+
+        /* ---------------------------------------------------------
+           [모바일 전용] 768px 이하
+        ---------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .header-top { display: flex; flex-direction: row; gap: 6px; }
+            .header-left-logo { position: static; transform: none; }
+            .header-left-logo img { max-width: 45px; } 
+
+            .header-title a { font-size: 14px; text-decoration: none; color: var(--text-black); }
+
+            .nav-container { width: 100%; display: flex; flex-direction: row; gap: 4px; }
+            .nav-group { flex: 1; }
+            .nav-item { 
+                font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px; /* 글씨 키움 */
+                height: 30px; background-color: rgba(255, 255, 255, 0.7);
+                border: 1px solid var(--box-border); border-radius: 4px;
+                display: flex; justify-content: center; align-items: center;
+            }
+
+            .main-content {
+                width: 100%; height: auto; aspect-ratio: 3 / 4;
+                background-image: url('images/danag.jpg'); /* 사진 경로 확인! */
+                background-size: cover; background-position: center;
+                filter: none; /* 모바일 사진 밝기 원본 유지 */
+            }
+        }
+
+        /* [메인 콘텐츠 공통] */
+        .main-content {
+            display: flex; flex-direction: column; align-items: center;
+            background-color: var(--bg-blue-point);
+            font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center;
+        }
+        .info-wrap { margin-top: 40px; }
+        .info-date { font-size: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+        .info-time { font-size: 26px; margin: 10px 0 25px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+        .info-location { font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
     </style>
 </head>
 <body>
