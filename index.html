@@ -6,7 +6,7 @@
     <title>WEDDING INVITE</title>
     
     <style>
-        /* [폰트 설정] */
+        /* [1. 폰트 설정] */
         @font-face { font-family: 'Cafe24Ssukssuk'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff'); }
         @font-face { font-family: 'Ownglyph_Uiyeon'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff'); }
         @font-face { font-family: 'Cafe24Decoline'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe24Decoline.woff2') format('woff2'); }
@@ -23,21 +23,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* [분홍 박스 - 상단 고정 설정 추가] */
+        /* [2. 헤더 고정] */
         header.site-header {
             width: 100%;
             padding: 10px 5% 8px 5%; 
             background-color: var(--bg-pink);
-            
-            /* ★ 고정 핵심 코드 */
-            position: fixed; 
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            /* 여기까지 */
-
+            position: fixed; top: 0; left: 0; z-index: 1000;
             display: flex; flex-direction: column; align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 스크롤 시 살짝 입체감 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .header-top {
@@ -46,98 +39,68 @@
             position: relative; min-height: 45px; margin-bottom: 8px;
         }
 
-        /* ---------------------------------------------------------
-           [PC 전용 스타일] - 769px 이상
-        ---------------------------------------------------------- */
+        /* [3. PC 전용] */
         @media (min-width: 769px) {
-            .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); }
+            .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); cursor: pointer; }
             .header-left-logo img { width: 12vw; max-width: 160px; min-width: 100px; height: auto; }
-
-            .header-title { margin-left: -60px; transition: all 0.3s; }
-            .header-title a { 
-                font-family: 'Cafe24Decoline', serif; 
-                font-size: clamp(24px, 2.5vw, 38px); 
-                color: var(--text-black); text-decoration: none; text-transform: uppercase; 
-                white-space: nowrap;
-            }
-
-            .nav-container { 
-                width: 100%; max-width: 1400px; 
-                display: flex; justify-content: flex-end; 
-                padding-right: 5%; gap: 1vw; 
-            }
+            .header-title { margin-left: -60px; transition: all 0.3s; cursor: pointer; }
+            .header-title a { font-family: 'Cafe24Decoline', serif; font-size: clamp(24px, 2.5vw, 38px); color: var(--text-black); text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+            .nav-container { width: 100%; max-width: 1400px; display: flex; justify-content: flex-end; padding-right: 5%; gap: 1vw; }
             .nav-group { position: relative; flex: 0 1 150px; }
-            .nav-item {
-                font-family: 'Cafe24Ssukssuk', sans-serif; 
-                font-size: clamp(12px, 1vw, 15px); 
-                height: 34px; background-color: rgba(255, 255, 255, 0.6); 
-                border: 1px solid var(--box-border); border-radius: 6px; 
-                display: flex; justify-content: center; align-items: center;
-                color: var(--menu-gray); cursor: pointer;
-            }
-            .main-content {
-                width: 100%; min-height: 100vh;
-                padding-top: 110px; /* ★ 헤더 높이만큼 여백 (PC) */
-                background-image: url('images/danag.jpg');
-                background-size: contain; background-position: center top; background-repeat: no-repeat;
-            }
+            .nav-item { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: clamp(12px, 1vw, 15px); height: 34px; background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--box-border); border-radius: 6px; display: flex; justify-content: center; align-items: center; color: var(--menu-gray); cursor: pointer; }
+            
+            .main-content, #wedding-info { padding-top: 120px; } /* 헤더 높이 대응 */
         }
 
-        /* ---------------------------------------------------------
-           [모바일 전용 스타일] - 768px 이하
-        ---------------------------------------------------------- */
+        /* [4. 모바일 전용] */
         @media (max-width: 768px) {
             .header-top { display: flex; flex-direction: row; gap: 8px; justify-content: center; }
-            .header-left-logo { position: static; transform: none; flex-shrink: 0; }
             .header-left-logo img { width: 45px; height: auto; }
             .header-title a { font-size: 14px; text-decoration: none; color: var(--text-black); }
             .nav-container { width: 100%; display: flex; flex-direction: row; gap: 4px; }
             .nav-group { position: relative; flex: 1; }
-            .nav-item { 
-                font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px;
-                height: 32px; background-color: rgba(255, 255, 255, 0.7);
-                border: 1px solid var(--box-border); border-radius: 4px;
-                display: flex; justify-content: center; align-items: center;
-            }
-            .main-content {
-                width: 100%; height: auto; aspect-ratio: 3 / 4;
-                padding-top: 105px; /* ★ 헤더 높이만큼 여백 (모바일) */
-                background-image: url('images/danag.jpg');
-                background-size: cover; background-position: center; filter: none;
-            }
+            .nav-item { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px; height: 32px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid var(--box-border); border-radius: 4px; display: flex; justify-content: center; align-items: center; }
+            
+            .main-content, #wedding-info { padding-top: 110px; } /* 헤더 높이 대응 */
         }
 
-        /* [드롭다운 & 메인 공통] */
-        .dropdown-menu {
-            display: none; position: absolute; top: 110%; left: 50%;
-            transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg);
-            padding: 5px 0; border-radius: 5px; z-index: 2000; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .dropdown-menu.show { display: block; }
-        .dropdown-item {
-            display: block; padding: 8px; color: #ffffff; text-decoration: none;
-            font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 12px; text-align: center;
-        }
+        /* [5. 공통 디자인] */
         .main-content {
             display: flex; flex-direction: column; align-items: center;
-            background-color: var(--bg-blue-point);
+            background-color: var(--bg-blue-point); min-height: 100vh;
+            background-image: url('images/danag.jpg'); background-size: cover; background-position: center;
             font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center;
         }
-        .info-wrap { margin-top: 5vh; }
-        .info-date { font-size: clamp(20px, 4vw, 30px); text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-        .info-time { font-size: clamp(18px, 3.5vw, 26px); margin: 10px 0 25px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-        .info-location { font-size: clamp(19px, 3.8vw, 28px); line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+
+        /* [6. 결혼식 안내 섹션 디자인] */
+        #wedding-info {
+            display: none; /* 처음엔 숨김 */
+            background-color: white; min-height: 100vh;
+            flex-direction: column; align-items: center;
+            font-family: 'Cafe24Ssukssuk', sans-serif; padding-left: 20px; padding-right: 20px;
+        }
+        .info-title-main { font-size: 32px; color: #E88D9E; margin-bottom: 40px; margin-top: 20px; }
+        .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; }
+
+        /* 드롭다운 스타일 */
+        .dropdown-menu { display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg); padding: 5px 0; border-radius: 5px; z-index: 2000; }
+        .dropdown-menu.show { display: block; }
+        .dropdown-item { display: block; padding: 8px; color: #ffffff; text-decoration: none; font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 12px; text-align: center; cursor: pointer; }
+
+        /* 섹션 제어용 클래스 */
+        .hidden { display: none !important; }
+        .active-section { display: flex !important; }
     </style>
 </head>
 <body>
 
     <header class="site-header">
         <div class="header-top">
-            <div class="header-left-logo">
+            <div class="header-left-logo" onclick="showSection('main')">
                 <img src="images/또댕 로고.png" alt="또댕 로고">
             </div>
-            <div class="header-title">
-                <a href="/">Together, as always meant to be</a>
+            <div class="header-title" onclick="showSection('main')">
+                <a href="#">Together, as always meant to be</a>
             </div>
         </div>
         
@@ -145,8 +108,8 @@
             <div class="nav-group">
                 <div class="nav-item" onclick="toggleDropdown(event, 'info-drop')">결혼식 안내</div>
                 <div id="info-drop" class="dropdown-menu">
-                    <a href="#" class="dropdown-item">결혼식 안내</a>
-                    <a href="#" class="dropdown-item">또댕이들이 걸어온 길</a>
+                    <div class="dropdown-item" onclick="showSection('info')">결혼식 안내</div>
+                    <div class="dropdown-item">또댕이들이 걸어온 길</div>
                 </div>
             </div>
             <div class="nav-group"><div class="nav-item">예약 및 문의</div></div>
@@ -155,15 +118,31 @@
         </nav>
     </header>
 
-    <main class="main-content">
+    <main id="main-visual" class="main-content">
         <div class="info-wrap">
-            <div class="info-date">날짜 : 2027. 10. 09. 토요일</div>
-            <div class="info-time">시간 : PM 12:00</div>
-            <div class="info-location">장소 : 롯데월드 민속박물관<br>전통혼례장</div>
+            <div style="margin-top: 40px; font-size: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">날짜 : 2027. 10. 09. 토요일</div>
+            <div style="font-size: 26px; margin: 10px 0 25px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">시간 : PM 12:00</div>
+            <div style="font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">장소 : 롯데월드 민속박물관<br>전통혼례장</div>
         </div>
     </main>
 
+    <section id="wedding-info">
+        <h2 class="info-title-main">결혼식 안내</h2>
+        <div class="info-content-box">
+            <p>서로가 마주 보며 다진 약속을<br>진실한 마음으로 지켜나가려 합니다.</p>
+            <br>
+            <p>저희 두 사람의 새로운 시작을<br>함께 축복해 주시면 감사하겠습니다.</p>
+            <br><br>
+            <p style="color: #E88D9E; font-weight: bold;">[ 일시 ]</p>
+            <p>2027년 10월 9일 토요일 오후 12시</p>
+            <br>
+            <p style="color: #E88D9E; font-weight: bold;">[ 장소 ]</p>
+            <p>롯데월드 민속박물관 전통혼례장</p>
+        </div>
+    </section>
+
     <script>
+        // 드롭다운 열기/닫기
         function toggleDropdown(event, dropId) {
             event.stopPropagation();
             const dropdown = document.getElementById(dropId);
@@ -171,6 +150,27 @@
             for(let d of allDrops) { if(d.id !== dropId) d.classList.remove('show'); }
             dropdown.classList.toggle('show');
         }
+
+        // 섹션 전환 함수
+        function showSection(type) {
+            const main = document.getElementById('main-visual');
+            const info = document.getElementById('wedding-info');
+
+            if(type === 'main') {
+                main.classList.remove('hidden');
+                info.classList.remove('active-section');
+            } else if(type === 'info') {
+                main.classList.add('hidden');
+                info.classList.add('active-section');
+            }
+            
+            // 메뉴 닫기 및 상단 이동
+            window.scrollTo(0, 0);
+            const allDrops = document.getElementsByClassName("dropdown-menu");
+            for(let d of allDrops) { d.classList.remove('show'); }
+        }
+
+        // 바깥쪽 클릭하면 드롭다운 닫기
         window.onclick = function(event) {
             if (!event.target.closest('.nav-group')) {
                 const dropdowns = document.getElementsByClassName("dropdown-menu");
