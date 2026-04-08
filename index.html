@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이진현 & 조윤담 홈페이지</title>
+    <title>THE WEDDING : JINHYUN & YUNDAM</title>
     
     <style>
+        /* 폰트 불러오기 */
         @font-face {
             font-family: 'BinggraeSamanco-Bold';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
@@ -17,6 +18,13 @@
         @font-face {
             font-family: 'Ownglyph_Uiyeon';
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff');
+        }
+        /* [NEW] Cafe24 Decoline 추가 */
+        @font-face {
+            font-family: 'Cafe24Decoline';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe24Decoline.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
     </style>
 
@@ -60,11 +68,11 @@
             min-height: 80px;   
         }
 
-        /* [또댕 로고 - PC 버전 300px / 위치 70% 반영] */
+        /* [또댕 로고 - PC 버전 300px / 위치 70%] */
         .header-left-logo {
             position: absolute;
-            left: 40px;      
-            top: 70%;        /* 공주가 요청한 70% 위치! */
+            left: -40px;      
+            top: 70%;        
             transform: translateY(-50%); 
             z-index: 5;
         }
@@ -75,16 +83,18 @@
             display: block;
         }
 
+        /* [중요: 새로운 문구 및 폰트 적용] */
         .header-title {
             text-align: center;
         }
         .header-title a {
-            font-family: 'BinggraeSamanco-Bold', sans-serif;
-            font-size: 52px;
+            font-family: 'Cafe24Decoline', serif; /* 인스타 감성 폰트 적용 */
+            font-size: 46px; /* 영문 폰트 특성상 크기 미세 조절 */
             color: var(--text-black);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 3px; /* 영문은 자간을 넓혀야 힙함! */
             white-space: nowrap;
+            text-transform: uppercase; /* 소문자로 써도 대문자로 나오게 설정 */
         }
 
         .nav-container {
@@ -127,7 +137,7 @@
             text-align: center;
         }
 
-        /* [메인 사진 영역 - PC 버전 원본 밝기 유지] */
+        /* [메인 사진 영역 - PC 버전 원본 밝기] */
         .main-content {
             position: relative;
             width: 100%;
@@ -155,7 +165,7 @@
         .info-time { font-size: 26px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
         .info-location { font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
 
-        /* [모바일 대응 - 로고 120px & 빛반사 필터] */
+        /* [모바일 대응] */
         @media (max-width: 768px) {
             header.site-header { padding: 25px 15px 15px 15px; }
             .header-top {
@@ -172,7 +182,11 @@
                 max-width: 120px; 
                 margin: 0 auto;
             } 
-            .header-title a { font-size: 28px; }
+            /* 모바일에서도 폰트 크기 예쁘게 조절 */
+            .header-title a { 
+                font-size: 24px; 
+                letter-spacing: 2px;
+            }
             .nav-container { gap: 15px; flex-wrap: wrap; } 
             .nav-item { font-size: 16px; }
             
@@ -193,7 +207,7 @@
             </div>
             
             <div class="header-title">
-                <a href="/">이진현 & 조윤담 우리 결혼합니다~</a>
+                <a href="/">WEDDING : JINHYUN & YUNDAM</a>
             </div>
         </div>
         
