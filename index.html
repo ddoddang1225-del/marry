@@ -23,13 +23,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* [분홍 박스 - 크기 절대 고정] */
+        /* [분홍 박스 - 슬림 규격 유지] */
         header.site-header {
             width: 100%;
-            padding: 10px 20px 8px 20px; 
+            padding: 10px 5% 8px 5%; /* 좌우 여백을 %로 줘서 화면 조절에 대응 */
             background-color: var(--bg-pink);
             position: relative;
-            z-index: 1000; /* 드롭다운을 위해 높게 설정 */
+            z-index: 1000;
             display: flex; flex-direction: column; align-items: center;
         }
 
@@ -39,7 +39,68 @@
             position: relative; min-height: 45px; margin-bottom: 8px;
         }
 
-        /* [드롭다운 공통 스타일] */
+        /* [PC 전용 스타일] */
+        @media (min-width: 769px) {
+            /* 로고 위치 고정 및 크기 반응형 */
+            .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); }
+            .header-left-logo img { width: 12vw; max-width: 160px; min-width: 100px; height: auto; }
+
+            /* 글씨 크기를 clamp로 주어 화면 따라 조절 */
+            .header-title { margin-left: 10%; transition: all 0.3s; }
+            .header-title a { 
+                font-family: 'Cafe24Decoline', serif; 
+                font-size: clamp(24px, 2.5vw, 38px); 
+                color: var(--text-black); text-decoration: none; text-transform: uppercase; 
+                white-space: nowrap;
+            }
+
+            .nav-container { 
+                width: 100%; max-width: 1400px; 
+                display: flex; justify-content: flex-end; 
+                padding-right: 5%; gap: 1vw; 
+            }
+            .nav-group { position: relative; flex: 0 1 150px; }
+            .nav-item {
+                font-family: 'Cafe24Ssukssuk', sans-serif; 
+                font-size: clamp(12px, 1vw, 15px); 
+                height: 34px; background-color: rgba(255, 255, 255, 0.6); 
+                border: 1px solid var(--box-border); border-radius: 6px; 
+                display: flex; justify-content: center; align-items: center;
+                color: var(--menu-gray); cursor: pointer; white-space: nowrap;
+            }
+            .main-content {
+                width: 100%; min-height: 100vh;
+                background-image: url('images/danag.jpg');
+                background-size: contain; background-position: center top; background-repeat: no-repeat;
+            }
+        }
+
+        /* [모바일 전용 스타일] */
+        @media (max-width: 768px) {
+            .header-top { display: flex; flex-direction: row; gap: 8px; justify-content: center; }
+            .header-left-logo { position: static; transform: none; flex-shrink: 0; }
+            .header-left-logo img { width: 45px; height: auto; }
+
+            .header-title a { font-size: 14px; text-decoration: none; color: var(--text-black); white-space: nowrap; }
+
+            .nav-container { width: 100%; display: flex; flex-direction: row; gap: 4px; }
+            .nav-group { position: relative; flex: 1; min-width: 0; }
+            .nav-item { 
+                font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px;
+                height: 32px; background-color: rgba(255, 255, 255, 0.7);
+                border: 1px solid var(--box-border); border-radius: 4px;
+                display: flex; justify-content: center; align-items: center;
+                white-space: nowrap; overflow: hidden;
+            }
+
+            .main-content {
+                width: 100%; height: auto; aspect-ratio: 3 / 4;
+                background-image: url('images/danag.jpg');
+                background-size: cover; background-position: center; filter: none;
+            }
+        }
+
+        /* [드롭다운 & 메인 공통] */
         .dropdown-menu {
             display: none; position: absolute; top: 110%; left: 50%;
             transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg);
@@ -51,68 +112,15 @@
             font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 12px; text-align: center;
         }
 
-        /* ---------------------------------------------------------
-           [PC 전용] 769px 이상
-        ---------------------------------------------------------- */
-        @media (min-width: 769px) {
-            .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); }
-            .header-left-logo img { max-width: 160px; height: auto; }
-
-            .header-title { margin-left: 180px; }
-            .header-title a { font-family: 'Cafe24Decoline', serif; font-size: 38px; color: var(--text-black); text-decoration: none; text-transform: uppercase; }
-
-            .nav-container { width: 100%; max-width: 1400px; display: flex; justify-content: flex-end; padding-right: 100px; gap: 12px; }
-            .nav-group { position: relative; flex: 0 1 150px; }
-            .nav-item {
-                font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 15px; height: 34px;
-                background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--box-border);
-                border-radius: 6px; display: flex; justify-content: center; align-items: center;
-                color: var(--menu-gray); cursor: pointer;
-            }
-
-            .main-content {
-                width: 100%; min-height: 850px;
-                background-image: url('images/danag.jpg');
-                background-size: contain; background-position: center top; background-repeat: no-repeat;
-            }
-        }
-
-        /* ---------------------------------------------------------
-           [모바일 전용] 768px 이하
-        ---------------------------------------------------------- */
-        @media (max-width: 768px) {
-            .header-top { display: flex; flex-direction: row; gap: 6px; }
-            .header-left-logo { position: static; transform: none; }
-            .header-left-logo img { max-width: 45px; } 
-
-            .header-title a { font-size: 14px; text-decoration: none; color: var(--text-black); }
-
-            .nav-container { width: 100%; display: flex; flex-direction: row; gap: 4px; }
-            .nav-group { position: relative; flex: 1; }
-            .nav-item { 
-                font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px;
-                height: 30px; background-color: rgba(255, 255, 255, 0.7);
-                border: 1px solid var(--box-border); border-radius: 4px;
-                display: flex; justify-content: center; align-items: center;
-            }
-
-            .main-content {
-                width: 100%; height: auto; aspect-ratio: 3 / 4;
-                background-image: url('images/danag.jpg');
-                background-size: cover; background-position: center; filter: none;
-            }
-        }
-
-        /* [메인 콘텐츠 공통] */
         .main-content {
             display: flex; flex-direction: column; align-items: center;
             background-color: var(--bg-blue-point);
             font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center;
         }
-        .info-wrap { margin-top: 40px; }
-        .info-date { font-size: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-        .info-time { font-size: 26px; margin: 10px 0 25px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-        .info-location { font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+        .info-wrap { margin-top: 5vh; }
+        .info-date { font-size: clamp(20px, 4vw, 30px); text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+        .info-time { font-size: clamp(18px, 3.5vw, 26px); margin: 10px 0 25px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+        .info-location { font-size: clamp(19px, 3.8vw, 28px); line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
     </style>
 </head>
 <body>
@@ -154,17 +162,13 @@
             event.stopPropagation();
             const dropdown = document.getElementById(dropId);
             const allDrops = document.getElementsByClassName("dropdown-menu");
-            for(let d of allDrops) {
-                if(d.id !== dropId) d.classList.remove('show');
-            }
+            for(let d of allDrops) { if(d.id !== dropId) d.classList.remove('show'); }
             dropdown.classList.toggle('show');
         }
         window.onclick = function(event) {
             if (!event.target.closest('.nav-group')) {
                 const dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].classList.remove('show');
-                }
+                for (let i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); }
             }
         }
     </script>
