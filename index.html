@@ -10,7 +10,7 @@
             --bg-pink: #FFF0F1;
             --text-black: #1A1A1A;
             --menu-gray: #4A4A4A;
-            --dropdown-bg: #2C2C2C; /* 사진 속 검은색 배경 */
+            --dropdown-bg: #2C2C2C;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,7 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* [상단 헤더 영역] */
+        /* [상단 헤더 영역 - 건드리지 않음] */
         header.wedding-header {
             width: 100%;
             padding: 80px 20px 40px 20px;
@@ -29,13 +29,11 @@
             flex-direction: column;
             align-items: center;
             background-color: var(--bg-pink);
-            /* 드롭다운이 짤리지 않게 구분선 추가 */
             border-bottom: 1.5px dashed #333; 
         }
 
         .logo { margin-bottom: 50px; }
         .logo a {
-            font-family: 'Noto Sans KR', sans-serif;
             font-size: 56px;
             font-weight: 700;
             color: var(--text-black);
@@ -45,7 +43,6 @@
             text-align: center;
         }
 
-        /* [메뉴 영역] */
         .nav-container {
             width: 100%;
             max-width: 800px;
@@ -54,10 +51,7 @@
             gap: 40px;
         }
 
-        /* 드롭다운을 위한 position 설정 */
-        .nav-group {
-            position: relative;
-        }
+        .nav-group { position: relative; }
 
         .nav-item {
             text-decoration: none;
@@ -69,16 +63,12 @@
             transition: all 0.3s ease;
         }
 
-        .nav-item.active {
-            color: var(--text-black);
-            font-weight: 700;
-        }
+        .nav-item.active { color: var(--text-black); font-weight: 700; }
 
-        /* [드롭다운 서브 메뉴 - 사진 디자인 복제] */
         .dropdown-menu {
-            display: none; /* 기본은 숨김 */
+            display: none;
             position: absolute;
-            top: 100%; /* 메뉴 바로 아래 */
+            top: 100%;
             left: 0;
             width: 200px;
             background-color: var(--dropdown-bg);
@@ -87,9 +77,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .dropdown-menu.show {
-            display: block; /* 클릭 시 보임 */
-        }
+        .dropdown-menu.show { display: block; }
 
         .dropdown-item {
             padding: 12px 20px;
@@ -97,21 +85,43 @@
             font-size: 15px;
             text-decoration: none;
             display: block;
-            transition: background 0.2s, color 0.2s;
         }
 
-        .dropdown-item:hover {
-            background-color: #444;
-            color: #fff;
-        }
+        .dropdown-item:hover { background-color: #444; color: #fff; }
 
-        /* [본문 영역] */
+        /* -------------------------------------------------- */
+        /* [본문 영역 - 공주가 말한 아래쪽 추가 부분] */
+        /* -------------------------------------------------- */
         .main-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 50px 20px;
-            min-height: 400px;
-            background-color: #89A9D6; /* 사진 하단의 파란 배경 느낌 살짝 추가 */
+            width: 100%;
+            min-height: 600px;
+            /* 배경을 파란색 대신 은은한 핑크나 화이트로 하고 싶으면 여기서 조절해! */
+            background-color: #89A9D6; 
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white; /* 파란 배경이라 글씨는 하얗게! */
+            text-align: center;
+        }
+
+        .wedding-date {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .wedding-time {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .wedding-location {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.6;
         }
 
         /* 모바일 대응 */
@@ -119,7 +129,8 @@
             .logo a { font-size: 32px; }
             .nav-container { gap: 15px; }
             .nav-item { font-size: 14px; }
-            .dropdown-menu { width: 160px; }
+            .wedding-date { font-size: 20px; }
+            .wedding-location { font-size: 18px; }
         }
     </style>
 </head>
@@ -138,7 +149,6 @@
                     <a href="#" class="dropdown-item">또댕이들이 걸어온 길</a>
                 </div>
             </div>
-
             <div class="nav-item">예약 및 문의</div>
             <div class="nav-item">기타</div>
             <div class="nav-item">GALLERY</div>
@@ -146,13 +156,40 @@
     </header>
 
     <main class="main-content">
-        <p style="color:white; text-align:center;">본문 내용이 여기에 표시됩니다.</p>
+        <div class="wedding-date">2027. 10. 09. SAT</div>
+        <div class="wedding-time">PM 12:00</div>
+        
+        <div class="wedding-location">
+            롯데월드 민속박물관<br>
+            전통혼례장
+        </div>
     </main>
 
     <script>
+        // 드롭다운 토글 함수
         function toggleDropdown(event, dropId) {
-            event.stopPropagation(); // 클릭 이벤트 전파 방지
+            event.stopPropagation();
             const dropdown = document.getElementById(dropId);
             
-            // 이미 열려있으면 닫고, 닫혀있으면 열기
-            dropdown.
+            // 모든 드롭다운을 일단 닫고 시작 (다른게 열려있을 수 있으니)
+            const allDrops = document.getElementsByClassName("dropdown-menu");
+            for(let d of allDrops) {
+                if(d.id !== dropId) d.classList.remove('show');
+            }
+
+            dropdown.classList.toggle('show');
+        }
+
+        // 바깥 클릭 시 드롭다운 닫기
+        window.onclick = function(event) {
+            const dropdowns = document.getElementsByClassName("dropdown-menu");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('show')) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
