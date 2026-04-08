@@ -18,6 +18,7 @@
             --menu-gray: #4A4A4A;
             --dropdown-bg: #2C2C2C; 
             --box-border: #E8E8E8; 
+            --point-pink: #E88D9E; /* 핑크 포인트 컬러 */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,7 +50,7 @@
             .nav-group { position: relative; flex: 0 1 150px; }
             .nav-item { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: clamp(12px, 1vw, 15px); height: 34px; background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--box-border); border-radius: 6px; display: flex; justify-content: center; align-items: center; color: var(--menu-gray); cursor: pointer; }
             
-            .main-content, #wedding-info { padding-top: 120px; } /* 헤더 높이 대응 */
+            .main-content, #wedding-info, #our-story { padding-top: 120px; } 
         }
 
         /* [4. 모바일 전용] */
@@ -61,10 +62,10 @@
             .nav-group { position: relative; flex: 1; }
             .nav-item { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px; height: 32px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid var(--box-border); border-radius: 4px; display: flex; justify-content: center; align-items: center; }
             
-            .main-content, #wedding-info { padding-top: 110px; } /* 헤더 높이 대응 */
+            .main-content, #wedding-info, #our-story { padding-top: 110px; } 
         }
 
-        /* [5. 공통 디자인] */
+        /* [5. 공통 디자인 및 섹션 제어] */
         .main-content {
             display: flex; flex-direction: column; align-items: center;
             background-color: var(--bg-blue-point); min-height: 100vh;
@@ -72,15 +73,27 @@
             font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center;
         }
 
-        /* [6. 결혼식 안내 섹션 디자인] */
-        #wedding-info {
-            display: none; /* 처음엔 숨김 */
-            background-color: white; min-height: 100vh;
+        #wedding-info, #our-story {
+            display: none; background-color: white; min-height: 100vh;
             flex-direction: column; align-items: center;
             font-family: 'Cafe24Ssukssuk', sans-serif; padding-left: 20px; padding-right: 20px;
         }
+
         .info-title-main { font-size: 32px; color: #E88D9E; margin-bottom: 40px; margin-top: 20px; }
-        .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; }
+        .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; text-align: center; }
+
+        /* [6. 또댕이들이 걸어온 길 전용 스타일] */
+        .video-container { width: 90%; max-width: 800px; aspect-ratio: 16 / 9; margin-bottom: 40px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .video-container iframe { width: 100%; height: 100%; border: none; }
+
+        .story-gallery { width: 100%; max-width: 1100px; display: flex; flex-direction: column; gap: 20px; margin-bottom: 50px; }
+        .slide-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; padding: 10px; scrollbar-width: none; -ms-overflow-style: none; }
+        .slide-row::-webkit-scrollbar { display: none; }
+        
+        .slide-item { flex: 0 0 calc(25% - 12px); scroll-snap-align: start; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        @media (max-width: 768px) { .slide-item { flex: 0 0 calc(33.33% - 10px); } }
+        .slide-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .slide-item img:hover { transform: scale(1.1); }
 
         /* 드롭다운 스타일 */
         .dropdown-menu { display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg); padding: 5px 0; border-radius: 5px; z-index: 2000; }
@@ -109,7 +122,7 @@
                 <div class="nav-item" onclick="toggleDropdown(event, 'info-drop')">결혼식 안내</div>
                 <div id="info-drop" class="dropdown-menu">
                     <div class="dropdown-item" onclick="showSection('info')">결혼식 안내</div>
-                    <div class="dropdown-item">또댕이들이 걸어온 길</div>
+                    <div class="dropdown-item" onclick="showSection('story')">또댕이들이 걸어온 길</div>
                 </div>
             </div>
             <div class="nav-group"><div class="nav-item">축하 전하는 곳</div></div>
@@ -149,8 +162,34 @@
         </div>
     </section>
 
+    <section id="our-story">
+        <h2 class="info-title-main">또댕이들이 걸어온 길</h2>
+        
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="또댕유튜브" allowfullscreen></iframe>
+        </div>
+
+        <p style="margin-bottom: 25px; color: #888; font-family: 'Ownglyph_Uiyeon'; font-size: 22px;">옆으로 밀어서 사진을 구경하세요!</p>
+
+        <div class="story-gallery">
+            <div class="slide-row">
+                <div class="slide-item"><img src="images/story1.jpg"></div>
+                <div class="slide-item"><img src="images/story2.jpg"></div>
+                <div class="slide-item"><img src="images/story3.jpg"></div>
+                <div class="slide-item"><img src="images/story4.jpg"></div>
+                <div class="slide-item"><img src="images/story5.jpg"></div>
+            </div>
+            <div class="slide-row">
+                <div class="slide-item"><img src="images/story6.jpg"></div>
+                <div class="slide-item"><img src="images/story7.jpg"></div>
+                <div class="slide-item"><img src="images/story8.jpg"></div>
+                <div class="slide-item"><img src="images/story9.jpg"></div>
+                <div class="slide-item"><img src="images/story10.jpg"></div>
+            </div>
+        </div>
+    </section>
+
     <script>
-        // 드롭다운 열기/닫기
         function toggleDropdown(event, dropId) {
             event.stopPropagation();
             const dropdown = document.getElementById(dropId);
@@ -159,26 +198,29 @@
             dropdown.classList.toggle('show');
         }
 
-        // 섹션 전환 함수
         function showSection(type) {
             const main = document.getElementById('main-visual');
             const info = document.getElementById('wedding-info');
+            const story = document.getElementById('our-story');
+
+            // 초기화
+            main.classList.add('hidden');
+            info.classList.remove('active-section');
+            story.classList.remove('active-section');
 
             if(type === 'main') {
                 main.classList.remove('hidden');
-                info.classList.remove('active-section');
             } else if(type === 'info') {
-                main.classList.add('hidden');
                 info.classList.add('active-section');
+            } else if(type === 'story') {
+                story.classList.add('active-section');
             }
             
-            // 메뉴 닫기 및 상단 이동
             window.scrollTo(0, 0);
             const allDrops = document.getElementsByClassName("dropdown-menu");
             for(let d of allDrops) { d.classList.remove('show'); }
         }
 
-        // 바깥쪽 클릭하면 드롭다운 닫기
         window.onclick = function(event) {
             if (!event.target.closest('.nav-group')) {
                 const dropdowns = document.getElementsByClassName("dropdown-menu");
