@@ -32,10 +32,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* [상단 헤더 - 크기 고정 및 슬림화] */
+        /* [상단 헤더] */
         header.site-header {
             width: 100%;
-            padding: 10px 20px 8px 20px; /* 공주가 원하던 슬림한 두께로 고정! */
+            padding: 15px 40px 10px 40px; 
             background-color: var(--bg-pink);
             position: relative;
             z-index: 100; 
@@ -44,134 +44,113 @@
             align-items: center;
         }
 
+        /* [PC 버전 상단 레이아웃] */
         .header-top {
             width: 100%;
             max-width: 1400px;
             display: flex;
-            justify-content: center; 
+            justify-content: center; /* 기본은 중앙 */
             align-items: center; 
             position: relative; 
-            margin-bottom: 8px; /* 간격 최소화 */
-            min-height: 45px;   
+            margin-bottom: 15px; 
+            min-height: 60px;   
         }
 
+        /* 로고 (90% 유지) */
         .header-left-logo {
             position: absolute;
-            left: 20px;      
-            top: 90%;        
+            left: 0;      
+            top: 90%; 
             transform: translateY(-50%); 
         }
         .header-left-logo img {
-            max-width: 120px; /* 박스에 맞춰 로고도 조금 더 콤팩트하게 */
+            max-width: 120px; 
             height: auto;
             display: block;
         }
 
+        /* PC용 큰 글씨 문구 */
         .header-title a {
             font-family: 'Cafe24Decoline', serif;
-            font-size: 24px; 
+            font-size: 36px; /* PC에서 시원하게 크게! */
             color: var(--text-black);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        /* [네비게이션 - 슬림 박스 디자인] */
+        /* [PC용 오른쪽 정렬 네비게이션] */
         .nav-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1400px;
             display: flex;
-            justify-content: center;
-            gap: 10px; 
+            justify-content: flex-end; /* 오른쪽으로 밀기 */
+            gap: 12px; 
         }
-        .nav-group { position: relative; flex: 1; max-width: 140px; } 
+        .nav-group { position: relative; flex: 0 1 150px; } /* 너비 적절히 고정 */
 
         .nav-item {
             font-family: 'Cafe24Ssukssuk', sans-serif;
-            font-size: 14px; /* 폰트 살짝 줄임 */
+            font-size: 15px;
             color: var(--menu-gray);
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 34px; /* 박스 높이를 낮춰서 슬림하게! */
-            background-color: rgba(255, 255, 255, 0.7); /* 살짝 투명해서 더 세련된 느낌 */
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.6); 
             border: 1px solid var(--box-border);
             border-radius: 6px;
             transition: all 0.2s ease;
-            width: 100%;
         }
 
-        .nav-item:hover {
-            background-color: #ffffff;
-            transform: translateY(-1px);
+        .nav-item:hover { background-color: #ffffff; border-color: #ccc; }
+
+        /* [모바일 버전 유지] */
+        @media (max-width: 768px) {
+            header.site-header { padding: 15px 15px 10px 15px; }
+            .header-top { min-height: auto; flex-direction: column; margin-bottom: 12px; }
+            .header-left-logo { position: absolute; left: 10px; }
+            .header-left-logo img { max-width: 70px; }
+            
+            /* 문구 조절 */
+            .header-title a { font-size: 19px; letter-spacing: 0.5px; }
+            
+            /* 한 줄 배치 복구 */
+            .nav-container { 
+                justify-content: center;
+                gap: 5px; 
+            }
+            .nav-group { flex: 1; max-width: none; }
+            .nav-item { font-size: 11px; height: 28px; }
+            
+            .main-content { height: 550px; background-size: cover; }
         }
 
+        /* 공통 스타일 */
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 105%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            background-color: var(--dropdown-bg);
-            padding: 6px 0;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
+            display: none; position: absolute; top: 110%; left: 50%;
+            transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg);
+            padding: 5px 0; border-radius: 5px; z-index: 1000;
         }
         .dropdown-menu.show { display: block; }
         .dropdown-item {
-            display: block;
-            padding: 8px;
-            color: #ffffff;
-            text-decoration: none;
-            font-family: 'Cafe24Ssukssuk', sans-serif;
-            font-size: 12px;
-            text-align: center;
+            display: block; padding: 8px; color: #ffffff; text-decoration: none;
+            font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 12px; text-align: center;
         }
-
-        /* [메인 콘텐츠] */
         .main-content {
-            position: relative;
-            width: 100%;
-            height: 700px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-family: 'Ownglyph_Uiyeon', sans-serif;
-            background-image: url('images/danag.jpg'); 
-            background-size: contain; 
-            background-position: center;  
-            background-repeat: no-repeat;
+            position: relative; width: 100%; height: 750px; 
+            display: flex; flex-direction: column; align-items: center;
+            color: white; text-align: center; font-family: 'Ownglyph_Uiyeon', sans-serif;
+            background-image: url('images/danag.jpg'); background-size: contain; 
+            background-position: center; background-repeat: no-repeat;
             background-color: var(--bg-blue-point); 
         }
-
         .info-wrap { margin-top: 60px; }
-        .info-date { font-size: 30px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-        .info-time { font-size: 26px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-        .info-location { font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-
-        /* [모바일] */
-        @media (max-width: 768px) {
-            header.site-header { padding: 10px 10px 8px 10px; }
-            .header-top { flex-direction: column; margin-bottom: 10px; }
-            .header-left-logo { position: static; transform: none; margin-bottom: 5px; }
-            .header-left-logo img { max-width: 80px; margin: 0 auto; } 
-            .header-title a { font-size: 16px; }
-            
-            .nav-container { 
-                display: grid; 
-                grid-template-columns: 1fr 1fr;
-                gap: 8px; 
-                padding: 0 5px;
-            }
-            .nav-item { font-size: 13px; height: 36px; }
-            .main-content { height: 500px; background-size: cover; }
-        }
+        .info-date { font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+        .info-time { font-size: 28px; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+        .info-location { font-size: 30px; line-height: 1.6; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
     </style>
 </head>
 <body>
@@ -194,15 +173,9 @@
                     <a href="#" class="dropdown-item">또댕이들이 걸어온 길</a>
                 </div>
             </div>
-            <div class="nav-group">
-                <div class="nav-item">예약 및 문의</div>
-            </div>
-            <div class="nav-group">
-                <div class="nav-item">지도</div>
-            </div>
-            <div class="nav-group">
-                <div class="nav-item">GALLERY</div>
-            </div>
+            <div class="nav-group"><div class="nav-item">예약 및 문의</div></div>
+            <div class="nav-group"><div class="nav-item">지도</div></div>
+            <div class="nav-group"><div class="nav-item">GALLERY</div></div>
         </nav>
     </header>
 
@@ -210,9 +183,7 @@
         <div class="info-wrap">
             <div class="info-date">날짜 : 2027. 10. 09. 토요일</div>
             <div class="info-time">시간 : PM 12:00</div>
-            <div class="info-location">
-                장소 : 롯데월드 민속박물관<br>전통혼례장
-            </div>
+            <div class="info-location">장소 : 롯데월드 민속박물관<br>전통혼례장</div>
         </div>
     </main>
 
@@ -221,17 +192,13 @@
             event.stopPropagation();
             const dropdown = document.getElementById(dropId);
             const allDrops = document.getElementsByClassName("dropdown-menu");
-            for(let d of allDrops) {
-                if(d.id !== dropId) d.classList.remove('show');
-            }
+            for(let d of allDrops) { if(d.id !== dropId) d.classList.remove('show'); }
             dropdown.classList.toggle('show');
         }
         window.onclick = function(event) {
             if (!event.target.closest('.nav-group')) {
                 const dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].classList.remove('show');
-                }
+                for (let i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); }
             }
         }
     </script>
