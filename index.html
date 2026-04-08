@@ -37,10 +37,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* [상단 헤더] */
+        /* [상단 헤더 - 핑크 박스 높이 축소] */
         header.site-header {
             width: 100%;
-            padding: 30px 20px 20px 20px; 
+            padding: 30px 20px 20px 20px; /* 상단 여백 확 줄임 */
             background-color: var(--bg-pink);
             position: relative;
             z-index: 10;
@@ -49,34 +49,34 @@
             align-items: center;
         }
 
-        /* [헤더 상단 레이아웃 - 로고와 이름의 부모] */
+        /* [헤더 상단 레이아웃 - 높이 슬림화] */
         .header-top {
             width: 100%;
             max-width: 1400px;
             display: flex;
             justify-content: center; 
-            align-items: center; /* 세로 중앙 정렬 */
+            align-items: center; 
             position: relative; 
-            margin-bottom: 25px; 
-            min-height: 80px; /* 로고 높이에 맞춘 최소 여유 공간 */
+            margin-bottom: 25px; /* 메뉴와 간격 축소 */
+            min-height: 80px;    /* 최소 높이 축소 */
         }
 
-        /* [또댕 로고 - 정중앙 배치 설정] */
+        /* [또댕 로고 - 위치 조절] */
         .header-left-logo {
             position: absolute;
-            left: 40px;      /* 왼쪽 여백 */
-            top: 70%;        /* 세로 50% 지점 */
-            transform: translateY(-50%); /* 자기 높이 절반만큼 올려서 완벽한 중앙 */
+            left: 40px;      
+            top: 55%;        /* 50%에서 55%로 살짝 내림 (더 내리려면 숫자 키우기!) */
+            transform: translateY(-50%); 
             z-index: 5;
         }
 
         .header-left-logo img {
-            max-width: 300px; /* 공주가 픽한 300px 사이즈 */
+            max-width: 300px; 
             height: auto;
             display: block;
         }
 
-        /* [이름 문구 - 항상 중앙 정렬] */
+        /* [이름 문구] */
         .header-title {
             text-align: center;
         }
@@ -89,7 +89,7 @@
             white-space: nowrap;
         }
 
-        /* [메뉴 컨테이너 - 항상 중앙 정렬] */
+        /* [메뉴 컨테이너] */
         .nav-container {
             width: 100%;
             display: flex;
@@ -131,7 +131,7 @@
             text-align: center;
         }
 
-        /* [메인 사진 영역] */
+        /* [메인 사진 영역 - PC 버전] */
         .main-content {
             position: relative;
             width: 100%;
@@ -142,7 +142,8 @@
             color: white;
             text-align: center;
             font-family: 'Ownglyph_Uiyeon', sans-serif;
-            background-image: url('images/danag.jpg'); 
+            /* 사진 위에 얇은 어두운 필터를 깔아 빛반사 방지 */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('images/danag.jpg'); 
             background-size: contain; 
             background-position: center;  
             background-repeat: no-repeat;
@@ -161,7 +162,7 @@
 
         /* [모바일 대응] */
         @media (max-width: 768px) {
-            header.site-header { padding: 30px 15px; }
+            header.site-header { padding: 25px 15px 15px 15px; }
             .header-top {
                 flex-direction: column;
                 position: static;
@@ -170,13 +171,19 @@
             .header-left-logo {
                 position: static;
                 transform: none;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             .header-left-logo img { max-width: 180px; } 
             .header-title a { font-size: 28px; }
             .nav-container { gap: 15px; flex-wrap: wrap; } 
             .nav-item { font-size: 16px; }
-            .main-content { height: 500px; }
+            
+            /* 모바일 사진 빛반사 방지 필터 강화 */
+            .main-content { 
+                height: 500px; 
+                background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('images/danag.jpg');
+                background-size: cover; 
+            }
         }
     </style>
 </head>
