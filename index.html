@@ -40,8 +40,7 @@
         /* [상단 헤더] */
         header.site-header {
             width: 100%;
-            /* 로고가 커진 만큼 위아래 여백을 넉넉히 (상60px, 하40px) */
-            padding: 60px 20px 40px 20px; 
+            padding: 30px 20px 20px 20px; 
             background-color: var(--bg-pink);
             position: relative;
             z-index: 10;
@@ -50,29 +49,34 @@
             align-items: center;
         }
 
-        /* [헤더 상단 레이아웃] */
+        /* [헤더 상단 레이아웃 - 로고와 이름의 부모] */
         .header-top {
             width: 100%;
-            max-width: 1400px; 
+            max-width: 1400px;
             display: flex;
             justify-content: center; 
-            align-items: center;
+            align-items: center; /* 세로 중앙 정렬 */
             position: relative; 
-            margin-bottom: 50px; /* 로고와 메뉴 사이 간격 */
+            margin-bottom: 25px; 
+            min-height: 80px; /* 로고 높이에 맞춘 최소 여유 공간 */
         }
 
-        /* [또댕 로고 - 기존 180px에서 1.5배인 270px로 확대] */
+        /* [또댕 로고 - 정중앙 배치 설정] */
         .header-left-logo {
             position: absolute;
-            left: 10px; /* 왼쪽 여백 살짝 조정 */
+            left: 40px;      /* 왼쪽 여백 */
+            top: 70%;        /* 세로 50% 지점 */
+            transform: translateY(-50%); /* 자기 높이 절반만큼 올려서 완벽한 중앙 */
+            z-index: 5;
         }
+
         .header-left-logo img {
-            max-width: 270px; /* 공주가 말한 1.5배 크기! */
+            max-width: 300px; /* 공주가 픽한 300px 사이즈 */
             height: auto;
             display: block;
         }
 
-        /* [이름 문구] */
+        /* [이름 문구 - 항상 중앙 정렬] */
         .header-title {
             text-align: center;
         }
@@ -85,7 +89,7 @@
             white-space: nowrap;
         }
 
-        /* [메뉴 컨테이너] */
+        /* [메뉴 컨테이너 - 항상 중앙 정렬] */
         .nav-container {
             width: 100%;
             display: flex;
@@ -161,12 +165,14 @@
             .header-top {
                 flex-direction: column;
                 position: static;
+                min-height: auto;
             }
             .header-left-logo {
                 position: static;
+                transform: none;
                 margin-bottom: 20px;
             }
-            .header-left-logo img { max-width: 180px; } /* 모바일은 화면에 맞춰 축소 */
+            .header-left-logo img { max-width: 180px; } 
             .header-title a { font-size: 28px; }
             .nav-container { gap: 15px; flex-wrap: wrap; } 
             .nav-item { font-size: 16px; }
@@ -181,8 +187,9 @@
             <div class="header-left-logo">
                 <img src="images/또댕 로고.png" alt="또댕 로고">
             </div>
+            
             <div class="header-title">
-                <a href="/">이진현 & 조윤담 결혼페이지</a>
+                <a href="/">이진현 & 조윤담 우리 결혼합니다~</a>
             </div>
         </div>
         
