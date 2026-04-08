@@ -35,10 +35,10 @@
             overflow-x: hidden;
         }
 
-        /* [상단 헤더 - 슬림 유지] */
+        /* [상단 헤더] */
         header.site-header {
             width: 100%;
-            padding: 30px 20px 15px 20px; 
+            padding: 40px 20px 20px 20px; /* 위아래 여백을 조금 더 주어 여유롭게 변경 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -47,7 +47,7 @@
             z-index: 10;
         }
 
-        .logo { margin-bottom: 15px; } 
+        .logo { margin-bottom: 25px; } /* 로고와 메뉴 사이도 조금 더 벌림 */
         .logo a {
             font-family: 'BinggraeSamanco-Bold', sans-serif;
             font-size: 52px;
@@ -56,25 +56,28 @@
             letter-spacing: 1px;
         }
 
-        /* [메뉴 컨테이너 - 간격을 30px -> 50px로 더 띄웠어!] */
+        /* [메뉴 컨테이너 - 간격을 50px에서 80px로 대폭 확대!] */
         .nav-container {
             width: 100%;
-            max-width: 900px; /* 간격을 넓혀서 최대 너비도 살짝 늘림 */
+            max-width: 1000px; /* 간격이 넓어지니 컨테이너 최대 폭도 키웠어 */
             display: flex;
             justify-content: center;
-            gap: 50px; /* 메뉴 사이 공간을 시원하게 벌림 */
+            gap: 80px; /* 메뉴 사이 공간을 아주 넉넉하게! */
         }
 
         .nav-group { position: relative; }
 
         .nav-item {
             font-family: 'Cafe24Ssukssuk', sans-serif;
-            font-size: 19px;
+            font-size: 20px; /* 시인성을 위해 1px 더 키웠어 */
             color: var(--menu-gray);
             cursor: pointer;
             padding-bottom: 5px;
-            white-space: nowrap; /* 글씨가 옆으로 삐져나가지 않게 */
+            white-space: nowrap; 
+            transition: color 0.3s ease;
         }
+
+        .nav-item:hover { color: var(--text-black); }
 
         /* [드롭다운 디자인] */
         .dropdown-menu {
@@ -83,7 +86,7 @@
             top: 110%;
             left: 50%;
             transform: translateX(-50%);
-            width: 170px;
+            width: 180px;
             background-color: var(--dropdown-bg);
             padding: 8px 0;
             border-radius: 4px;
@@ -99,11 +102,11 @@
             text-align: center;
         }
 
-        /* [핵심: 사진 배경 영역 - 경로 수정 완료!] */
+        /* [사진 배경 영역 - contain 유지] */
         .main-content {
             position: relative;
             width: 100%;
-            height: 600px; 
+            height: 650px; /* 메뉴 간격이 넓어져서 높이도 살짝 키움 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,11 +115,11 @@
             text-align: center;
             font-family: 'Ownglyph_Uiyeon', sans-serif;
             
-            /* images 폴더 안에 있는 danag.jpg 파일을 불러옵니다 */
             background-image: url('images/danag.jpg'); 
-            background-size: cover;
-            background-position: center;
+            background-size: contain;       
+            background-position: center;  
             background-repeat: no-repeat;
+            background-color: var(--bg-pink); 
         }
 
         .main-content::before {
@@ -136,13 +139,15 @@
         .info-time { font-size: 24px; margin-bottom: 25px; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
         .info-location { font-size: 26px; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
 
+        /* [모바일 대응 - 화면 좁을 땐 적절히 줄어들게] */
         @media (max-width: 768px) {
             .logo a { font-size: 38px; }
-            .nav-container { gap: 20px; } /* 모바일은 화면이 좁으니 간격을 다시 조정 */
+            .nav-container { 
+                gap: 15px; /* 모바일은 너무 벌리면 화면을 넘어가니 적절히 조절! */
+                flex-wrap: wrap; /* 혹시나 넘치면 다음 줄로 */
+            } 
+            .nav-item { font-size: 16px; }
             .main-content { height: 500px; }
-            .info-date { font-size: 22px; }
-            .info-time { font-size: 18px; }
-            .info-location { font-size: 20px; }
         }
     </style>
 </head>
