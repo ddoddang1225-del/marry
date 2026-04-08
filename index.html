@@ -3,99 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DDodang GNB - Mobile Pro</title>
+    <title>DDodang Official</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-soft-pink: #FFF0F0;
-            --point-blue: #A9D1F7;
-            --menu-green: #DCEDC8;
-            --line-brown: #5D4037;
+            --bg-pink: #FFF0F0;
+            --c-blue: #A9D1F7;
+            --c-green: #DCEDC8;
+            --c-brown: #5D4037;
+            --n-border: #DBDFE4;
+            --max-w: 1280px;
         }
 
         body {
-            background-color: var(--bg-soft-pink);
+            background-color: var(--bg-pink);
             font-family: 'Gaegu', cursive;
             margin: 0; padding: 0;
-            overflow-x: hidden; /* 가로 스크롤 완전 방지 */
+            overflow-x: hidden;
         }
 
-        header#header {
+        /* [Header] 네이버 규격을 가져온 상단 영역 */
+        #header {
             width: 100%;
             display: flex;
             justify-content: center;
-            background-color: var(--bg-soft-pink);
+            background-color: var(--bg-pink);
         }
 
-        /* [핵심] 가로 정렬을 절대 포기하지 않는 컨테이너 */
-        .header_inner#topSearchWrap {
+        .header_inner {
             width: 100%;
-            max-width: 1280px;
+            max-width: var(--max-w);
             display: flex;
-            justify-content: space-between; /* 무조건 양 끝 배치 */
+            justify-content: space-between; /* 양 끝 정렬 */
             align-items: center;
-            padding: 15px 20px; /* 모바일에선 여백이 너무 크면 안 되니까 살짝 조절 */
+            padding: 20px 40px;
             box-sizing: border-box;
-            border-bottom: 4px solid var(--line-brown);
+            border-bottom: 5px solid var(--c-brown); /* 시안의 그 갈색 선! */
         }
 
-        /* 로고 영역 */
-        .search_logo#special-input-logo { margin: 0; flex-shrink: 0; }
-        .search_logo a { text-decoration: none; display: block; }
-        .search_logo a:after {
-            content: 'DDodang';
-            font-size: 40px; /* PC 기본 크기 살짝 조정 */
+        /* [Logo] 하늘색 48px DDodang */
+        .search_logo { margin: 0; }
+        .search_logo a {
+            text-decoration: none;
+            font-size: 48px;
             font-weight: bold;
-            color: var(--point-blue);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            transition: font-size 0.2s; /* 크기 변화 부드럽게 */
+            color: var(--c-blue);
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+            letter-spacing: -1px;
         }
 
-        /* 메뉴 버튼 영역 */
-        .shortcut_area { display: flex; align-items: center; flex-shrink: 0; }
+        /* [Menu] 연두색 버튼 3개 */
+        .shortcut_area { display: flex; align-items: center; }
         .shortcut_list {
-            display: flex; 
-            gap: 8px; /* 버튼 사이 간격 */
-            margin: 0; padding: 0; 
+            display: flex;
+            gap: 15px;
+            margin: 0; padding: 0;
             list-style: none;
         }
-        
-        .shortcut_item a.link_service {
+
+        .shortcut_item a {
             display: block;
-            width: 80px; height: 40px;
-            background-color: var(--menu-green);
-            border: 1px solid #999;
-            border-radius: 4px;
-            transition: all 0.2s;
+            width: 90px;
+            height: 45px;
+            background-color: var(--c-green);
+            border: 1.5px solid #888;
+            border-radius: 6px;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* -------------------------------------------------- */
-        /* [반응형] 사이즈만 슥슥 줄어드는 마법의 구간 */
-        /* -------------------------------------------------- */
-        
-        /* 태블릿 이하 (830px) */
+        .shortcut_item a:hover {
+            transform: scale(1.1);
+            background-color: #c5e1a5;
+        }
+
+        /* [Mobile] 핸드폰에서 사이즈 자동 조절 (안 깨짐!) */
         @media (max-width: 830px) {
-            .search_logo a:after {
-                font-size: 32px; /* 로고 작게 */
-            }
-            .shortcut_item a.link_service {
-                width: 60px; height: 32px; /* 버튼 작게 */
-            }
-            .shortcut_list { gap: 5px; }
+            .header_inner { padding: 15px 20px; border-bottom-width: 4px; }
+            .search_logo a { font-size: 32px; }
+            .shortcut_item a { width: 65px; height: 35px; }
+            .shortcut_list { gap: 10px; }
         }
 
-        /* 핸드폰 (480px 이하) */
         @media (max-width: 480px) {
-            .header_inner#topSearchWrap {
-                padding: 10px 15px; /* 여백 더 줄임 */
-            }
-            .search_logo a:after {
-                font-size: 26px; /* 더 작게 해서 안 잘리게! */
-            }
-            .shortcut_item a.link_service {
-                width: 45px; height: 28px; /* 아주 작은 버튼 */
-            }
-            .shortcut_list { gap: 4px; }
+            .header_inner { padding: 10px 15px; }
+            .search_logo a { font-size: 26px; }
+            .shortcut_item a { width: 50px; height: 30px; }
+            .shortcut_list { gap: 8px; }
         }
 
         .blind { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden; }
@@ -104,16 +97,16 @@
 <body>
 
 <header id="header">
-    <div id="topSearchWrap" class="header_inner">
-        <h1 id="special-input-logo" class="search_logo">
-            <a href="/" class="link_naver"><span class="blind">DDodang</span></a>
+    <div class="header_inner">
+        <h1 class="search_logo">
+            <a href="/">DDodang</a>
         </h1>
 
-        <div id="shortcutArea" class="shortcut_area">
+        <div class="shortcut_area">
             <ul class="shortcut_list">
-                <li class="shortcut_item"><a href="#" class="link_service"></a></li>
-                <li class="shortcut_item"><a href="#" class="link_service"></a></li>
-                <li class="shortcut_item"><a href="#" class="link_service"></a></li>
+                <li class="shortcut_item"><a href="#"><span class="blind">Menu 1</span></a></li>
+                <li class="shortcut_item"><a href="#"><span class="blind">Menu 2</span></a></li>
+                <li class="shortcut_item"><a href="#"><span class="blind">Menu 3</span></a></li>
             </ul>
         </div>
     </div>
