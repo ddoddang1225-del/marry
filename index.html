@@ -44,7 +44,7 @@
             align-items: center;
             background-color: var(--bg-pink);
             position: relative;
-            z-index: 10; /* 드롭다운이 사진 위로 오게 함 */
+            z-index: 10;
         }
 
         .logo { margin-bottom: 15px; } 
@@ -56,12 +56,13 @@
             letter-spacing: 1px;
         }
 
+        /* [메뉴 컨테이너 - 간격을 30px -> 50px로 더 띄웠어!] */
         .nav-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px; /* 간격을 넓혀서 최대 너비도 살짝 늘림 */
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 50px; /* 메뉴 사이 공간을 시원하게 벌림 */
         }
 
         .nav-group { position: relative; }
@@ -72,6 +73,7 @@
             color: var(--menu-gray);
             cursor: pointer;
             padding-bottom: 5px;
+            white-space: nowrap; /* 글씨가 옆으로 삐져나가지 않게 */
         }
 
         /* [드롭다운 디자인] */
@@ -97,36 +99,34 @@
             text-align: center;
         }
 
-        /* [핵심: 사진 배경 영역] */
+        /* [핵심: 사진 배경 영역 - 경로 수정 완료!] */
         .main-content {
             position: relative;
             width: 100%;
-            height: 600px; /* 사진이 보일 높이 */
+            height: 600px; 
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* 글씨 중앙 정렬 */
+            justify-content: center; 
             color: white;
             text-align: center;
             font-family: 'Ownglyph_Uiyeon', sans-serif;
             
-            /* 배경 이미지 설정 */
-            background-image: url('dang.jpg'); 
-            background-size: cover;       /* 화면에 꽉 차게 */
-            background-position: center;  /* 가운데 위주로 */
+            /* images 폴더 안에 있는 danag.jpg 파일을 불러옵니다 */
+            background-image: url('images/danag.jpg'); 
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
         }
 
-        /* 사진 위에 글씨가 잘 보이게 하는 검은색 필터 */
         .main-content::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.3); /* 0.3만큼 어둡게 (숫자 높이면 더 어두워짐) */
+            background: rgba(0, 0, 0, 0.3); 
             z-index: 1;
         }
 
-        /* 글씨들이 필터 위로 올라오게 설정 */
         .info-wrap {
             position: relative;
             z-index: 2;
@@ -138,6 +138,7 @@
 
         @media (max-width: 768px) {
             .logo a { font-size: 38px; }
+            .nav-container { gap: 20px; } /* 모바일은 화면이 좁으니 간격을 다시 조정 */
             .main-content { height: 500px; }
             .info-date { font-size: 22px; }
             .info-time { font-size: 18px; }
@@ -153,14 +154,14 @@
         </div>
         <nav class="nav-container">
             <div class="nav-group">
-                <div class="nav-item" onclick="toggleDropdown(event, 'info-drop')">소개 안내</div>
+                <div class="nav-item" onclick="toggleDropdown(event, 'info-drop')">결혼식 안내</div>
                 <div id="info-drop" class="dropdown-menu">
-                    <a href="#" class="dropdown-item">찾아오시는 길</a>
-                    <a href="#" class="dropdown-item">또댕이의 발자취</a>
+                    <a href="#" class="dropdown-item">결혼식 오는 길</a>
+                    <a href="#" class="dropdown-item">또댕이들이 걸어온 길</a>
                 </div>
             </div>
-            <div class="nav-item">공지 및 문의</div>
-            <div class="nav-item">방명록</div>
+            <div class="nav-item">예약 및 문의</div>
+            <div class="nav-item">지도</div>
             <div class="nav-item">GALLERY</div>
         </nav>
     </header>
