@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DDODANG</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <title>이진현 & 조윤담</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-pink: #FFF0F1; /* 사진 속 아주 연한 핑크 */
+            --bg-pink: #FFF0F1;
             --text-black: #1A1A1A;
             --menu-gray: #4A4A4A;
+            --dropdown-bg: #2C2C2C; /* 사진 속 검은색 배경 */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,81 +18,108 @@
         body {
             background-color: var(--bg-pink);
             font-family: 'Noto Sans KR', sans-serif;
-            /* 가로 스크롤 절대 방지 */
             overflow-x: hidden;
         }
 
-        /* [이상한 점 고치기 1: 전체적인 여백] */
+        /* [상단 헤더 영역] */
         header.wedding-header {
             width: 100%;
-            /* 상단 여백을 충분히 줘서 답답함을 없앴어 */
             padding: 80px 20px 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             background-color: var(--bg-pink);
+            /* 드롭다운이 짤리지 않게 구분선 추가 */
+            border-bottom: 1.5px dashed #333; 
         }
 
-        /* [이상한 점 고치기 2: 로고의 압도감] */
-        .logo {
-            margin-bottom: 50px; /* 로고와 메뉴 사이 공간 확보 */
-        }
-
+        .logo { margin-bottom: 50px; }
         .logo a {
-            font-family: 'Oswald', sans-serif;
-            font-size: 80px; /* 사진처럼 큼직하게 */
-            font-weight: 500;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
             color: var(--text-black);
             text-decoration: none;
-            letter-spacing: 12px; /* 글자 사이 간격을 넓혀야 고급져보여 */
-            line-height: 1;
-            text-transform: uppercase;
+            letter-spacing: 4px;
             display: block;
-            /* 모바일에서 글자가 삐져나가지 않게 처리 */
-            max-width: 100vw;
             text-align: center;
         }
 
-        /* [이상한 점 고치기 3: 메뉴 정렬] */
+        /* [메뉴 영역] */
         .nav-container {
             width: 100%;
             max-width: 800px;
             display: flex;
             justify-content: center;
-            gap: 40px; /* 메뉴 사이 간격 */
-            flex-wrap: wrap; /* 모바일에서 자동 줄바꿈 */
+            gap: 40px;
+        }
+
+        /* 드롭다운을 위한 position 설정 */
+        .nav-group {
+            position: relative;
         }
 
         .nav-item {
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 400;
             color: var(--menu-gray);
-            letter-spacing: -0.5px;
-            padding: 5px 10px;
+            cursor: pointer;
+            padding-bottom: 10px;
             transition: all 0.3s ease;
         }
 
-        .nav-item:hover {
-            color: #000;
-            font-weight: 500;
+        .nav-item.active {
+            color: var(--text-black);
+            font-weight: 700;
         }
 
-        /* [핵심: 모바일에서 안 깨지게 자동 조절] */
+        /* [드롭다운 서브 메뉴 - 사진 디자인 복제] */
+        .dropdown-menu {
+            display: none; /* 기본은 숨김 */
+            position: absolute;
+            top: 100%; /* 메뉴 바로 아래 */
+            left: 0;
+            width: 200px;
+            background-color: var(--dropdown-bg);
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-menu.show {
+            display: block; /* 클릭 시 보임 */
+        }
+
+        .dropdown-item {
+            padding: 12px 20px;
+            color: #ccc;
+            font-size: 15px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
+        /* [본문 영역] */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            min-height: 400px;
+            background-color: #89A9D6; /* 사진 하단의 파란 배경 느낌 살짝 추가 */
+        }
+
+        /* 모바일 대응 */
         @media (max-width: 768px) {
-            header.wedding-header {
-                padding: 60px 15px 30px 15px;
-            }
-            .logo a {
-                font-size: 45px; /* 모바일은 로고가 작아져야 안 잘려 */
-                letter-spacing: 6px;
-            }
-            .nav-container {
-                gap: 15px; /* 메뉴 간격 좁히기 */
-            }
-            .nav-item {
-                font-size: 14px;
-            }
+            .logo a { font-size: 32px; }
+            .nav-container { gap: 15px; }
+            .nav-item { font-size: 14px; }
+            .dropdown-menu { width: 160px; }
         }
     </style>
 </head>
@@ -99,16 +127,32 @@
 
     <header class="wedding-header">
         <div class="logo">
-            <a href="/">이진현&조윤담</a>
+            <a href="/">이진현 & 조윤담</a>
         </div>
 
         <nav class="nav-container">
-            <a href="#" class="nav-item">결혼식 안내</a>
-            <a href="#" class="nav-item">예약 및 문의</a>
-            <a href="#" class="nav-item">기타</a>
-            <a href="#" class="nav-item">GALLERY</a>
+            <div class="nav-group">
+                <div class="nav-item active" onclick="toggleDropdown(event, 'wedding-drop')">결혼식 안내</div>
+                <div id="wedding-drop" class="dropdown-menu">
+                    <a href="#" class="dropdown-item">결혼식 오는 길</a>
+                    <a href="#" class="dropdown-item">또댕이들이 걸어온 길</a>
+                </div>
+            </div>
+
+            <div class="nav-item">예약 및 문의</div>
+            <div class="nav-item">기타</div>
+            <div class="nav-item">GALLERY</div>
         </nav>
     </header>
 
-</body>
-</html>
+    <main class="main-content">
+        <p style="color:white; text-align:center;">본문 내용이 여기에 표시됩니다.</p>
+    </main>
+
+    <script>
+        function toggleDropdown(event, dropId) {
+            event.stopPropagation(); // 클릭 이벤트 전파 방지
+            const dropdown = document.getElementById(dropId);
+            
+            // 이미 열려있으면 닫고, 닫혀있으면 열기
+            dropdown.
