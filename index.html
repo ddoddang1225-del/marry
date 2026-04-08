@@ -40,38 +40,39 @@
         /* [상단 헤더] */
         header.site-header {
             width: 100%;
-            padding: 40px 20px 30px 20px; 
+            /* 로고가 커진 만큼 위아래 여백을 넉넉히 (상60px, 하40px) */
+            padding: 60px 20px 40px 20px; 
             background-color: var(--bg-pink);
             position: relative;
             z-index: 10;
             display: flex;
             flex-direction: column;
-            align-items: center; /* 모든 요소를 가로 중앙 정렬 */
+            align-items: center;
         }
 
         /* [헤더 상단 레이아웃] */
         .header-top {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px; 
             display: flex;
-            justify-content: center; /* 이름 로고 중앙 정렬 */
+            justify-content: center; 
             align-items: center;
-            position: relative; /* 왼쪽 로고 배치를 위해 기준점 설정 */
-            margin-bottom: 40px; 
+            position: relative; 
+            margin-bottom: 50px; /* 로고와 메뉴 사이 간격 */
         }
 
-        /* [또댕 로고 - 왼쪽 배치 및 크기 확대] */
+        /* [또댕 로고 - 기존 180px에서 1.5배인 270px로 확대] */
         .header-left-logo {
-            position: absolute; /* 중앙 정렬에 영향을 주지 않도록 띄움 */
-            left: 0;
+            position: absolute;
+            left: 10px; /* 왼쪽 여백 살짝 조정 */
         }
         .header-left-logo img {
-            max-width: 180px; /* 로고 크기를 대폭 키웠어! (기존 100px) */
+            max-width: 270px; /* 공주가 말한 1.5배 크기! */
             height: auto;
             display: block;
         }
 
-        /* [이름 문구 - 중앙 정렬 유지] */
+        /* [이름 문구] */
         .header-title {
             text-align: center;
         }
@@ -84,12 +85,12 @@
             white-space: nowrap;
         }
 
-        /* [메뉴 컨테이너 - 무조건 중앙 정렬] */
+        /* [메뉴 컨테이너] */
         .nav-container {
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 80px; /* 80px 광폭 간격 유지 */
+            gap: 80px; 
         }
 
         .nav-group { position: relative; }
@@ -156,16 +157,17 @@
 
         /* [모바일 대응] */
         @media (max-width: 768px) {
+            header.site-header { padding: 30px 15px; }
             .header-top {
                 flex-direction: column;
-                position: static; /* 모바일은 세로로 정렬되게 해제 */
+                position: static;
             }
             .header-left-logo {
                 position: static;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
-            .header-left-logo img { max-width: 130px; }
-            .header-title a { font-size: 32px; }
+            .header-left-logo img { max-width: 180px; } /* 모바일은 화면에 맞춰 축소 */
+            .header-title a { font-size: 28px; }
             .nav-container { gap: 15px; flex-wrap: wrap; } 
             .nav-item { font-size: 16px; }
             .main-content { height: 500px; }
@@ -179,9 +181,8 @@
             <div class="header-left-logo">
                 <img src="images/또댕 로고.png" alt="또댕 로고">
             </div>
-            
             <div class="header-title">
-                <a href="/">이진현 & 조윤담 우리 결혼합니다~</a>
+                <a href="/">이진현 & 조윤담 결혼페이지</a>
             </div>
         </div>
         
