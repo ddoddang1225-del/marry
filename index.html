@@ -83,6 +83,23 @@
         .dropdown-item { display: block; padding: 8px; color: #ffffff; text-decoration: none; font-size: 12px; text-align: center; cursor: pointer; }
         .hidden { display: none !important; }
         .active-section { display: flex !important; }
+
+        /* [6. 축하 전하는 곳 섹션 스타일] */
+        #congratulations { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; padding: 30px 20px 80px 20px; font-family: 'Cafe24Ssukssuk', sans-serif; }
+        .congrat-box { width: 100%; max-width: 500px; background: #fdfdfd; border: 1px solid var(--box-border); border-radius: 15px; padding: 25px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .congrat-text { font-family: 'Ownglyph_Uiyeon'; font-size: 22px; color: #666; text-align: center; margin-bottom: 30px; line-height: 1.5; }
+
+        /* 계좌번호 아코디언 스타일 */
+        .acc-container { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+        .acc-btn { width: 100%; padding: 15px; background: #fff; border: 1px solid #ffcdd2; border-radius: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Cafe24Ssukssuk'; color: #444; transition: 0.3s; }
+        .acc-btn:hover { background: var(--bg-pink); }
+        .acc-content { display: none; padding: 15px; background: #fafafa; border-radius: 0 0 10px 10px; margin-top: -10px; border: 1px solid #eee; border-top: none; line-height: 1.8; }
+        .acc-content.show { display: block; }
+        .copy-btn { padding: 4px 8px; font-size: 12px; background: #eee; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        
+        /* 💡 여기에 [복사 알림 토스트] 스타일만 이어서 추가 */
+        #toast { position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 10px 25px; border-radius: 50px; font-size: 14px; z-index: 3000; display: none; }
+
     </style>
 </head>
 <body>
@@ -100,7 +117,8 @@
                     <div class="dropdown-item" onclick="showSection('story')">또댕이들이 걸어온 길</div>
                 </div>
             </div>
-            <div class="nav-group"><div class="nav-item">축하 전하는 곳</div></div>
+            <div class="nav-group">
+                <div class="nav-item" onclick="showSection('congrat')">축하 전하는 곳</div></div>
             <div class="nav-group"><div class="nav-item">지도</div></div>
             <div class="nav-group"><div class="nav-item">GALLERY</div></div>
         </nav>
@@ -173,6 +191,32 @@
         </div>
     </section>
 
+    <section id="congratulations">
+        <h2 class="info-title-main">축하 전하는 곳</h2>
+        <div class="congrat-text">소중한 분들의 따뜻한 격려와 축복이<br>저희의 앞날에 큰 힘이 됩니다.</div>
+
+        <div class="congrat-box">
+            <div class="acc-container">
+                <div class="acc-group">
+                    <button class="acc-btn" onclick="toggleAcc('acc-groom')">신랑측 마음 전하실 곳 <span>▼</span></button>
+                    <div id="acc-groom" class="acc-content">
+                        <p><strong>신랑 이진현</strong></p>
+                        <p>신한은행 110-123-456789 <button class="copy-btn" onclick="copyText('110123456789')">복사</button></p>
+                    </div>
+                </div>
+                <div class="acc-group">
+                    <button class="acc-btn" onclick="toggleAcc('acc-bride')">신부측 마음 전하실 곳 <span>▼</span></button>
+                    <div id="acc-bride" class="acc-content">
+                        <p><strong>신부 조윤담</strong></p>
+                        <p>카카오뱅크 3333-12-3456789 <button class="copy-btn" onclick="copyText('3333123456789')">복사</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="toast">계좌번호가 복사되었습니다.</div>
+
     <script>
         function toggleDropdown(event, dropId) {
             event.stopPropagation();
@@ -186,12 +230,17 @@
             const main = document.getElementById('main-visual');
             const info = document.getElementById('wedding-info');
             const story = document.getElementById('our-story');
+            const congrat = document.getElementById('congratulations');
+
             main.classList.add('hidden');
             info.classList.remove('active-section');
             story.classList.remove('active-section');
+            congrat.classList.remove('active-section');
+
             if(type === 'main') main.classList.remove('hidden');
             else if(type === 'info') info.classList.add('active-section');
             else if(type === 'story') story.classList.add('active-section');
+            else if(type === 'congrat') congrat.classList.add('active-section');
             window.scrollTo(0, 0);
         }
 
@@ -220,6 +269,30 @@
                 for (let i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); }
             }
         }
+
+        // 💡 여기에 [아코디언 및 복사 기능] 함수를 이어서 추가
+        // 1. 아코디언 열고 닫기
+        function toggleAcc(id) {
+            const content = document.getElementById(id);
+            const isShow = content.classList.contains('show');
+            document.querySelectorAll('.acc-content').forEach(el => el.classList.remove('show'));
+            if (!isShow) content.classList.add('show');
+        }
+
+        // 2. 계좌번호 복사 및 토스트 알림
+        function copyText(text) {
+            const tempElem = document.createElement('textarea');
+            tempElem.value = text;
+            document.body.appendChild(tempElem);
+            tempElem.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempElem);
+
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000); // 2초 뒤 사라짐
+        }
+
     </script>
 </body>
 </html>
