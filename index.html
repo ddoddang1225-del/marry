@@ -23,7 +23,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg-pink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
         /* [2. 헤더 고정] */
         header.site-header {
@@ -41,7 +41,7 @@
             .nav-container { width: 100%; max-width: 1400px; display: flex; justify-content: flex-end; padding-right: 5%; gap: 1vw; }
             .nav-group { position: relative; flex: 0 1 150px; }
             .nav-item { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: clamp(12px, 1vw, 15px); height: 34px; background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--box-border); border-radius: 6px; display: flex; justify-content: center; align-items: center; color: var(--menu-gray); cursor: pointer; }
-            .main-content, #wedding-info, #our-story { padding-top: 120px; }
+            .main-content, #wedding-info, #our-story { padding-top: 130px; }
         }
 
         @media (max-width: 768px) {
@@ -54,44 +54,51 @@
             .main-content, #wedding-info, #our-story { padding-top: 110px; }
         }
 
-        /* [3. 섹션 공통 스타일] */
-        .main-content { display: flex; flex-direction: column; align-items: center; background-color: var(--bg-blue-point); min-height: 100vh; background-image: url('images/danag.jpg'); background-size: cover; background-position: center; font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center; }
-        #wedding-info, #our-story { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; font-family: 'Cafe24Ssukssuk', sans-serif; padding-left: 20px; padding-right: 20px; padding-bottom: 50px; }
-        .info-title-main { font-size: 32px; color: #E88D9E; margin-bottom: 40px; margin-top: 20px; text-align: center; }
-        .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; text-align: center; }
+        /* [3. 메인 섹션 스타일 - 요청된 카드형 레이아웃] */
+        .main-content { display: flex; flex-direction: column; align-items: center; background-color: var(--bg-blue-point); min-height: 100vh; width: 100%; padding-bottom: 80px; }
+        .main-container { position: relative; width: 85%; max-width: 600px; margin-top: 40px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .main-bg-image { width: 100%; height: auto; display: block; }
+        .info-wrap { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); width: 100%; z-index: 10; font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center; pointer-events: none; }
 
-        /* [4. 유튜브 관련 스타일] */
-        .channel-link-wrap { margin-bottom: 25px; display: flex; justify-content: center; align-items: center; }
-        .btn-youtube { 
-            display: flex; align-items: center; gap: 10px; padding: 10px 20px; 
-            background-color: var(--youtube-red); color: white; text-decoration: none; 
-            border-radius: 50px; font-size: 16px; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2); 
-            transition: 0.3s; 
-        }
-        .btn-youtube:hover { transform: scale(1.05); background-color: #cc0000; }
-        .btn-youtube img { width: 22px; height: auto; }
+        /* [4. 결혼식 안내 섹션] */
+        #wedding-info { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; padding-bottom: 80px; }
+        .info-title-main { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 36px; color: var(--point-pink); margin-bottom: 40px; margin-top: 30px; text-align: center; }
+        .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; text-align: center; font-family: 'Cafe24Ssukssuk', sans-serif; }
 
+        /* [5. 또댕이들이 걸어온 길 - PC 스크롤바 디자인 복구] */
+        #our-story { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; padding: 20px 20px 80px 20px; font-family: 'Cafe24Ssukssuk', sans-serif; }
+        .channel-link-wrap { margin-bottom: 25px; display: flex; justify-content: center; }
+        .btn-youtube { display: flex; align-items: center; gap: 10px; padding: 10px 20px; background-color: var(--youtube-red); color: white; text-decoration: none; border-radius: 50px; font-size: 16px; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2); }
         .video-container { width: 95%; max-width: 800px; aspect-ratio: 16 / 9; margin-bottom: 40px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .video-container iframe { width: 100%; height: 100%; border: none; }
 
-        /* [5. 갤러리 슬라이드] */
-        .story-gallery { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 20px; }
-        .slide-row { 
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 15px; padding: 10px; 
-            cursor: grab; user-select: none; 
-        }
-        .slide-row::-webkit-scrollbar { height: 6px; }
-        .slide-row::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .slide-row::-webkit-scrollbar-thumb { background: #ffcdd2; border-radius: 10px; }
+        .story-gallery { width: 100%; max-width: 1200px; overflow: hidden; }
+        .slide-row { display: flex; flex-direction: column; gap: 20px; }
         
-        .slide-item { flex: 0 0 calc(25% - 12px); scroll-snap-align: start; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        @media (max-width: 768px) { 
-            .slide-item { flex: 0 0 calc(33.33% - 10px); } 
-            .slide-row::-webkit-scrollbar { display: none; }
+        /* 슬라이드 트랙 및 스크롤바 설정 */
+        .slide-track { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 15px; 
+            padding: 10px 0 20px 0; 
+            scroll-snap-type: x mandatory; 
+            -webkit-overflow-scrolling: touch; 
         }
+
+        /* PC 스크롤바 복구 완료 */
+        .slide-track::-webkit-scrollbar { height: 0px; } 
+
+        @media (min-width: 1025px) {
+            .slide-track::-webkit-scrollbar { height: 10px; } 
+            .slide-track::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+            .slide-track::-webkit-scrollbar-thumb { background: #ffcdd2; border-radius: 10px; }
+            .slide-track::-webkit-scrollbar-thumb:hover { background: var(--point-pink); }
+        }
+
+        .slide-item { flex: 0 0 calc(25% - 12px); scroll-snap-align: start; border-radius: 12px; overflow: hidden; aspect-ratio: 1 / 1; }
+        @media (max-width: 768px) { .slide-item { flex: 0 0 calc(45% - 10px); } }
         .slide-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-        /* 상태 관리 클래스 */
         .dropdown-menu { display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg); padding: 5px 0; border-radius: 5px; z-index: 2000; }
         .dropdown-menu.show { display: block; }
         .dropdown-item { display: block; padding: 8px; color: #ffffff; text-decoration: none; font-size: 12px; text-align: center; cursor: pointer; }
@@ -125,10 +132,13 @@
     </header>
 
     <main id="main-visual" class="main-content">
-        <div class="info-wrap">
-            <div style="margin-top: 40px; font-size: 30px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">날짜 : 2027. 10. 09. 토요일</div>
-            <div style="font-size: 26px; margin: 10px 0 25px; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">시간 : PM 12:00</div>
-            <div style="font-size: 28px; line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">장소 : 롯데월드 민속박물관<br>전통혼례장</div>
+        <div class="main-container">
+            <div class="info-wrap">
+                <div style="font-size: clamp(20px, 4vw, 30px); text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">날짜 : 2027. 10. 09. 토요일</div>
+                <div style="font-size: clamp(18px, 3.5vw, 26px); margin: 8px 0 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">시간 : PM 12:00</div>
+                <div style="font-size: clamp(18px, 3.8vw, 28px); line-height: 1.6; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">장소 : 롯데월드 민속박물관<br>전통혼례장</div>
+            </div>
+            <img src="images/danag.jpg" class="main-bg-image" alt="Main Photo">
         </div>
     </main>
 
@@ -144,53 +154,41 @@
             <p> 링크 </p>
             <br>
             <p>롯데월드 티켓<br>선물 복주머니<br>막걸리</p>
-            <br>
-            <p style="color: #E88D9E; font-weight: bold;">[ 식순 ]</p>
-            <p>식순 나열 및 식 시간 작성</p>
-            <br>
+            <br><br>
             <p style="color: #E88D9E; font-weight: bold;">[ 계좌번호 ]</p>
-            <p>신랑 이진현<br>계좌번호</p>
+            <p>신랑 이진현</p>
+            <p>계좌번호를 입력해주세요</p>
             <br>
-            <p>신부 조윤담<br>계좌번호</p>
+            <p>신부 조윤담</p>
+            <p>계좌번호를 입력해주세요</p>
         </div>
     </section>
 
     <section id="our-story">
-        <h2 class="info-title-main">또댕이들이 걸어온 길</h2>
-        
+        <h2 class="info-title-main" style="color: var(--point-pink);">또댕이들이 걸어온 길</h2>
         <div class="channel-link-wrap">
             <a href="https://www.youtube.com/@%EB%98%90%EB%8C%95%EC%BB%A4%ED%94%8C" target="_blank" class="btn-youtube">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="20">
                 또댕유튜브 보러가기
             </a>
         </div>
-
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/jsUxIShDCUg" title="또댕유튜브" allowfullscreen></iframe>
         </div>
-
-        <p style="margin-bottom: 25px; color: #888; font-family: 'Ownglyph_Uiyeon'; font-size: 22px;">옆으로 밀어서 사진을 구경하세요!</p>
-        
         <div class="story-gallery">
-            <div class="slide-row draggable">
-                <div class="slide-item"><img src="images/story1.jpg"></div>
-                <div class="slide-item"><img src="images/story2.jpg"></div>
-                <div class="slide-item"><img src="images/story3.jpg"></div>
-                <div class="slide-item"><img src="images/story4.jpg"></div>
-                <div class="slide-item"><img src="images/story5.jpg"></div>
-                <div class="slide-item"><img src="images/story6.jpg"></div>
-                <div class="slide-item"><img src="images/story7.jpg"></div>
-                <div class="slide-item"><img src="images/story8.jpg"></div>
-            </div>
-            <div class="slide-row draggable">
-                <div class="slide-item"><img src="images/story9.jpg"></div>
-                <div class="slide-item"><img src="images/story10.jpg"></div>
-                <div class="slide-item"><img src="images/story11.jpg"></div>
-                <div class="slide-item"><img src="images/story12.jpg"></div>
-                <div class="slide-item"><img src="images/story13.jpg"></div>
-                <div class="slide-item"><img src="images/story14.jpg"></div>
-                <div class="slide-item"><img src="images/story15.jpg"></div>
-                <div class="slide-item"><img src="images/story16.jpg"></div>
+            <div class="slide-row">
+                <div class="slide-track draggable">
+                    <div class="slide-item"><img src="images/story1.jpg"></div>
+                    <div class="slide-item"><img src="images/story2.jpg"></div>
+                    <div class="slide-item"><img src="images/story3.jpg"></div>
+                    <div class="slide-item"><img src="images/story4.jpg"></div>
+                </div>
+                <div class="slide-track draggable">
+                    <div class="slide-item"><img src="images/story5.jpg"></div>
+                    <div class="slide-item"><img src="images/story6.jpg"></div>
+                    <div class="slide-item"><img src="images/story7.jpg"></div>
+                    <div class="slide-item"><img src="images/story8.jpg"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -211,26 +209,17 @@
             main.classList.add('hidden');
             info.classList.remove('active-section');
             story.classList.remove('active-section');
-
             if(type === 'main') main.classList.remove('hidden');
             else if(type === 'info') info.classList.add('active-section');
             else if(type === 'story') story.classList.add('active-section');
-            
             window.scrollTo(0, 0);
-            const allDrops = document.getElementsByClassName("dropdown-menu");
-            for(let d of allDrops) { d.classList.remove('show'); }
         }
 
-        // PC 마우스 드래그 슬라이드 로직
         const sliders = document.querySelectorAll('.draggable');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
         sliders.forEach(slider => {
+            let isDown = false; let startX; let scrollLeft;
             slider.addEventListener('mousedown', (e) => {
-                isDown = true;
-                slider.style.cursor = 'grabbing';
+                isDown = true; slider.style.cursor = 'grabbing';
                 startX = e.pageX - slider.offsetLeft;
                 scrollLeft = slider.scrollLeft;
             });
