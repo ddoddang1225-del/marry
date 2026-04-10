@@ -52,11 +52,14 @@
             .main-content, #info, #story, #congrat { padding-top: 110px; }
         }
 
-        /* 메인 카드 뒤집기 애니메이션 유지 */
         .main-content { display: flex; flex-direction: column; align-items: center; background-color: var(--bg-blue-point); min-height: 100vh; width: 100%; padding-bottom: 80px; perspective: 1500px; }
-        .main-container { position: relative; width: 85%; max-width: 600px; aspect-ratio: 3 / 4; margin-top: 40px; border-radius: 20px; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); animation: flipLoop 40s infinite; }
+        
+        /* ✅ 클릭을 위해 cursor 추가 */
+        .main-container { position: relative; width: 85%; max-width: 600px; aspect-ratio: 3 / 4; margin-top: 40px; border-radius: 20px; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); animation: flipLoop 40s infinite; cursor: pointer; }
         .main-container.paused { animation-play-state: paused; }
+        
         @keyframes flipLoop { 0%, 42.5% { transform: rotateY(0deg); } 50%, 92.5% { transform: rotateY(-180deg); } 100% { transform: rotateY(-360deg); } }
+        
         .card-face { position: absolute; width: 100%; height: 100%; border-radius: 20px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         .card-front { z-index: 2; }
         .main-bg-image { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -69,7 +72,6 @@
         .info-title-main { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 36px; color: var(--point-pink); margin-bottom: 40px; margin-top: 30px; text-align: center; }
         .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; text-align: center; font-family: 'Cafe24Ssukssuk', sans-serif; }
 
-        /* ✅ 주신 코드에서 가져온 가로 스크롤 갤러리 스타일 (그대로 적용) */
         .story-gallery { width: 100%; max-width: 1200px; overflow: hidden; }
         .slide-row { display: flex; overflow-x: auto; gap: 15px; padding: 10px 0 20px 0; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
         .slide-row::-webkit-scrollbar { height: 10px; }
@@ -90,7 +92,6 @@
         .dropdown-item { display: block; padding: 8px; color: #ffffff; text-decoration: none; font-size: 12px; text-align: center; cursor: pointer; }
         .hidden { display: none !important; }
 
-        /* 축하 전하는 곳 & 방명록 디자인 유지 */
         #congrat { padding: 30px 20px 80px 20px; font-family: 'Cafe24Ssukssuk', sans-serif; }
         .congrat-text { font-family: 'Ownglyph_Uiyeon'; font-size: 22px; color: #666; text-align: center; margin-bottom: 20px; line-height: 1.5; }
         .congrat-box { width: 100%; max-width: 500px; background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
@@ -148,7 +149,7 @@
                 <p style="font-family:'Cafe24Ssukssuk'; color:#888;">Coming Soon</p>
             </div>
         </div>
-        <div style="margin-top: 15px; font-family: 'Cafe24Ssukssuk'; color: #888; font-size: 14px;">← 사진을 밀어서 돌려보세요 →</div>
+        <div style="margin-top: 15px; font-family: 'Cafe24Ssukssuk'; color: #888; font-size: 14px;">← 클릭하거나 밀어서 돌려보세요 →</div>
     </main>
 
     <section id="info">
@@ -315,7 +316,6 @@
             renderMessages(); 
         }
 
-        // ✅ 드래그 슬라이더 스크립트 (주신 코드에서 가져옴)
         const sliders = document.querySelectorAll('.draggable');
         sliders.forEach(slider => {
             let isDown = false; let startX; let scrollLeft;
@@ -337,10 +337,38 @@
 
         window.onload = renderMessages;
 
+        /* ✅ 카드 뒤집기 로직 보완 (클릭 + 20초 대기 포함) */
         const card = document.getElementById('flip-card');
         if (card) {
-            let touchstartX = 0;
             let isFlipped = false;
+            let autoTimer;
+
+            // 회전 함수
+            function flipAction() {
+                isFlipped = !isFlipped;
+                card.style.animation = 'none'; // 자동 루프 애니메이션 중단
+                card.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
+                resetAutoTimer(); // 동작 발생 시 타이머 초기화
+            }
+
+            // 20초 후 다시 뒤집는 타이머
+            function resetAutoTimer() {
+                clearTimeout(autoTimer);
+                autoTimer = setTimeout(() => {
+                    isFlipped = !isFlipped;
+                    card.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
+                    resetAutoTimer(); // 계속 반복
+                }, 20000); // 20초
+            }
+
+            // PC 클릭 이벤트
+            card.addEventListener('click', () => {
+                card.classList.add('paused');
+                flipAction();
+            });
+
+            // 모바일 스와이프 이벤트 (기존 유지)
+            let touchstartX = 0;
             card.addEventListener('touchstart', e => {
                 touchstartX = e.changedTouches[0].screenX;
                 card.classList.add('paused'); 
@@ -349,13 +377,12 @@
                 let endX = e.changedTouches[0].screenX;
                 let diff = endX - touchstartX;
                 if (Math.abs(diff) > 50) {
-                    isFlipped = !isFlipped;
-                    card.style.animation = 'none'; 
-                    card.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
-                } else {
-                    setTimeout(() => { if(!isFlipped) card.classList.remove('paused'); }, 2000);
+                    flipAction();
                 }
             });
+
+            // 초기 타이머 시작 (아무것도 안 할 때 20초마다 돌게 하려면 활성화)
+            resetAutoTimer();
         }
     </script>
 </body>
