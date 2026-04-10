@@ -1,18 +1,37 @@
-// 섹션 이동 기능
+/**
+ * [1] 섹션 이동 기능
+ * 메뉴 클릭 시 메인 비주얼을 숨기고 선택한 섹션만 활성화합니다.
+ */
 function showSection(type) {
-    const sections = ['main-visual', 'info', 'story', 'congrat'];
-    sections.forEach(s => {
-        const el = document.getElementById(s);
-        if(s === 'main-visual') {
-            type === 'main' ? el.classList.remove('hidden') : el.classList.add('hidden');
-        } else {
-            type.startsWith(s) ? el.classList.add('active-section') : el.classList.remove('active-section');
-        }
+    // 1. 모든 서브 섹션을 먼저 숨깁니다.
+    const subSections = document.querySelectorAll('.sub-section');
+    subSections.forEach(sec => {
+        sec.classList.remove('active-section');
     });
-    window.scrollTo(0, 0);
+
+    // 2. 메인 비주얼(카드) 엘리먼트 제어
+    const mainVisual = document.getElementById('main-visual');
+    
+    if (type === 'main') {
+        mainVisual.classList.remove('hidden');
+    } else {
+        mainVisual.classList.add('hidden');
+        const targetSection = document.getElementById(type);
+        if (targetSection) {
+            targetSection.classList.add('active-section');
+        }
+    }
+
+    // 3. 페이지 상단으로 스크롤 이동
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
-// 드롭다운 메뉴 제어
+/**
+ * [2] 드롭다운 메뉴 및 기타 UI 제어
+ */
 function toggleDropdown(event, dropId) {
     event.stopPropagation();
     const dropdown = document.getElementById(dropId);
@@ -24,7 +43,6 @@ function toggleDropdown(event, dropId) {
 
 window.onclick = () => document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.remove('show'));
 
-// 계좌번호 복사
 function copyText(text) {
     const temp = document.createElement('textarea');
     temp.value = text;
@@ -35,7 +53,9 @@ function copyText(text) {
     alert("계좌번호가 복사되었습니다.");
 }
 
-// 방명록 데이터 및 기능
+/**
+ * [3] 방명록 데이터 및 페이징 기능
+ */
 let messages = [
     { name: "친구 지현", text: "결혼 진심으로 축하해! 행복하게 잘 살아!" },
     { name: "직장동료 민우", text: "세상에서 가장 예쁜 신부님, 꽃길만 걸으세요~" },
@@ -86,7 +106,9 @@ function changePage(dir) {
     renderMessages(); 
 }
 
-// ✅ 카드 뒤집기 애니메이션 제어 (수정본)
+/**
+ * [4] 카드 뒤집기 애니메이션
+ */
 const card = document.getElementById('flip-card');
 const cardBack = document.getElementById('card-back-side');
 
@@ -96,14 +118,13 @@ if (card) {
 
     function flipAction() {
         isFlipped = !isFlipped;
-        card.classList.add('paused'); // 동작 시 자동 애니메이션 정지
+        card.classList.add('paused'); 
         card.style.animation = 'none'; 
         card.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
         if(isFlipped && cardBack) cardBack.scrollTop = 0;
-        clearTimeout(autoTimer); // 수동 조작 시 타이머 해제
+        clearTimeout(autoTimer);
     }
 
-    // 자동 회전 타이머
     function resetAutoTimer() {
         clearTimeout(autoTimer);
         autoTimer = setTimeout(() => {
@@ -116,20 +137,14 @@ if (card) {
         }, 20000); 
     }
 
-    // 클릭 이벤트
     card.addEventListener('click', (e) => {
-        // 복사 버튼이나 메시지 버튼 클릭 시에는 회전 방지
         if(e.target.closest('.copy-btn') || e.target.closest('.msg-toggle-btn') || e.target.closest('.reg-btn')) return;
-        
-        // 뒷면에서 스크롤 중일 때는 회전 방지 (여백 클릭 시에만 회전)
         if(isFlipped && e.target.closest('.card-back') && e.target !== e.currentTarget) {
             if(cardBack && cardBack.scrollTop > 10) return;
         }
-        
         flipAction();
     });
 
-    // ✅ 터치 스와이프 기능 강화
     let touchstartX = 0;
     let touchstartY = 0;
 
@@ -141,14 +156,10 @@ if (card) {
 
     card.addEventListener('touchend', e => {
         if(e.target.closest('.copy-btn') || e.target.closest('.msg-toggle-btn')) return;
-        
         let touchendX = e.changedTouches[0].screenX;
         let touchendY = e.changedTouches[0].screenY;
-        
-        // 수평 이동 거리가 수직 이동 거리보다 클 때만 회전 (스크롤 방해 방지)
         const diffX = Math.abs(touchendX - touchstartX);
         const diffY = Math.abs(touchendY - touchstartY);
-
         if (diffX > 50 && diffX > diffY) {
             flipAction();
         }
@@ -157,24 +168,55 @@ if (card) {
     resetAutoTimer();
 }
 
-// 갤러리 드래그 기능
-const sliders = document.querySelectorAll('.draggable');
-sliders.forEach(slider => {
-    let isDown = false; let startX; let scrollLeft;
-    slider.addEventListener('mousedown', e => {
-        isDown = true; slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
+/**
+ * [5] 또댕 발자취 2단 슬라이더 초기화 함수 (독립 작동)
+ */
+function initDualSlider(containerId, thumbId) {
+    const container = document.getElementById(containerId);
+    const thumb = document.getElementById(thumbId);
+
+    if (!container || !thumb) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // 1. 드래그 이벤트 (PC)
+    container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        container.style.cursor = 'grabbing';
     });
-    slider.addEventListener('mouseleave', () => isDown = false);
-    slider.addEventListener('mouseup', () => isDown = false);
-    slider.addEventListener('mousemove', e => {
+
+    container.addEventListener('mouseleave', () => { isDown = false; container.style.cursor = 'grab'; });
+    container.addEventListener('mouseup', () => { isDown = false; container.style.cursor = 'grab'; });
+
+    container.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
+        const x = e.pageX - container.offsetLeft;
         const walk = (x - startX) * 2;
-        slider.scrollLeft = scrollLeft - walk;
+        container.scrollLeft = scrollLeft - walk;
     });
-});
 
-window.onload = renderMessages;
+    // 2. 스크롤 연동 (PC 드래그 + 모바일 터치 공통)
+    container.addEventListener('scroll', () => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const scrollPercent = container.scrollLeft / (maxScroll || 1);
+        // thumb이 움직일 수 있는 최대 범위는 전체 바의 100% - thumb 너비(25%) = 75%
+        thumb.style.left = (scrollPercent * 75) + "%";
+    });
+}
+
+/**
+ * [6] 초기화 실행
+ */
+window.addEventListener('load', () => {
+    // 방명록 초기 렌더링
+    renderMessages();
+    
+    // 또댕 발자취 슬라이더 각각 초기화
+    initDualSlider('container-row1', 'thumb-row1');
+    initDualSlider('container-row2', 'thumb-row2');
+});

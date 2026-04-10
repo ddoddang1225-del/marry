@@ -1,7 +1,7 @@
 /* Fonts */
 @font-face { font-family: 'Cafe24Ssukssuk'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff'); }
 @font-face { font-family: 'Ownglyph_Uiyeon'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff'); }
-@font-face { font-family: 'Cafe24Decoline'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe24Decoline.woff2') format('woff2'); }
+@font-face { font-family: 'Cafe24Decoline'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe2424Decoline.woff2') format('woff2'); }
 
 /* Variables */
 :root {
@@ -18,6 +18,9 @@
 /* Global Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* Utility */
+.hidden { display: none !important; }
 
 /* Header */
 header.site-header {
@@ -49,19 +52,13 @@ header.site-header {
 
 /* Main Visual & Card */
 .main-content { display: flex; flex-direction: column; align-items: center; background-color: var(--bg-blue-point); min-height: 100vh; width: 100%; padding-bottom: 80px; perspective: 1500px; }
-
 .main-container { 
     position: relative; width: 85%; max-width: 600px; aspect-ratio: 3 / 4; 
     margin-top: 40px; border-radius: 20px; transform-style: preserve-3d; 
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
     animation: flipLoop 40s infinite; cursor: pointer; 
 }
-
-/* 터치/클릭 시 애니메이션 정지용 클래스 */
-.main-container.paused { 
-    animation: none !important; 
-}
-
+.main-container.paused { animation: none !important; }
 @keyframes flipLoop { 0%, 42.5% { transform: rotateY(0deg); } 50%, 92.5% { transform: rotateY(-180deg); } 100% { transform: rotateY(-360deg); } }
 
 .card-face { position: absolute; width: 100%; height: 100%; border-radius: 20px; backface-visibility: hidden; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
@@ -79,17 +76,15 @@ header.site-header {
 /* Card Back Styles */
 .back-wedding-title { font-family: 'Ownglyph_Uiyeon'; font-size: clamp(22px, 5vw, 28px); color: var(--point-pink); font-weight: bold; margin-bottom: 10px; }
 .back-info-text { font-family: 'Cafe24Ssukssuk'; color: #555; font-size: clamp(14px, 3.5vw, 18px); margin-bottom: 2px; }
-
 .back-gift-box { margin: 15px 0; padding: 12px 0; border-top: 1px dashed #ffdbdb; border-bottom: 1px dashed #ffdbdb; width: 100%; text-align: center; font-family: 'Cafe24Ssukssuk'; }
 .gift-title { font-family: 'Ownglyph_Uiyeon'; font-size: clamp(22px, 5vw, 28px); color: var(--point-pink); font-weight: bold; }
 .gift-notice { font-size: clamp(14px, 3.2vw, 16px); color: #888; margin-top: 4px; }
 .gift-items { font-size: clamp(16px, 4vw, 20px); color: #555; margin-top: 12px; font-weight: bold; }
-
 .back-map-image { width: 100%; height: auto; margin: 15px 0 25px; border-radius: 10px; }
 .footer-tag { font-size: 11px; color: #ccc; margin-top: auto; padding-bottom: 30px; }
 .flip-hint { margin-top: 15px; font-family: 'Cafe24Ssukssuk'; color: #888; font-size: 14px; }
 
-/* ✅ 하단 스크롤 유도 화살표 스타일 */
+/* ✅ 하단 스크롤 유도 화살표 */
 .scroll-arrow {
     position: sticky; bottom: 10px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center;
@@ -108,16 +103,87 @@ header.site-header {
     100% { opacity: 0; transform: rotate(45deg) translate(5px, 5px); }
 }
 
-/* Sub Sections */
-.sub-section { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; padding-bottom: 80px; }
-.active-section { display: flex !important; }
-.hidden { display: none !important; }
-
+/* Sub Sections & Base */
+.sub-section { 
+    display: none; background-color: white; 
+    min-height: 100vh; flex-direction: column; 
+    align-items: center; padding-bottom: 80px; width: 100%;
+}
+.sub-section.active-section { display: flex !important; }
 .info-title-main { font-family: 'Cafe24Ssukssuk'; font-size: 36px; color: var(--point-pink); margin: 30px 0 40px; }
 .info-content-box { max-width: 600px; line-height: 2.2; color: #555; font-size: 18px; text-align: center; font-family: 'Cafe24Ssukssuk'; }
 .highlight-pink { color: var(--point-pink); font-weight: bold; }
 
-/* Accounts */
+/* -------------------------------------------------- */
+/* ✅ 유튜브 섹션 전용 스타일 */
+/* -------------------------------------------------- */
+.video-container-wrapper { width: 90%; max-width: 600px; margin-bottom: 30px; }
+.yt-btn-wrap { text-align: center; margin-bottom: 10px; }
+.btn-youtube { color: var(--youtube-red); text-decoration: none; font-weight: bold; font-size: 16px; font-family: 'Cafe24Ssukssuk'; }
+.video-container {
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* -------------------------------------------------- */
+/* ✅ 또댕 발자취 2단 슬라이더 전용 스타일 (통합됨) */
+/* -------------------------------------------------- */
+.story-wrapper {
+    width: 100%;
+    max-width: 600px; /* 모바일 기준 적정 너비 */
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.story-container {
+    width: 100%;
+    overflow-x: auto;
+    cursor: grab;
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.story-container::-webkit-scrollbar { display: none; } /* Chrome, Safari */
+
+.story-track {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+}
+
+.slide-item {
+    width: calc((600px - 40px - 30px) / 4); /* (최대너비 - 좌우패딩 - 갭*3) / 4 */
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.slide-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.custom-scrollbar {
+    width: 60%;
+    height: 4px;
+    background: #eee;
+    margin: 15px auto 0;
+    border-radius: 2px;
+    position: relative;
+}
+
+.scroll-thumb {
+    width: 25%; /* 8개 사진 중 보여지는 비율 */
+    height: 100%;
+    background: var(--point-pink, #E88D9E);
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    transition: left 0.1s ease-out;
+}
+
+/* -------------------------------------------------- */
+/* Accounts & Guestbook */
 .account-display { display: flex; flex-direction: column; gap: 10px; width: 100%; }
 .account-card { background: #fff9f9; border: 1px solid #ffdbdb; border-radius: 12px; padding: 12px; width: 100%; }
 .account-card h3 { font-size: 16px; color: var(--point-pink); margin-bottom: 4px; font-family: 'Cafe24Ssukssuk'; }
@@ -125,7 +191,6 @@ header.site-header {
 .account-info { font-size: 14px; color: #444; font-family: 'Cafe24Ssukssuk'; }
 .copy-btn { padding: 4px 10px; font-size: 11px; background: white; border: 1px solid #ffdbdb; border-radius: 5px; color: #E88D9E; cursor: pointer; }
 
-/* Guestbook */
 .congrat-text { font-family: 'Ownglyph_Uiyeon'; font-size: 22px; color: #666; text-align: center; margin-bottom: 20px; }
 .congrat-box { width: 100%; max-width: 500px; background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 .msg-toggle-btn { width: 100%; padding: 12px; border: 1px solid #ffcdd2; border-radius: 10px; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; cursor: pointer; margin-bottom: 15px; }
@@ -140,61 +205,27 @@ header.site-header {
 .post-it:nth-child(odd) { background: #fff0f1; transform: rotate(-1deg); }
 .msg-writer { font-size: 13px; color: #888; text-align: right; border-top: 1px dashed #ddd; }
 
+/* Dropdown */
 .dropdown-menu { display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg); border-radius: 5px; z-index: 2000; }
 .dropdown-menu.show { display: block; }
 .dropdown-item { display: block; padding: 8px; color: white; text-decoration: none; font-size: 12px; text-align: center; cursor: pointer; }
 
-
 /* -------------------------------------------------- */
-/* ✅ 최종 모바일 패치: 스크롤바 디자인 + 터치 최적화 */
+/* ✅ 최종 반응형 최적화 패치 */
 /* -------------------------------------------------- */
 @media (max-width: 768px) {
-    /* 1. 카드 높이 및 터치 설정 */
-    .main-container {
-        height: auto !important; 
-        max-height: 75vh; 
-        aspect-ratio: auto !important;
-        touch-action: pan-y; 
-    }
+    .main-container { height: auto !important; max-height: 75vh; aspect-ratio: auto !important; touch-action: pan-y; }
+    .back-map-image, .scroll-arrow { display: none !important; }
+    .card-back { display: flex !important; flex-direction: column; justify-content: center; padding: 25px !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch !important; }
+    
+    /* 모바일 스크롤바 */
+    .card-back::-webkit-scrollbar { width: 6px !important; display: block !important; }
+    .card-back::-webkit-scrollbar-thumb { background-color: var(--point-pink) !important; border-radius: 10px !important; visibility: visible !important; }
+}
 
-    /* 2. 약도 및 화살표 숨기기 */
-    .back-map-image, .scroll-arrow {
-        display: none !important; 
-    }
-
-    /* 3. 카드 뒷면 레이아웃 및 스크롤바 강제 노출 */
-    .card-back {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        padding: 25px !important;
-        /* 약도가 없어도 내용이 많을 수 있으므로 auto 유지 */
-        overflow-y: auto !important; 
-        -webkit-overflow-scrolling: touch !important; 
-    }
-
-    /* 4. 모바일 전용 스크롤바 커스텀 (항상 보이게) */
-    .card-back::-webkit-scrollbar {
-        width: 6px !important;
-        display: block !important;
-    }
-    .card-back::-webkit-scrollbar-thumb {
-        background-color: var(--point-pink) !important;
-        border-radius: 10px !important;
-        visibility: visible !important;
-    }
-    .card-back::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.03) !important;
-    }
-
-    /* 5. 기타 요소 간격 조정 */
-    .footer-tag {
-        margin-top: 20px !important;
-        padding-bottom: 15px !important;
-    }
-
-    .account-card {
-        width: 100% !important;
-        margin: 6px 0 !important;
+@media (max-width: 600px) {
+    /* 모바일에서는 화면 가로폭에 맞춰 한 화면에 4개가 보이도록 재계산 */
+    .slide-item {
+        width: calc((100vw - 40px - 30px) / 4);
     }
 }
