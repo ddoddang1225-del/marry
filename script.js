@@ -1,15 +1,12 @@
 /**
  * [1] 섹션 이동 기능
- * 메뉴 클릭 시 메인 비주얼을 숨기고 선택한 섹션만 활성화합니다.
  */
 function showSection(type) {
-    // 1. 모든 서브 섹션을 먼저 숨깁니다.
     const subSections = document.querySelectorAll('.sub-section');
     subSections.forEach(sec => {
         sec.classList.remove('active-section');
     });
 
-    // 2. 메인 비주얼(카드) 엘리먼트 제어
     const mainVisual = document.getElementById('main-visual');
     
     if (type === 'main') {
@@ -22,7 +19,6 @@ function showSection(type) {
         }
     }
 
-    // 3. 페이지 상단으로 스크롤 이동
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -169,7 +165,7 @@ if (card) {
 }
 
 /**
- * [5] 또댕 발자취 2단 슬라이더 초기화 함수 (독립 작동)
+ * [5] 또댕 발자취 2단 슬라이더 초기화 (스크롤바 연동 최적화)
  */
 function initDualSlider(containerId, thumbId) {
     const container = document.getElementById(containerId);
@@ -181,7 +177,6 @@ function initDualSlider(containerId, thumbId) {
     let startX;
     let scrollLeft;
 
-    // 1. 드래그 이벤트 (PC)
     container.addEventListener('mousedown', (e) => {
         isDown = true;
         startX = e.pageX - container.offsetLeft;
@@ -200,12 +195,14 @@ function initDualSlider(containerId, thumbId) {
         container.scrollLeft = scrollLeft - walk;
     });
 
-    // 2. 스크롤 연동 (PC 드래그 + 모바일 터치 공통)
+    // 스크롤 시 조그마한 바 내부의 핸들(thumb) 위치 계산
     container.addEventListener('scroll', () => {
         const maxScroll = container.scrollWidth - container.clientWidth;
         const scrollPercent = container.scrollLeft / (maxScroll || 1);
-        // thumb이 움직일 수 있는 최대 범위는 전체 바의 100% - thumb 너비(25%) = 75%
-        thumb.style.left = (scrollPercent * 75) + "%";
+        
+        // 조그마한 트랙 너비(80px)에서 핸들 너비(30px)를 뺀 나머지 거리(50px)만큼만 이동
+        const moveRange = 50; 
+        thumb.style.transform = `translateX(${scrollPercent * moveRange}px)`;
     });
 }
 
@@ -213,10 +210,7 @@ function initDualSlider(containerId, thumbId) {
  * [6] 초기화 실행
  */
 window.addEventListener('load', () => {
-    // 방명록 초기 렌더링
     renderMessages();
-    
-    // 또댕 발자취 슬라이더 각각 초기화
     initDualSlider('container-row1', 'thumb-row1');
     initDualSlider('container-row2', 'thumb-row2');
 });
