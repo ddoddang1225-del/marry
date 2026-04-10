@@ -144,54 +144,46 @@ header.site-header {
 /* -------------------------------------------------- */
 /* ✅ 최종 모바일 패치: 스크롤바 디자인 + 화살표 반영 */
 /* -------------------------------------------------- */
+/* -------------------------------------------------- */
+/* ✅ 모바일 최적화: 약도 숨기기 및 레이아웃 정리 */
+/* -------------------------------------------------- */
 @media (max-width: 768px) {
+    /* 1. 카드 높이 및 터치 설정 */
     .main-container {
-        height: 65vh !important;
+        height: auto !important; /* 모바일에서는 내용에 맞게 조절 */
+        max-height: 70vh; /* 너무 길어지지 않게 제한 */
         aspect-ratio: auto !important;
         touch-action: pan-y; 
     }
 
-    .card-back {
-        display: block !important; 
-        overflow-y: scroll !important; /* 세로 스크롤 강제 */
-        -webkit-overflow-scrolling: touch !important; 
-        text-align: center;
-        padding-top: 20px !important;
-    }
-
-    /* 모바일 전용 스크롤바 디자인 */
-    .card-back::-webkit-scrollbar {
-        width: 6px !important;
-        display: block !important;
-    }
-    .card-back::-webkit-scrollbar-thumb {
-        background-color: var(--point-pink) !important;
-        border-radius: 10px !important;
-    }
-    .card-back::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05) !important;
-    }
-
-    .card-back * {
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
+    /* 2. 약도 숨기기 (핵심!) */
     .back-map-image {
-        width: 90% !important;
-        height: auto !important;
-        margin: 20px auto !important;
-        display: block;
+        display: none !important; /* 모바일 화면에서는 약도를 아예 보이지 않게 합니다. */
     }
 
-    .account-card {
-        width: 90% !important;
-        margin: 10px auto !important;
-    }
-
-    /* 화살표 위치 미세 조정 */
+    /* 3. 화살표 숨기기 (약도가 없으므로 힌트도 필요 없음) */
     .scroll-arrow {
-        bottom: 5px;
+        display: none !important;
+    }
+
+    /* 4. 카드 뒷면 여백 조정 */
+    .card-back {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center; /* 내용을 중앙에 배치 */
+        padding: 20px !important;
+        overflow-y: hidden !important; /* 약도가 빠졌으므로 스크롤도 필요 없음 */
+    }
+
+    /* 5. 하단 태그 위치 조정 */
+    .footer-tag {
+        margin-top: 20px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* 6. 계좌 카드 너비 조정 */
+    .account-card {
+        width: 100% !important;
+        margin: 5px 0 !important;
     }
 }
