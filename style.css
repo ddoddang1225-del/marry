@@ -126,30 +126,55 @@ header.site-header {
 /* -------------------------------------------------- */
 /* ✅ 모바일 스크롤 지옥 탈출 패치 (이 부분만 믿어보세요) */
 /* -------------------------------------------------- */
+/* -------------------------------------------------- */
+/* ✅ 최종 모바일 패치: 스크롤바 강제 노출 + 레이아웃 */
+/* -------------------------------------------------- */
 @media (max-width: 768px) {
-    /* 1. 카드가 화면 밖으로 못 나가게 높이 고정 */
+    /* 1. 카드 높이 및 회전 설정 */
     .main-container {
-        height: 65vh !important; /* 너무 길면 스크롤 바가 생기도록 높이 제한 */
+        height: 65vh !important;
         aspect-ratio: auto !important;
+        /* 터치 시 애니메이션 충돌 방지 */
+        touch-action: pan-y; 
     }
 
-    /* 2. 카드 뒷면 레이아웃 방식 변경 (flex 해제) */
+    .main-container.paused {
+        animation: none !important;
+    }
+
+    /* 2. 카드 뒷면 스크롤바 강제 활성화 */
     .card-back {
         display: block !important; 
-        overflow-y: scroll !important; /* 항상 스크롤 가능하게 */
+        overflow-y: scroll !important; /* 세로 스크롤 강제 */
         -webkit-overflow-scrolling: touch !important; 
         text-align: center;
         padding-top: 20px !important;
     }
 
-    /* 3. 뒷면 내부 구성 요소 정렬 보강 */
+    /* 3. 모바일 스크롤바 디자인 (강제 노출) */
+    .card-back::-webkit-scrollbar {
+        width: 6px !important;
+        display: block !important; /* 모바일에서 숨겨지는 것 방지 */
+    }
+
+    .card-back::-webkit-scrollbar-thumb {
+        background-color: var(--point-pink) !important; /* 핑크색 막대 */
+        border-radius: 10px !important;
+        visibility: visible !important;
+    }
+
+    .card-back::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05) !important;
+        border-radius: 10px !important;
+    }
+
+    /* 4. 내부 요소 정렬 보강 */
     .card-back * {
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
 
-    /* 4. 약도 이미지 깨짐 방지 */
     .back-map-image {
         width: 90% !important;
         height: auto !important;
@@ -157,7 +182,6 @@ header.site-header {
         display: block;
     }
 
-    /* 5. 계좌 번호 박스 정렬 */
     .account-card {
         width: 90% !important;
         margin: 10px auto !important;
