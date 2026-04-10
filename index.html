@@ -62,13 +62,26 @@
         .main-bg-image { width: 100%; height: 100%; object-fit: cover; display: block; }
         .info-wrap { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); width: 100%; z-index: 10; font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center; pointer-events: none; }
         
-        /* ✅ 카드 뒷면 디자인 유지 및 위치 이동 */
-        .card-back { background-color: white; transform: rotateY(-180deg); z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 30px 20px; overflow-y: auto; }
-        .card-back::-webkit-scrollbar { width: 5px; }
+        /* ✅ [핵심 수정] 카드 뒷면: PC/모바일 반응형 레이아웃 및 여백 최적화 */
+        .card-back { 
+            background-color: white; 
+            transform: rotateY(-180deg); 
+            z-index: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; /* 상단부터 채움 */
+            overflow-y: auto; /* 내용 길어지면 내부 스크롤 */
+            padding: clamp(10px, 3vw, 15px); /* 내부 여백 대폭 축소 (image_2.png 짤림 방지) */
+        }
+        .card-back::-webkit-scrollbar { width: 4px; }
         .card-back::-webkit-scrollbar-thumb { background: #ffdbdb; border-radius: 10px; }
 
-        .back-info-text { font-family: 'Cafe24Ssukssuk'; color: #555; font-size: 16px; margin-bottom: 5px; line-height: 1.4; text-align: center; }
-        .back-gift-box { margin: 20px 0; padding: 15px; border-top: 1px dashed #ffdbdb; border-bottom: 1px dashed #ffdbdb; width: 100%; text-align: center; font-family: 'Cafe24Ssukssuk'; }
+        /* ✅ [핵심 수정] 유연한 텍스트 크기 설정 */
+        .back-info-text { font-family: 'Cafe24Ssukssuk'; color: #555; font-size: clamp(14px, 3.5vw, 18px); margin-bottom: 2px; line-height: 1.3; text-align: center; }
+        .back-gift-box { margin: clamp(8px, 2vw, 15px) 0; padding: clamp(5px, 1.5vw, 10px) 0; border-top: 1px dashed #ffdbdb; border-bottom: 1px dashed #ffdbdb; width: 100%; text-align: center; font-family: 'Cafe24Ssukssuk'; }
+        .back-gift-box p:first-child { font-size: clamp(14px, 3.5vw, 16px) !important; margin-bottom: 2px; }
+        .back-gift-box p:last-child { font-size: clamp(12px, 3vw, 14px) !important; }
 
         #info, #story, #congrat { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; padding-bottom: 80px; }
         .active-section { display: flex !important; }
@@ -100,12 +113,12 @@
         .congrat-text { font-family: 'Ownglyph_Uiyeon'; font-size: 22px; color: #666; text-align: center; margin-bottom: 20px; line-height: 1.5; }
         .congrat-box { width: 100%; max-width: 500px; background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         
-        /* ✅ 계좌 박스 디자인 그대로 유지 */
-        .account-display { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; width: 100%; }
-        .account-card { background: #fff9f9; border: 1px solid #ffdbdb; border-radius: 12px; padding: 12px 15px; width: 100%; }
-        .account-card h3 { font-size: 15px; color: var(--point-pink); margin-bottom: 6px; font-family: 'Cafe24Ssukssuk'; }
+        /* ✅ [핵심 수정] 계좌 박스 디자인 그대로 유지, 내부 패딩만 컴팩트하게 축소 */
+        .account-display { display: flex; flex-direction: column; gap: clamp(6px, 1.5vw, 12px); margin-bottom: 10px; width: 100%; }
+        .account-card { background: #fff9f9; border: 1px solid #ffdbdb; border-radius: 12px; padding: clamp(8px, 1.5vw, 15px); width: 100%; }
+        .account-card h3 { font-size: clamp(14px, 3.5vw, 17px); color: var(--point-pink); margin-bottom: 4px; font-family: 'Cafe24Ssukssuk'; }
         .account-row { display: flex; justify-content: space-between; align-items: center; }
-        .account-info { font-size: 13px; color: #444; line-height: 1.4; font-family: 'Cafe24Ssukssuk'; }
+        .account-info { font-size: clamp(12px, 3vw, 15px); color: #444; line-height: 1.4; font-family: 'Cafe24Ssukssuk'; }
         .copy-btn { padding: 3px 8px; font-size: 10px; background: white; border: 1px solid #ffdbdb; border-radius: 5px; cursor: pointer; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; }
 
         .msg-toggle-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #ffcdd2; border-radius: 10px; cursor: pointer; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; margin-bottom: 15px; }
@@ -154,15 +167,15 @@
             </div>
 
             <div class="card-face card-back">
-                <div class="back-info-text" style="font-size: 20px; color: var(--point-pink); margin-bottom: 10px;">Wedding Day</div>
+                <div class="back-info-text" style="font-size: clamp(20px, 4.5vw, 22px); color: var(--point-pink); margin-bottom: clamp(5px, 1vw, 10px);">Wedding Day</div>
                 <div class="back-info-text">날짜 : 2027.10.09 토요일</div>
                 <div class="back-info-text">시간 : 12시</div>
                 <div class="back-info-text">장소 : 롯데월드 민속박물관</div>
 
                 <div class="back-gift-box">
-                    <p style="color: #E88D9E; font-weight: bold; margin-bottom: 5px;">[ 답례품 목록 ]</p>
-                    <p style="font-size: 13px; color: #888; margin-bottom: 8px;">사전 신청 링크를 통해 교환 가능합니다.</p>
-                    <p style="font-size: 14px;">롯데월드 티켓 / 선물 복주머니 / 막걸리</p>
+                    <p style="color: #E88D9E; font-weight: bold;">[ 답례품 목록 ]</p>
+                    <p style="font-size: clamp(12px, 3vw, 13px); color: #888; margin-bottom: 2px;">사전 신청 링크를 통해 교환 가능합니다.</p>
+                    <p>롯데월드 티켓 / 선물 복주머니 / 막걸리</p>
                 </div>
 
                 <div class="account-display">
@@ -181,7 +194,7 @@
                         </div>
                     </div>
                 </div>
-                <p style="font-size: 12px; color: #ccc; margin-top: 10px;">Together, as always meant to be</p>
+                <p style="font-size: 11px; color: #ccc; margin-top: clamp(5px, 1.5vw, 10px);">Together, as always meant to be</p>
             </div>
         </div>
         <div style="margin-top: 15px; font-family: 'Cafe24Ssukssuk'; color: #888; font-size: 14px;">← 클릭하거나 밀어서 돌려보세요 →</div>
