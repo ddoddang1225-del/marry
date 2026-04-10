@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="nav-group"><div class="nav-item" onclick="showSection('congrat')">축하 전하는 곳</div></div>
-            <div class="nav-group"><div class="nav-item">지도</div></div>
+            <div class="nav-group"><div class="nav-item" onclick="showSection('map-section')">지도</div></div>
             <div class="nav-group"><div class="nav-item">GALLERY</div></div>
         </nav>
     </header>
@@ -154,6 +154,33 @@
                 <span id="page-num">1 / 1</span>
                 <button id="next-btn" class="page-btn" onclick="changePage(1)">▶</button>
             </div>
+        </div>
+    </section>
+
+    <section id="map-section" class="sub-section">
+        <h2 class="info-title-main">오시는 길</h2>
+        
+        <div class="map-tab-container">
+            <div class="map-tab active" onclick="switchMap('daegu')">대구 ↔ 서울</div>
+            <div class="map-tab" onclick="switchMap('seoul')">서울</div>
+        </div>
+
+        <div class="map-info-box">
+            <div id="info-daegu" class="map-content">
+                <h3 class="map-info-title">대구에서 서울 오시는 법</h3>
+                <p class="map-info-text">KTX/SRT 이용 시: 수서역 또는 서울역 하차 후 지하철 2호선 잠실역으로 이동</p>
+                <p class="map-info-text">고속버스 이용 시: 서울고속버스터미널 하차 후 지하철 3호선 -> 2호선 환승</p>
+            </div>
+            
+            <div id="info-seoul" class="map-content hidden">
+                <h3 class="map-info-title">서울에서 오시는 법</h3>
+                <p class="map-info-text">지하철 이용 시: 2호선, 8호선 잠실역 하차 후 3번 출구 방면</p>
+                <p class="map-info-text">버스 이용 시: 잠실역, 롯데월드 정류장 하차</p>
+            </div>
+        </div>
+
+        <div class="map-display-area">
+            <img src="images/전통혼례 약도.jpg" alt="지도 이미지" style="width:100%; border-radius:12px;">
         </div>
     </section>
 

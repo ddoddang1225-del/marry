@@ -147,6 +147,31 @@ function initDualSlider(containerId, thumbId) {
     });
 }
 
+/**
+ * [6] 지도 탭 전환 기능
+ */
+function switchMap(type) {
+    // 탭 버튼 활성화 상태 변경
+    const tabs = document.querySelectorAll('.map-tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    // 클릭한 탭 활성화 (이벤트 타겟 찾기)
+    if (type === 'daegu') tabs[0].classList.add('active');
+    else tabs[1].classList.add('active');
+
+    // 내용 변경
+    const daeguInfo = document.getElementById('info-daegu');
+    const seoulInfo = document.getElementById('info-seoul');
+
+    if (type === 'daegu') {
+        daeguInfo.classList.remove('hidden');
+        seoulInfo.classList.add('hidden');
+    } else {
+        daeguInfo.classList.add('hidden');
+        seoulInfo.classList.remove('hidden');
+    }
+}
+
 window.addEventListener('load', () => {
     renderMessages();
     initDualSlider('container-row1', 'thumb-row1');
