@@ -72,7 +72,6 @@ header.site-header {
 .back-wedding-title { font-family: 'Ownglyph_Uiyeon'; font-size: clamp(22px, 5vw, 28px); color: var(--point-pink); font-weight: bold; margin-bottom: 10px; }
 .back-info-text { font-family: 'Cafe24Ssukssuk'; color: #555; font-size: clamp(14px, 3.5vw, 18px); margin-bottom: 2px; }
 
-/* ✅ [수정] 답례품 스타일 (가독성 강화) */
 .back-gift-box { margin: 15px 0; padding: 12px 0; border-top: 1px dashed #ffdbdb; border-bottom: 1px dashed #ffdbdb; width: 100%; text-align: center; font-family: 'Cafe24Ssukssuk'; }
 .gift-title { font-family: 'Ownglyph_Uiyeon'; font-size: clamp(22px, 5vw, 28px); color: var(--point-pink); font-weight: bold; }
 .gift-notice { font-size: clamp(14px, 3.2vw, 16px); color: #888; margin-top: 4px; }
@@ -129,3 +128,37 @@ header.site-header {
 .dropdown-menu { display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg); border-radius: 5px; z-index: 2000; }
 .dropdown-menu.show { display: block; }
 .dropdown-item { display: block; padding: 8px; color: white; text-decoration: none; font-size: 12px; text-align: center; cursor: pointer; }
+
+
+/* --- 여기서부터 수정/추가된 최종 기능 코드입니다 --- */
+
+/* 1. PC/모바일 공통: 클릭 시 애니메이션을 완전히 끄고 JS 회전값(transform)을 허용 */
+.main-container.paused {
+    animation: none !important; 
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 2. 모바일 전용 설정 */
+@media (max-width: 768px) {
+    /* 카드 높이를 제한하여 전체 페이지 스크롤 여백 확보 */
+    .main-container {
+        height: auto !important;
+        max-height: 75vh !important;
+    }
+    
+    /* 카드 뒷면 스크롤 활성화 및 터치 최적화 */
+    .card-back {
+        display: block !important; 
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding-bottom: 40px !important; 
+    }
+
+    /* 약도 이미지 크기 고정 */
+    .back-map-image {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 20px 0 !important;
+    }
+}
