@@ -162,3 +162,29 @@ header.site-header {
         margin: 20px 0 !important;
     }
 }
+/* 카드 뒷면 스크롤바 커스텀 설정 */
+
+/* 1. 뒷면 박스 자체에 스크롤 설정 (기존 코드 보완) */
+.card-back {
+    display: block !important;
+    overflow-y: scroll !important; /* 스크롤바 영역 상시 확보 */
+    -webkit-overflow-scrolling: touch !important; /* 모바일 부드러운 스크롤 */
+}
+
+/* 2. 스크롤바 전체 너비/두께 */
+.card-back::-webkit-scrollbar {
+    width: 6px !important; /* 스크롤바 두께 */
+    display: block !important;
+}
+
+/* 3. 스크롤바 막대 (움직이는 부분) 디자인 */
+.card-back::-webkit-scrollbar-thumb {
+    background-color: rgba(232, 141, 158, 0.5) !important; /* 포인트 핑크색 반투명 */
+    border-radius: 10px !important;
+}
+
+/* 4. 스크롤바 배경 (트랙) 디자인 */
+.card-back::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.05) !important; /* 아주 연한 배경색 */
+    border-radius: 10px !important;
+}
