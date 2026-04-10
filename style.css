@@ -1,9 +1,7 @@
-/* Fonts */
 @font-face { font-family: 'Cafe24Ssukssuk'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Ssukssuk.woff') format('woff'); }
 @font-face { font-family: 'Ownglyph_Uiyeon'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/Ownglyph_Uiyeon.woff') format('woff'); }
 @font-face { font-family: 'Cafe24Decoline'; src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Cafe2424Decoline.woff2') format('woff2'); }
 
-/* Variables */
 :root {
     --bg-pink: #FFF0F1; 
     --bg-blue-point: #C3D7F4; 
@@ -15,11 +13,8 @@
     --youtube-red: #FF0000;
 }
 
-/* Global Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background-color: var(--bg-pink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
-/* Utility */
 .hidden { display: none !important; }
 
 /* Header */
@@ -34,7 +29,6 @@ header.site-header {
 .nav-group { position: relative; flex: 1; }
 .nav-item { font-family: 'Cafe24Ssukssuk', sans-serif; font-size: 13px; height: 32px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid var(--box-border); border-radius: 4px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
 
-/* Responsive Header */
 @media (min-width: 769px) {
     .header-left-logo { position: absolute; left: 0; top: 90%; transform: translateY(-50%); cursor: pointer; }
     .header-left-logo img { width: 12vw; max-width: 160px; }
@@ -66,7 +60,6 @@ header.site-header {
 .card-back { background-color: white; transform: rotateY(-180deg); z-index: 1; display: flex; flex-direction: column; align-items: center; overflow-y: auto; padding: clamp(10px, 3vw, 15px); position: relative; -webkit-overflow-scrolling: touch; }
 .main-bg-image { width: 100%; height: 100%; object-fit: cover; }
 
-/* Info Wrap (Front) */
 .info-wrap { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); width: 100%; text-align: center; color: white; font-family: 'Ownglyph_Uiyeon'; }
 .shadow-text { text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
 .date { font-size: clamp(20px, 4vw, 30px); }
@@ -84,7 +77,6 @@ header.site-header {
 .footer-tag { font-size: 11px; color: #ccc; margin-top: auto; padding-bottom: 30px; }
 .flip-hint { margin-top: 15px; font-family: 'Cafe24Ssukssuk'; color: #888; font-size: 14px; }
 
-/* 하단 스크롤 유도 화살표 */
 .scroll-arrow {
     position: sticky; bottom: 10px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center;
@@ -103,7 +95,6 @@ header.site-header {
     100% { opacity: 0; transform: rotate(45deg) translate(5px, 5px); }
 }
 
-/* Sub Sections & Base */
 .sub-section { 
     display: none; background-color: white; 
     min-height: 100vh; flex-direction: column; 
@@ -123,70 +114,72 @@ header.site-header {
 }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-/* ✅ 또댕 발자취 2단 슬라이더 전용 CSS (최종 수정) */
+/* 또댕 발자취 수정된 스타일 */
 .story-wrapper {
     width: 100%;
-    max-width: 900px; /* 8개 사진을 고려하여 넓게 설정 */
+    max-width: 800px; 
     margin-bottom: 40px;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .story-container {
     width: 100%;
     overflow-x: auto;
     cursor: grab;
-    -ms-overflow-style: none; /* IE, Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
 }
-.story-container::-webkit-scrollbar { display: none; } /* Chrome, Safari */
+.story-container::-webkit-scrollbar { display: none; } 
 
 .story-track {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     width: max-content;
     padding-bottom: 5px;
 }
 
 .slide-item {
-    width: 150px; /* 사진 크기 고정 */
+    width: calc((800px - 60px) / 4); 
     aspect-ratio: 1/1;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+@media (max-width: 800px) {
+    .slide-item {
+        width: calc((100vw - 60px) / 4);
+    }
+}
+
 .slide-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* 요청하신 조그마한 스크롤바 디자인 */
-.custom-scrollbar-area {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-.custom-scrollbar-track {
-    width: 80px; /* 스크롤바 전체 너비 (조그마하게) */
+/* 하단 커스텀 스크롤바 */
+.custom-scrollbar {
+    width: 50%;
     height: 4px;
     background: #f0f0f0;
-    border-radius: 10px;
+    margin: 15px auto 0;
+    border-radius: 2px;
     position: relative;
     overflow: hidden;
 }
+
 .scroll-thumb {
-    width: 30px; /* 스크롤바 핸들 길이 */
+    width: 50%; 
     height: 100%;
     background: var(--point-pink);
-    border-radius: 10px;
+    border-radius: 2px;
     position: absolute;
     left: 0;
-    transition: transform 0.1s ease-out;
+    transition: left 0.1s ease-out;
 }
 
-/* Accounts & Guestbook */
 .account-display { display: flex; flex-direction: column; gap: 10px; width: 100%; }
 .account-card { background: #fff9f9; border: 1px solid #ffdbdb; border-radius: 12px; padding: 12px; width: 100%; }
 .account-card h3 { font-size: 16px; color: var(--point-pink); margin-bottom: 4px; font-family: 'Cafe24Ssukssuk'; }
@@ -197,26 +190,20 @@ header.site-header {
 .congrat-text { font-family: 'Ownglyph_Uiyeon'; font-size: 22px; color: #666; text-align: center; margin-bottom: 20px; }
 .congrat-box { width: 100%; max-width: 500px; background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 .msg-toggle-btn { width: 100%; padding: 12px; border: 1px solid #ffcdd2; border-radius: 10px; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; cursor: pointer; margin-bottom: 15px; }
-.msg-input-container { display: none; padding: 15px; background: #fff9f9; border-radius: 12px; border: 1px dashed #ffcdd2; margin-bottom: 20px; }
+.msg-input-area { display: none; padding: 15px; background: #fff9f9; border-radius: 12px; border: 1px dashed #ffcdd2; margin-bottom: 20px; }
 .msg-input-container.show { display: block; }
-.msg-input-container input, .msg-input-container textarea { width: 100%; border: none; background: transparent; font-family: 'Ownglyph_Uiyeon'; font-size: 18px; outline: none; }
-.reg-btn { background: none; border: none; color: var(--point-pink); font-weight: bold; cursor: pointer; }
-
 .message-wall { display: flex; flex-wrap: wrap; gap: 10px; }
 .post-it { width: calc(50% - 5px); min-height: 120px; padding: 12px; font-family: 'Ownglyph_Uiyeon'; font-size: 17px; display: flex; flex-direction: column; justify-content: space-between; }
 .post-it:nth-child(even) { background: #f1f8e9; transform: rotate(1deg); }
 .post-it:nth-child(odd) { background: #fff0f1; transform: rotate(-1deg); }
 .msg-writer { font-size: 13px; color: #888; text-align: right; border-top: 1px dashed #ddd; }
 
-/* Dropdown */
 .dropdown-menu { display: none; position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: 100%; background-color: var(--dropdown-bg); border-radius: 5px; z-index: 2000; }
 .dropdown-menu.show { display: block; }
 .dropdown-item { display: block; padding: 8px; color: white; text-decoration: none; font-size: 12px; text-align: center; cursor: pointer; }
 
-/* 최종 반응형 최적화 */
 @media (max-width: 768px) {
-    .main-container { height: auto !important; max-height: 75vh; aspect-ratio: auto !important; touch-action: pan-y; }
+    .main-container { height: auto !important; max-height: 75vh; aspect-ratio: auto !important; }
     .back-map-image, .scroll-arrow { display: none !important; }
-    .card-back { display: flex !important; flex-direction: column; justify-content: center; padding: 25px !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch !important; }
-    .slide-item { width: 120px; } /* 모바일에서 사진 크기 약간 축소 */
+    .card-back { padding: 25px !important; }
 }

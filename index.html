@@ -114,10 +114,8 @@
                     <div class="slide-item"><img src="images/story8.jpg" alt="사진8"></div>
                 </div>
             </div>
-            <div class="custom-scrollbar-area">
-                <div class="custom-scrollbar-track">
-                    <div class="scroll-thumb" id="thumb-row1"></div>
-                </div>
+            <div class="custom-scrollbar">
+                <div class="scroll-thumb" id="thumb-row1"></div>
             </div>
         </div>
 
@@ -134,10 +132,8 @@
                     <div class="slide-item"><img src="images/story16.jpg" alt="사진16"></div>
                 </div>
             </div>
-            <div class="custom-scrollbar-area">
-                <div class="custom-scrollbar-track">
-                    <div class="scroll-thumb" id="thumb-row2"></div>
-                </div>
+            <div class="custom-scrollbar">
+                <div class="scroll-thumb" id="thumb-row2"></div>
             </div>
         </div>
     </section>
@@ -147,13 +143,13 @@
         <div class="congrat-text">소중한 분들의 따뜻한 격려와 축복이<br>저희의 앞날에 큰 힘이 됩니다.</div>
         <div class="congrat-box">
             <button class="msg-toggle-btn" onclick="toggleMsgInput()">💌 축하 메시지 남기기</button>
-            <div id="msg-input-area" class="msg-input-container">
-                <input type="text" id="msg-name" placeholder="성함">
-                <textarea id="msg-text" rows="2" placeholder="따뜻한 한마디를 남겨주세요."></textarea>
+            <div id="msg-input-area" class="msg-input-area">
+                <input type="text" id="msg-name" placeholder="성함" style="width:100%; margin-bottom:10px; padding:8px;">
+                <textarea id="msg-text" rows="2" placeholder="따뜻한 한마디를 남겨주세요." style="width:100%; margin-bottom:10px; padding:8px;"></textarea>
                 <div style="text-align: right;"><button onclick="addMessage()" class="reg-btn">[ 등록하기 ]</button></div>
             </div>
             <div id="message-wall" class="message-wall"></div>
-            <div class="pagination-ctrl">
+            <div class="pagination-ctrl" style="text-align:center; margin-top:20px;">
                 <button id="prev-btn" class="page-btn" onclick="changePage(-1)">◀</button>
                 <span id="page-num">1 / 1</span>
                 <button id="next-btn" class="page-btn" onclick="changePage(1)">▶</button>
