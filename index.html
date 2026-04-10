@@ -53,18 +53,22 @@
         }
 
         .main-content { display: flex; flex-direction: column; align-items: center; background-color: var(--bg-blue-point); min-height: 100vh; width: 100%; padding-bottom: 80px; perspective: 1500px; }
-        
-        /* ✅ 클릭을 위해 cursor 추가 */
         .main-container { position: relative; width: 85%; max-width: 600px; aspect-ratio: 3 / 4; margin-top: 40px; border-radius: 20px; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); animation: flipLoop 40s infinite; cursor: pointer; }
         .main-container.paused { animation-play-state: paused; }
-        
         @keyframes flipLoop { 0%, 42.5% { transform: rotateY(0deg); } 50%, 92.5% { transform: rotateY(-180deg); } 100% { transform: rotateY(-360deg); } }
         
         .card-face { position: absolute; width: 100%; height: 100%; border-radius: 20px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         .card-front { z-index: 2; }
         .main-bg-image { width: 100%; height: 100%; object-fit: cover; display: block; }
         .info-wrap { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); width: 100%; z-index: 10; font-family: 'Ownglyph_Uiyeon', sans-serif; color: white; text-align: center; pointer-events: none; }
-        .card-back { background-color: white; transform: rotateY(-180deg); z-index: 1; display: flex; align-items: center; justify-content: center; }
+        
+        /* ✅ 카드 뒷면 디자인 유지 및 위치 이동 */
+        .card-back { background-color: white; transform: rotateY(-180deg); z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 30px 20px; overflow-y: auto; }
+        .card-back::-webkit-scrollbar { width: 5px; }
+        .card-back::-webkit-scrollbar-thumb { background: #ffdbdb; border-radius: 10px; }
+
+        .back-info-text { font-family: 'Cafe24Ssukssuk'; color: #555; font-size: 16px; margin-bottom: 5px; line-height: 1.4; text-align: center; }
+        .back-gift-box { margin: 20px 0; padding: 15px; border-top: 1px dashed #ffdbdb; border-bottom: 1px dashed #ffdbdb; width: 100%; text-align: center; font-family: 'Cafe24Ssukssuk'; }
 
         #info, #story, #congrat { display: none; background-color: white; min-height: 100vh; flex-direction: column; align-items: center; padding-bottom: 80px; }
         .active-section { display: flex !important; }
@@ -95,12 +99,15 @@
         #congrat { padding: 30px 20px 80px 20px; font-family: 'Cafe24Ssukssuk', sans-serif; }
         .congrat-text { font-family: 'Ownglyph_Uiyeon'; font-size: 22px; color: #666; text-align: center; margin-bottom: 20px; line-height: 1.5; }
         .congrat-box { width: 100%; max-width: 500px; background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .account-display { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-        .account-card { background: #fff9f9; border: 1px solid #ffdbdb; border-radius: 12px; padding: 15px 18px; }
-        .account-card h3 { font-size: 17px; color: var(--point-pink); margin-bottom: 8px; }
+        
+        /* ✅ 계좌 박스 디자인 그대로 유지 */
+        .account-display { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; width: 100%; }
+        .account-card { background: #fff9f9; border: 1px solid #ffdbdb; border-radius: 12px; padding: 12px 15px; width: 100%; }
+        .account-card h3 { font-size: 15px; color: var(--point-pink); margin-bottom: 6px; font-family: 'Cafe24Ssukssuk'; }
         .account-row { display: flex; justify-content: space-between; align-items: center; }
-        .account-info { font-size: 15px; color: #444; line-height: 1.4; }
-        .copy-btn { padding: 4px 10px; font-size: 11px; background: white; border: 1px solid #ffdbdb; border-radius: 5px; cursor: pointer; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; }
+        .account-info { font-size: 13px; color: #444; line-height: 1.4; font-family: 'Cafe24Ssukssuk'; }
+        .copy-btn { padding: 3px 8px; font-size: 10px; background: white; border: 1px solid #ffdbdb; border-radius: 5px; cursor: pointer; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; }
+
         .msg-toggle-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #ffcdd2; border-radius: 10px; cursor: pointer; color: #E88D9E; font-family: 'Cafe24Ssukssuk'; margin-bottom: 15px; }
         .msg-input-container { display: none; padding: 15px; background: #fff9f9; border-radius: 12px; border: 1px dashed #ffcdd2; margin-bottom: 20px; }
         .msg-input-container.show { display: block; }
@@ -145,8 +152,36 @@
                 </div>
                 <img src="images/danag.jpg" class="main-bg-image" alt="Main Photo">
             </div>
+
             <div class="card-face card-back">
-                <p style="font-family:'Cafe24Ssukssuk'; color:#888;">Coming Soon</p>
+                <div class="back-info-text" style="font-size: 20px; color: var(--point-pink); margin-bottom: 10px;">Wedding Day</div>
+                <div class="back-info-text">날짜 : 2027.10.09 토요일</div>
+                <div class="back-info-text">시간 : 12시</div>
+                <div class="back-info-text">장소 : 롯데월드 민속박물관</div>
+
+                <div class="back-gift-box">
+                    <p style="color: #E88D9E; font-weight: bold; margin-bottom: 5px;">[ 답례품 목록 ]</p>
+                    <p style="font-size: 13px; color: #888; margin-bottom: 8px;">사전 신청 링크를 통해 교환 가능합니다.</p>
+                    <p style="font-size: 14px;">롯데월드 티켓 / 선물 복주머니 / 막걸리</p>
+                </div>
+
+                <div class="account-display">
+                    <div class="account-card">
+                        <h3>신랑측 마음 전하실 곳</h3>
+                        <div class="account-row">
+                            <div class="account-info">신랑 이진현<br><small>국민 217802-04-383914</small></div>
+                            <button class="copy-btn" onclick="copyText('21780204383914')">복사</button>
+                        </div>
+                    </div>
+                    <div class="account-card">
+                        <h3>신부측 마음 전하실 곳</h3>
+                        <div class="account-row">
+                            <div class="account-info">신부 조윤담<br><small>카카오 3333-16-0012225</small></div>
+                            <button class="copy-btn" onclick="copyText('3333160012225')">복사</button>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: #ccc; margin-top: 10px;">Together, as always meant to be</p>
             </div>
         </div>
         <div style="margin-top: 15px; font-family: 'Cafe24Ssukssuk'; color: #888; font-size: 14px;">← 클릭하거나 밀어서 돌려보세요 →</div>
@@ -159,11 +194,8 @@
             <br>
             <p>저희 두 사람의 새로운 시작을<br>함께 축복해 주시면 감사하겠습니다.</p>
             <br><br>
-            <p style="color: #E88D9E; font-weight: bold;">[ 답례품 목록 ]</p>
-            <p>아래 목록들은 링크를 통해 사전 신청해주셔야만 교환 가능합니다.</p>
-            <p> 링크 </p>
-            <br>
-            <p>롯데월드 티켓 / 선물 복주머니 / 막걸리</p>
+            <p style="color: #E88D9E; font-weight: bold;">[ 안내 사항 ]</p>
+            <p>식순 및 답례품 관련 상세 내용은 메인 카드를 뒤집어 확인하실 수 있습니다.</p>
         </div>
     </section>
 
@@ -207,22 +239,6 @@
         <h2 class="info-title-main">축하 전하는 곳</h2>
         <div class="congrat-text">소중한 분들의 따뜻한 격려와 축복이<br>저희의 앞날에 큰 힘이 됩니다.</div>
         <div class="congrat-box">
-            <div class="account-display">
-                <div class="account-card">
-                    <h3>신랑측 마음 전하실 곳</h3>
-                    <div class="account-row">
-                        <div class="account-info">신랑 이진현<br><small>국민 217802-04-383914</small></div>
-                        <button class="copy-btn" onclick="copyText('21780204383914')">복사</button>
-                    </div>
-                </div>
-                <div class="account-card">
-                    <h3>신부측 마음 전하실 곳</h3>
-                    <div class="account-row">
-                        <div class="account-info">신부 조윤담<br><small>카카오 3333-16-0012225</small></div>
-                        <button class="copy-btn" onclick="copyText('3333160012225')">복사</button>
-                    </div>
-                </div>
-            </div>
             <button class="msg-toggle-btn" onclick="document.getElementById('msg-input-area').classList.toggle('show')">💌 축하 메시지 남기기</button>
             <div id="msg-input-area" class="msg-input-container">
                 <input type="text" id="msg-name" placeholder="성함">
@@ -337,43 +353,41 @@
 
         window.onload = renderMessages;
 
-        /* ✅ 카드 뒤집기 로직 보완 (클릭 + 20초 대기 포함) */
         const card = document.getElementById('flip-card');
         if (card) {
             let isFlipped = false;
             let autoTimer;
 
-            // 회전 함수
             function flipAction() {
                 isFlipped = !isFlipped;
-                card.style.animation = 'none'; // 자동 루프 애니메이션 중단
+                card.style.animation = 'none'; 
                 card.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
-                resetAutoTimer(); // 동작 발생 시 타이머 초기화
+                resetAutoTimer(); 
             }
 
-            // 20초 후 다시 뒤집는 타이머
             function resetAutoTimer() {
                 clearTimeout(autoTimer);
                 autoTimer = setTimeout(() => {
                     isFlipped = !isFlipped;
                     card.style.transform = isFlipped ? 'rotateY(-180deg)' : 'rotateY(0deg)';
-                    resetAutoTimer(); // 계속 반복
-                }, 20000); // 20초
+                    resetAutoTimer(); 
+                }, 20000); 
             }
 
-            // PC 클릭 이벤트
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                // 복사 버튼 클릭 시에는 뒤집히지 않도록 방지
+                if(e.target.classList.contains('copy-btn')) return;
                 card.classList.add('paused');
                 flipAction();
             });
 
-            // 모바일 스와이프 이벤트 (기존 유지)
             let touchstartX = 0;
             card.addEventListener('touchstart', e => {
                 touchstartX = e.changedTouches[0].screenX;
                 card.classList.add('paused'); 
             });
             card.addEventListener('touchend', e => {
+                if(e.target.classList.contains('copy-btn')) return;
                 let endX = e.changedTouches[0].screenX;
                 let diff = endX - touchstartX;
                 if (Math.abs(diff) > 50) {
@@ -381,7 +395,6 @@
                 }
             });
 
-            // 초기 타이머 시작 (아무것도 안 할 때 20초마다 돌게 하려면 활성화)
             resetAutoTimer();
         }
     </script>
